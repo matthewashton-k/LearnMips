@@ -6,21 +6,76 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1302</width>
+    <height>803</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="sectionTabs">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1301</width>
+      <height>761</height>
+     </rect>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::West</enum>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="section1Tab">
+     <attribute name="title">
+      <string>Section 1</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1271</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="s1t1">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="s1t2">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="s1t3">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="section2Tab">
+     <attribute name="title">
+      <string>Section 2</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>22</height>
+     <width>1302</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
