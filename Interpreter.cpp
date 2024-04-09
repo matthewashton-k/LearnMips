@@ -193,8 +193,15 @@ std::string Interpreter::run() {
 }
 
 void Interpreter::executeImmediateInstruction(Opcode opcode, Reg dstReg, const vector<string>& tokens, const string& instruction) {
+
     std::optional<Reg> srcReg1 = parseReg(tokens[2]);
-    int imm = stoi(tokens[3]);
+    int imm;
+    try {
+        imm = stoi(tokens[3]);
+    } catch (exception e){
+        throw ("No immediate value at: " + instruction);
+    }
+
     if (!srcReg1.has_value()) {
         throw ("Invalid source register at: " + instruction);
     }
@@ -251,11 +258,15 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
     // Extract the offset and source/destination register
     size_t openParenIndex = tokens[2].find_first_of('(');
     if (openParenIndex != std::string::npos) {
-        offset = std::stoi(tokens[2].substr(0, openParenIndex));
-        size_t closeParenIndex = tokens[2].find_last_of(')');
-        if (closeParenIndex != std::string::npos) {
-            std::string innerRegStr = tokens[2].substr(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
-            srcReg = parseReg(innerRegStr);
+        try {
+            offset = std::stoi(tokens[2].substr(0, openParenIndex));
+            size_t closeParenIndex = tokens[2].find_last_of(')');
+            if (closeParenIndex != std::string::npos) {
+                std::string innerRegStr = tokens[2].substr(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
+                srcReg = parseReg(innerRegStr);
+            }
+        } catch (exception e) { // if stoi fails
+            throw ("Invalid instruction format at: " + instruction);
         }
     } else {
         throw ("Invalid instruction format at: " + instruction);
