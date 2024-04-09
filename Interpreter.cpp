@@ -123,6 +123,8 @@ vector<string> tokenize(const string& str, char delimiter) {
         if (token.empty()) {
             continue;
         }
+        if (token == "#")
+            break;
         tokens.push_back(token);
     }
 
@@ -185,7 +187,6 @@ std::string Interpreter::run() {
                 // Should never reach here
                 break;
         }
-
     }
 
     return this->stdout;
