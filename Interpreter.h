@@ -8,6 +8,7 @@
 #include <string>
 #include <variant>
 #include <optional>
+#include <unordered_map>
 /**
  * @brief the value for each variant is its index in the register Array
  */
@@ -87,6 +88,8 @@ private:
     int stack[32] = {0};
     std::vector<std::string> instructions;
 
+    std::unordered_map<std::string, int> labels;
+
     /**
      * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
      */
@@ -115,10 +118,18 @@ private:
      * @brief executeMemoryInstruction in charge of executing lw,sw, and anything that touches the stack
      * @param opcode the type of memory instruction
      * @param dstReg for load word, this is the register where the stuff from memory will be stored
-     * @param tokens
-     * @param instruction
+     * @param tokens the tokens in the instruction as a vector
+     * @param instruction the instrution being executed
      */
     void executeMemoryInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
+
+    /**
+     * @brief executeRegisterInstruction in charge of executing instructions with one dst register, and two src registers, e.g. mul, add, sub
+     * @param opcode the type of r instruction
+     * @param dstReg the register being written to
+     * @param tokens a vector of tokens in the instruction
+     * @param instruction the instruction as a string
+     */
     void executeRegisterInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
 };
 

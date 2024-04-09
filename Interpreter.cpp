@@ -143,6 +143,7 @@ std::string Interpreter::run() {
     while (programCounter < instructions.size()) {
         auto instruction = instructions.at(programCounter);
         this->programCounter++;
+        //TODO: if the instruction is a label, continue.
         if (instruction.empty()) {
             continue;
         }
@@ -193,7 +194,6 @@ std::string Interpreter::run() {
 }
 
 void Interpreter::executeImmediateInstruction(Opcode opcode, Reg dstReg, const vector<string>& tokens, const string& instruction) {
-
     std::optional<Reg> srcReg1 = parseReg(tokens[2]);
     int imm;
     try {
