@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1301</width>
+      <width>521</width>
       <height>761</height>
      </rect>
     </property>
@@ -27,7 +27,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="section1Tab">
      <attribute name="title">
@@ -43,7 +43,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="s1t1">
        <attribute name="title">
@@ -68,6 +68,16 @@
      </attribute>
     </widget>
    </widget>
+   <widget class="QTextEdit" name="codeEdit">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>0</y>
+      <width>781</width>
+      <height>661</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -75,7 +85,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
