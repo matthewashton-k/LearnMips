@@ -20,6 +20,10 @@ void Interpreter::addi(Reg dst, Reg src, int val) {
     registers[dst] = registers[src] + val;
 }
 
+void Interpreter::subi(Reg dst, Reg src, int inVal){
+    registers[dst] = registers[src] - inVal;
+}
+
 void Interpreter::add(Reg dst, Reg src1, Reg src2) {
     registers[dst] = registers[src1] + registers[src2];
 }
@@ -134,11 +138,17 @@ std::string Interpreter::run() {
     // ...
 
     // Interpret instructions
-    for (const auto& instruction : instructions) {
-        if (instruction.empty()) continue;
+    while (programCounter < instructions.size()) {
+        auto instruction = instructions.at(programCounter);
+        this->programCounter++;
+        if (instruction.empty()) {
+            continue;
+        }
 
         vector<string> tokens = tokenize(instruction, ' ');
-        if (tokens.empty()) continue;
+        if (tokens.empty()) {
+            continue;
+        }
 
         std::optional<Opcode> opcode = parseOpcode(tokens[0]);
         if (!opcode.has_value()) {
@@ -154,6 +164,7 @@ std::string Interpreter::run() {
             case Opcode::srl:
             case Opcode::sll:
             case Opcode::addi:
+            case Opcode::subi:
                 executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
             case Opcode::add:
@@ -174,6 +185,7 @@ std::string Interpreter::run() {
                 // Should never reach here
                 break;
         }
+
     }
 
     return this->stdout;
@@ -197,6 +209,9 @@ void Interpreter::executeImmediateInstruction(Opcode opcode, Reg dstReg, const v
         case Opcode::srl: {
             srl(dstReg, srcReg1.value(), imm);
             break;
+        }
+        case Opcode::subi: {
+            subi(dstReg, srcReg1.value(), imm);
         }
     }
 }

@@ -40,6 +40,7 @@ enum Syscall {
  */
 enum Opcode {
     addi,
+    subi,
     add,
     sub,
     mul,
@@ -76,6 +77,11 @@ private:
     int registers[13] = {0};
 
     /**
+     * @brief programCounter the index in the vector of instructions that is currently being executed
+     */
+    int programCounter = 0;
+
+    /**
      * @brief stack holds the
      */
     int stack[32] = {0};
@@ -85,7 +91,8 @@ private:
      * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
      */
     std::string stdout = "";
-    void addi(Reg dst, Reg src, int val);
+    void addi(Reg dst, Reg src, int inVal);
+    void subi(Reg dst, Reg src, int inVal);
     void add(Reg dst, Reg src1, Reg src2);
     void sub(Reg dst, Reg src1, Reg src2);
     void mul(Reg dst, Reg src1, Reg src2);
