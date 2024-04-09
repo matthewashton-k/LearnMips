@@ -27,17 +27,17 @@ enum Reg {
     zero = 12,
 };
 
+/**
+ * @brief The Syscall enum
+ */
 enum Syscall {
     printInteger = 1,
     Exit = 10,
 };
 
-enum ExitCode{
-    Success,
-    RuntimeFail,
-    CompileTimeFail,
-};
-
+/**
+ * @brief The Opcode enum
+ */
 enum Opcode {
     addi,
     add,
@@ -69,9 +69,21 @@ public:
     }
 
 private:
+    /**
+     * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
+     *
+     */
     int registers[13] = {0};
+
+    /**
+     * @brief stack holds the
+     */
     int stack[32] = {0};
     std::vector<std::string> instructions;
+
+    /**
+     * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
+     */
     std::string stdout = "";
     void addi(Reg dst, Reg src, int val);
     void add(Reg dst, Reg src1, Reg src2);
@@ -82,7 +94,23 @@ private:
     void sw(Reg src, Reg src2, int offset);
     void lw(Reg dst, Reg src1, int src2);
     void syscall(Syscall code);
+
+    /**
+     * @brief executeImmediateInstruction used to execute any instruction that ends with i (addi subi, etc), and srl, sll
+     * @param opcode the type of opcode
+     * @param dstReg the register where the resulting operation will be stored
+     * @param tokens the tokens in the instruction as a vector e.g. [addi, $s0, $s1, 4]
+     * @param instruction the tokens as a complete string. (may have preceding spaces)
+     */
     void executeImmediateInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
+
+    /**
+     * @brief executeMemoryInstruction in charge of executing lw,sw, and anything that touches the stack
+     * @param opcode the type of memory instruction
+     * @param dstReg for load word, this is the register where the stuff from memory will be stored
+     * @param tokens
+     * @param instruction
+     */
     void executeMemoryInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
     void executeRegisterInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
 };
