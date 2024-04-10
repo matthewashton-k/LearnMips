@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     Interpreter.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    model.cpp
 
 HEADERS += \
     Interpreter.h \
-    mainwindow.h
+    mainwindow.h \
+    model.h
 
 FORMS += \
     mainwindow.ui
