@@ -28,8 +28,8 @@ void MainWindow::runButtonClicked(){
         QString str = interpreter.run().c_str();
         ui->console->setText(str);
     } catch (std::string err) {
-        cout << "Error: ";
-        cout << err << endl;
+        ui->console->setText(QString(err.c_str()));
+        cout << "Error: " << err << endl;
     }
     //END TEMPORARY TEST!
 }
