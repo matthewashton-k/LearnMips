@@ -1,7 +1,7 @@
 #ifndef SECTION_H
 #define SECTION_H
 
-class section
+class Section
 {
 public:
     section();

@@ -1,3 +1,3 @@
 #include "challenge.h"
 
-challenge::challenge() {}
+Challenge::Challenge() {}

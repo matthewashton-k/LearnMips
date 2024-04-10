@@ -1,10 +1,10 @@
 #ifndef CHALLENGE_H
 #define CHALLENGE_H
 
-class challenge
+class Challenge
 {
 public:
-    challenge();
+    Challenge();
 };
 
 #endif // CHALLENGE_H
