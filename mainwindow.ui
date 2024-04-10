@@ -29,43 +29,428 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="section1Tab">
+    <widget class="QWidget" name="s1Tab">
      <attribute name="title">
-      <string>Section 1</string>
+      <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="tabWidget_4">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1271</width>
+        <width>491</width>
         <height>761</height>
        </rect>
       </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="s1t1">
+      <widget class="QWidget" name="t1_5">
        <attribute name="title">
         <string>Learn 1</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="s1t2">
+      <widget class="QWidget" name="t2_5">
        <attribute name="title">
         <string>Learn 2</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="s1t3">
+      <widget class="QWidget" name="t3_5">
        <attribute name="title">
         <string>Challenge 1</string>
        </attribute>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="section2Tab">
+    <widget class="QWidget" name="s2Tab">
      <attribute name="title">
-      <string>Section 2</string>
+      <string>Page</string>
      </attribute>
+     <widget class="QTabWidget" name="tabWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_6">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_6">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_6">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s3Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_7">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_7">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_7">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s4Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_8">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_8">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_8">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s5Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_9">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_9">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_9">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s6Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_10">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_10">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_10">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s7Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_10">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_11">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_11">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_11">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s8Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_11">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_12">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_12">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_12">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s9Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_12">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_13">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_13">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_13">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s10Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_13">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_14">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_14">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_14">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s11Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_14">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_15">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_15">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_15">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s12Tab">
+     <attribute name="title">
+      <string>Open</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="t1_End">
+       <attribute name="title">
+        <string>Free Editor</string>
+       </attribute>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>441</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Free Editor</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::PlainText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>60</y>
+          <width>141</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Code whatever you want</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="QTextEdit" name="codeEdit">
@@ -74,7 +459,7 @@
       <x>520</x>
       <y>0</y>
       <width>781</width>
-      <height>661</height>
+      <height>761</height>
      </rect>
     </property>
    </widget>
@@ -85,7 +470,7 @@
      <x>0</x>
      <y>0</y>
      <width>1302</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
