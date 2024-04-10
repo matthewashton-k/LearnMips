@@ -10,14 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     Interpreter.cpp \
+    challenge.cpp \
     main.cpp \
     mainwindow.cpp \
-    model.cpp
+    model.cpp \
+    section.cpp
 
 HEADERS += \
     Interpreter.h \
+    challenge.h \
     mainwindow.h \
-    model.h
+    model.h \
+    section.h
 
 FORMS += \
     mainwindow.ui
