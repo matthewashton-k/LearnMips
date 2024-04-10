@@ -2,12 +2,16 @@
 #define MODEL_H
 
 #include <QObject>
+#include <vector>
+#include "section.h"
 
-class model : public QObject
+class Model : public QObject
 {
     Q_OBJECT
+private:
+    std::vector<Section> sections();
 public:
-    explicit model(QObject *parent = nullptr);
+    explicit Model(QObject *parent = nullptr);
 
 signals:
 };

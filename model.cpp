@@ -1,5 +1,5 @@
 #include "model.h"
 
-model::model(QObject *parent)
+Model::Model(QObject *parent)
     : QObject{parent}
 {}
