@@ -78,6 +78,13 @@ public:
     }
 
 private:
+
+    /**
+     * @brief maxJumps used to set a max number of times a jump can occur, this is to prevent infinite loops
+     */
+    int maxJumps = 1000;
+
+
     /**
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
      *

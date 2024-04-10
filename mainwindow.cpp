@@ -27,7 +27,7 @@ void MainWindow::runButtonClicked(){
     try {
         ui->console->setText(QString::fromStdString(interpreter.run()));
     } catch (std::string err) {
-        cout << "error";
+        cout << "Error: ";
         cout << err << endl;
     }
     //END TEMPORARY TEST!

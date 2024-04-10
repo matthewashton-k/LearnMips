@@ -243,6 +243,7 @@ std::string Interpreter::run() {
     // ...
 
     // Interpret instructions
+    int jumps = 0;
     while (programCounter < instructions.size()) {
         auto instruction = instructions.at(programCounter);
         this->programCounter++;
@@ -257,7 +258,7 @@ std::string Interpreter::run() {
 
         std::optional<Opcode> opcode = parseOpcode(tokens[0]);
         if (!opcode.has_value()) {
-            throw ("no opcode near instruction: " + instruction);
+            throw ("No opcode near instruction: " + instruction);
         }
 
         std::optional<Reg> dstReg = (tokens.size() > 2) ? parseReg(tokens[1]) : nullopt;
@@ -288,7 +289,11 @@ std::string Interpreter::run() {
             case Opcode::blt:
             case Opcode::j:
                 // TODO: j doesnt work yet
+                if (jumps == maxJumps){
+                    throw (string("Max number of jumps exceeded: aborting."));
+                }
                 executeJumpInstruction(opcode.value(), tokens,instruction);
+                jumps++;
                 break;
             case Opcode::syscall:
                 syscall(static_cast<Syscall>(registers[Reg::v0]));
@@ -299,7 +304,6 @@ std::string Interpreter::run() {
                 break;
         }
     }
-
     return this->stdOut;
 }
 
