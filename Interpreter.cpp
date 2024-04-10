@@ -262,7 +262,7 @@ std::string Interpreter::run() {
         }
 
         std::optional<Reg> dstReg = (tokens.size() > 2) ? parseReg(tokens[1]) : nullopt;
-        if (!dstReg.has_value() && opcode.value() != Opcode::syscall) {
+        if (!dstReg.has_value() && opcode.value() != Opcode::syscall && opcode.value() != Opcode::j) {
             throw ("No destination register near instruction: " + instruction);
         }
 
@@ -288,7 +288,6 @@ std::string Interpreter::run() {
             case Opcode::bgt:
             case Opcode::blt:
             case Opcode::j:
-                // TODO: j doesnt work yet
                 if (jumps == maxJumps){
                     throw (string("Max number of jumps exceeded: aborting."));
                 }
@@ -422,12 +421,18 @@ void Interpreter::executeJumpInstruction(Opcode opcode, const std::vector<string
     } else {
         throw ("Invalid instruction at: " + instruction);
     }
-    std::optional<Reg> srcReg1 = parseReg(tokens[1]);
-    std::optional<Reg> srcReg2 = parseReg(tokens[2]);
-    if (!srcReg1.has_value()) {
+
+    std::optional<Reg> srcReg1 = nullopt;
+    std::optional<Reg> srcReg2 = nullopt;
+    if (tokens.size() > 2) {
+        srcReg1 = parseReg(tokens[1]);
+        srcReg2 = parseReg(tokens[2]);
+    }
+
+    if (!srcReg1.has_value() && opcode != Opcode::j) {
         throw ("Invalid source register at: " + instruction);
     }
-    if (!srcReg2.has_value()) {
+    if (!srcReg2.has_value() && opcode != Opcode::j) {
         throw ("Invalid source register at: " + instruction);
     }
     // TODO: handle j opcode
@@ -448,8 +453,11 @@ void Interpreter::executeJumpInstruction(Opcode opcode, const std::vector<string
             bgt(srcReg1.value(), srcReg2.value(), offset);
             break;
         }
+        case Opcode::j: {
+            j(offset);
+            break;
+        }
         default: {
-            cout << "right here";
             throw ("Invalid opcode at " + instruction);
         }
     }
