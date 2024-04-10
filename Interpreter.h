@@ -49,6 +49,11 @@ enum Opcode {
     srl,
     lw,
     sw,
+    beq,
+    bne,
+    j,
+    blt,
+    bgt,
     syscall
 };
 
@@ -103,6 +108,11 @@ private:
     void srl(Reg dst, Reg src, int amount);
     void sw(Reg src, Reg src2, int offset);
     void lw(Reg dst, Reg src1, int src2);
+    void beq(Reg src1, Reg src2, int offset);
+    void bne(Reg src1, Reg src2, int offset);
+    void bgt(Reg src1, Reg src2, int offset);
+    void blt(Reg src1, Reg src2, int offset);
+    void j(int offset);
     void syscall(Syscall code);
 
     /**
@@ -111,6 +121,7 @@ private:
      * @param dstReg the register where the resulting operation will be stored
      * @param tokens the tokens in the instruction as a vector e.g. [addi, $s0, $s1, 4]
      * @param instruction the tokens as a complete string. (may have preceding spaces)
+     * @throws a string describing a syntax error
      */
     void executeImmediateInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
 
@@ -120,6 +131,7 @@ private:
      * @param dstReg for load word, this is the register where the stuff from memory will be stored
      * @param tokens the tokens in the instruction as a vector
      * @param instruction the instrution being executed
+     * @throws a string describing a syntax error
      */
     void executeMemoryInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
 
@@ -129,8 +141,38 @@ private:
      * @param dstReg the register being written to
      * @param tokens a vector of tokens in the instruction
      * @param instruction the instruction as a string
+     * @throws a string describing a syntax error
      */
     void executeRegisterInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
+
+    void executeJumpInstruction(Opcode opcode, const std::vector<std::string>& tokens, const std::string& instruction);
+
+    /**
+     * @brief findLabels helper function called in the constructor that finds labels and stores them in a hashmap of <string, int> where int is the offset in the stack
+     */
+    void findLabels();
+
+    /**
+     * @brief isLabel decides if an instruction is a label or not
+     * @param instruction the line that may or may not be a label
+     * @return true if the instruction is a label
+     */
+    bool isLabel(std::string instruction);
+
+    /**
+     * @brief trimWhitespace removes whitespace from the beginning and end of a string (does not mutate str)
+     * @param str the string to remove whitespace from
+     * @return the trimmed string
+     */
+    std::string trimWhitespace(std::string& str);
+
+    /**
+     * @brief tokenize tokenizes an instruction, trimming whitespace, removing commas, and removing comments
+     * @param str the string to tokenize
+     * @param delimiter
+     * @return returns a vector of tokens
+     */
+    std::vector<std::string> tokenize(const std::string& str, char delimiter);
 };
 
 

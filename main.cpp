@@ -40,4 +40,24 @@ void testInterpreter() {
         cout << "error";
         cout << err << endl;
     }
+
+    std::string instructions_j_type = R"(
+        firstlabel:#comment test
+        addi $s0, $zero, 0
+        addi $s1, $zero, 5
+        label2: # do comments work
+        addi $s0, $s0, 1       # s0 = 1
+        bne $s0, $s1, label2   # if s0 != 5, continue loop
+        addi $v0, $zero, 1     # print syscall
+        add $a0, $zero, $s0   # print contents of s0
+        syscall
+    )";
+
+    Interpreter interpreterJtype(instructions_j_type);
+    try {
+        cout << interpreterJtype.run() << endl;
+    } catch (std::string err) {
+        cout << "error";
+        cout << err << endl;
+    }
 }

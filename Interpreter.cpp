@@ -12,8 +12,13 @@ Interpreter::Interpreter(std::string instructionsStr) {
     std::istringstream iss(instructionsStr);
     std::string line;
     while (std::getline(iss, line)) {
-        instructions.push_back(line);
+        line = trimWhitespace(line);
+        if (line.empty()) {
+            continue;
+        }
+        instructions.push_back(line); // also trim the whitespace
     }
+    findLabels();
 }
 
 void Interpreter::addi(Reg dst, Reg src, int val) {
@@ -52,6 +57,30 @@ void Interpreter::lw(Reg dst, Reg src, int offset) {
     registers[dst] = stack[registers[src] + offset];
 }
 
+void Interpreter::beq(Reg src1, Reg src2, int offset) {
+    if (registers[src1]==registers[src2])
+        this->programCounter = offset;
+}
+
+void Interpreter::blt(Reg src1, Reg src2, int offset) {
+    if (registers[src1]<registers[src2])
+        this->programCounter = offset;
+}
+
+void Interpreter::bgt(Reg src1, Reg src2, int offset) {
+    if (registers[src1]>registers[src2])
+        this->programCounter = offset;
+}
+
+void Interpreter::bne(Reg src1, Reg src2, int offset) {
+    if (registers[src1] != registers[src2])
+        this->programCounter = offset;
+}
+
+void Interpreter::j(int offset) {
+    this->programCounter = offset;
+}
+
 void Interpreter::syscall(Syscall code) {
     switch (code) {
         case printInteger:
@@ -68,31 +97,82 @@ void Interpreter::reset() {
     std::fill_n(this->stack, 32, 0);
 }
 
+
+void Interpreter::findLabels() {
+    int index = 0;
+    for (auto line : instructions) {
+        if (isLabel(line)) {
+            this->labels.insert({line.substr(0, line.find(":")), index});
+        }
+        index++;
+    }
+}
+
+bool Interpreter::isLabel(std::string instruction) {
+    // If '#' is found, remove everything after it (including '#')
+    size_t commentPos = instruction.find('#');
+    if (commentPos != std::string::npos) {
+        instruction = instruction.substr(0, commentPos);
+    }
+    // trim whitespace
+    instruction = trimWhitespace(instruction);
+    // Check if the string is empty
+    if (instruction.empty()) {
+        return false;
+    }
+
+    // Find the position of the colon ':'
+    size_t colonPos = instruction.find(':');
+
+    // If no colon is found or it is the first char, it's not a valid label
+    if (colonPos == std::string::npos || colonPos == 0) {
+        return false;
+    }
+
+    // check if the characters before the colon are valid label characters
+    for (size_t i = 0; i < colonPos; ++i) {
+        char c = instruction[i];
+        if (!std::isalnum(c) && c != '_') {
+            return false;
+        }
+    }
+
+    // If all conditions are satisfied, it is a valid MIPS label
+    return true;
+}
+
+
 static const std::unordered_map<std::string, Opcode> opcodeMap = {
-        {"addi", Opcode::addi},
-        {"add", Opcode::add},
-        {"sll", Opcode::sll},
-        {"sub", Opcode::sub},
-        {"mul", Opcode::mul},
-        {"srl", Opcode::srl},
-        {"lw", Opcode::lw},
-        {"sw",Opcode::sw},
-        {"syscall", Opcode::syscall}
+    {"addi", Opcode::addi},
+    {"add", Opcode::add},
+    {"sll", Opcode::sll},
+    {"sub", Opcode::sub},
+    {"mul", Opcode::mul},
+    {"srl", Opcode::srl},
+    {"lw", Opcode::lw},
+    {"sw",Opcode::sw},
+    {"beq", Opcode::beq},
+    {"bne", Opcode::bne},
+    {"j", Opcode::j},
+    {"blt", Opcode::blt},
+    {"bgt", Opcode::bgt},
+    {"syscall", Opcode::syscall}
 };
+
 static const std::unordered_map<std::string, Reg> regMap = {
-        {"$v0", v0},
-        {"$v1", v1},
-        {"$a0", a0},
-        {"$s0", s0},
-        {"$s1", s1},
-        {"$s2", s2},
-        {"$s3", s3},
-        {"$s4", s4},
-        {"$t1", t1},
-        {"$t2", t2},
-        {"$t3", t3},
-        {"$t4", t4},
-        {"$zero", zero}
+    {"$v0", v0},
+    {"$v1", v1},
+    {"$a0", a0},
+    {"$s0", s0},
+    {"$s1", s1},
+    {"$s2", s2},
+    {"$s3", s3},
+    {"$s4", s4},
+    {"$t1", t1},
+    {"$t2", t2},
+    {"$t3", t3},
+    {"$t4", t4},
+    {"$zero", zero}
 };
 
 std::optional<Opcode> parseOpcode(const std::string& opcodeStr) {
@@ -111,25 +191,43 @@ optional<Reg> parseReg(const std::string& regStr) {
 
     return nullopt; // Return nullopt if the register string is invalid
 }
-vector<string> tokenize(const string& str, char delimiter) {
+
+std::string Interpreter::trimWhitespace(std::string& str) {
+    size_t first = str.find_first_not_of(" \t");
+    if (std::string::npos == first) {
+        return "";
+    }
+    size_t last = str.find_last_not_of(" \t");
+    return str.substr(first, (last - first + 1));
+}
+
+vector<string> Interpreter::tokenize(const string& str, char delimiter) {
     vector<string> tokens;
     stringstream ss(str);
-    string token;
+    std::string token;
 
     while (getline(ss, token, delimiter)) {
+        // remove comma from the token
+
         auto it = std::find(token.begin(), token.end(), ',');
         if (it != token.end())
             token.erase(it);
+
+        size_t commentPos = token.find("#");
+        if (commentPos != std::string::npos) {
+            break;
+        }
+        token = trimWhitespace(token);
         if (token.empty()) {
             continue;
         }
-        if (token == "#")
-            break;
         tokens.push_back(token);
     }
 
     return tokens;
 }
+
+
 
 /**
  * @brief returns a string with stdout or throws a string as a compile time/run time error
@@ -143,8 +241,7 @@ std::string Interpreter::run() {
     while (programCounter < instructions.size()) {
         auto instruction = instructions.at(programCounter);
         this->programCounter++;
-        //TODO: if the instruction is a label, continue.
-        if (instruction.empty()) {
+        if (instruction.empty() || isLabel(instruction)) {
             continue;
         }
 
@@ -179,7 +276,13 @@ std::string Interpreter::run() {
             case Opcode::sw:
                 executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
-
+            case Opcode::beq:
+            case Opcode::bne:
+            case Opcode::bgt:
+            case Opcode::blt:
+            case Opcode::j:
+                // TODO: j doesnt work yet
+                executeJumpInstruction(opcode.value(), tokens,instruction);
             case Opcode::syscall:
                 syscall(static_cast<Syscall>(registers[Reg::v0]));
                 break;
@@ -203,7 +306,7 @@ void Interpreter::executeImmediateInstruction(Opcode opcode, Reg dstReg, const v
     }
 
     if (!srcReg1.has_value()) {
-        throw ("Invalid source register at: " + instruction);
+        throw ("Invalid source registebner at: " + instruction);
     }
     switch (opcode) {
         case Opcode::addi: {
@@ -288,5 +391,48 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
             }
             sw(srcRegister.value(), srcReg.value(), offset);
             break;
+    }
+}
+
+
+void Interpreter::executeJumpInstruction(Opcode opcode, const std::vector<string> &tokens, const string &instruction) {
+    string label = tokens.back();
+    auto it = labels.find(label);
+    int offset;
+    if (it != labels.end()) {
+        offset = it->second;
+    } else {
+        throw ("Invalid instruction at: " + instruction);
+    }
+    std::optional<Reg> srcReg1 = parseReg(tokens[1]);
+    std::optional<Reg> srcReg2 = parseReg(tokens[2]);
+    if (!srcReg1.has_value()) {
+        throw ("Invalid source register at: " + instruction);
+    }
+    if (!srcReg2.has_value()) {
+        throw ("Invalid source register at: " + instruction);
+    }
+    // TODO: handle j opcode
+    switch (opcode) {
+        case Opcode::beq: {
+            beq(srcReg1.value(), srcReg2.value(), offset);
+            break;
+        }
+        case Opcode::bne: {
+            bne(srcReg1.value(), srcReg2.value(), offset);
+            break;
+        }
+        case Opcode::blt: {
+            blt(srcReg1.value(), srcReg2.value(), offset);
+            break;
+        }
+        case Opcode::bgt: {
+            bgt(srcReg1.value(), srcReg2.value(), offset);
+            break;
+        }
+        default: {
+            cout << "right here";
+            throw ("Invalid opcode at " + instruction);
+        }
     }
 }
