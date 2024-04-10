@@ -27,13 +27,13 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="s1Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_4">
+     <widget class="QTabWidget" name="s1Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -43,7 +43,139 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="t1_1">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_1">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_1">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s2Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="s2Widget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="t1_2">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_2">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_2">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s3Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="s3Widget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_3">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_3">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_3">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s4Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="s4Widget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="t1_4">
+       <attribute name="title">
+        <string>Learn 1</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t2_4">
+       <attribute name="title">
+        <string>Learn 2</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="t3_4">
+       <attribute name="title">
+        <string>Challenge 1</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="s5Tab">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QTabWidget" name="s5Widget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>491</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
       </property>
       <widget class="QWidget" name="t1_5">
        <attribute name="title">
@@ -62,11 +194,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s2Tab">
+    <widget class="QWidget" name="s6Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_5">
+     <widget class="QTabWidget" name="s6Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -95,11 +227,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s3Tab">
+    <widget class="QWidget" name="s7Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_6">
+     <widget class="QTabWidget" name="s7Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -128,11 +260,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s4Tab">
+    <widget class="QWidget" name="s8Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_7">
+     <widget class="QTabWidget" name="s8Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -161,11 +293,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s5Tab">
+    <widget class="QWidget" name="s9Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_8">
+     <widget class="QTabWidget" name="s9Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -194,11 +326,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s6Tab">
+    <widget class="QWidget" name="s10Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_9">
+     <widget class="QTabWidget" name="s10Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -227,11 +359,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s7Tab">
+    <widget class="QWidget" name="s11Tab">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_10">
+     <widget class="QTabWidget" name="s11Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -260,143 +392,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="s8Tab">
-     <attribute name="title">
-      <string>Page</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_11">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>491</width>
-        <height>761</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="t1_12">
-       <attribute name="title">
-        <string>Learn 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t2_12">
-       <attribute name="title">
-        <string>Learn 2</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t3_12">
-       <attribute name="title">
-        <string>Challenge 1</string>
-       </attribute>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="s9Tab">
-     <attribute name="title">
-      <string>Page</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_12">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>491</width>
-        <height>761</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="t1_13">
-       <attribute name="title">
-        <string>Learn 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t2_13">
-       <attribute name="title">
-        <string>Learn 2</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t3_13">
-       <attribute name="title">
-        <string>Challenge 1</string>
-       </attribute>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="s10Tab">
-     <attribute name="title">
-      <string>Page</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_13">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>491</width>
-        <height>761</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="t1_14">
-       <attribute name="title">
-        <string>Learn 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t2_14">
-       <attribute name="title">
-        <string>Learn 2</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t3_14">
-       <attribute name="title">
-        <string>Challenge 1</string>
-       </attribute>
-      </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="s11Tab">
-     <attribute name="title">
-      <string>Page</string>
-     </attribute>
-     <widget class="QTabWidget" name="tabWidget_14">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>491</width>
-        <height>761</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="t1_15">
-       <attribute name="title">
-        <string>Learn 1</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t2_15">
-       <attribute name="title">
-        <string>Learn 2</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="t3_15">
-       <attribute name="title">
-        <string>Challenge 1</string>
-       </attribute>
-      </widget>
-     </widget>
-    </widget>
     <widget class="QWidget" name="s12Tab">
      <attribute name="title">
       <string>Open</string>
      </attribute>
-     <widget class="QTabWidget" name="tabWidget_2">
+     <widget class="QTabWidget" name="s12Widget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -408,7 +408,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="t1_End">
+      <widget class="QWidget" name="t1_12">
        <attribute name="title">
         <string>Free Editor</string>
        </attribute>
