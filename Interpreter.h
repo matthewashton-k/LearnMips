@@ -42,6 +42,9 @@ enum Syscall {
 enum Opcode {
     addi,
     subi,
+    xori,
+    // yes this is capital, xor is a reserved keyword
+    Xor,
     add,
     sub,
     sll,
@@ -100,6 +103,9 @@ private:
     std::string stdout = "";
     void addi(Reg dst, Reg src, int inVal);
     void subi(Reg dst, Reg src, int inVal);
+    void xori(Reg dst, Reg src, int inVal);
+    // yes its capital, xor is a reserved keyword
+    void Xor(Reg dst, Reg src1, Reg src2);
     void add(Reg dst, Reg src1, Reg src2);
     void sub(Reg dst, Reg src1, Reg src2);
     void sll(Reg dst, Reg src, int amount);

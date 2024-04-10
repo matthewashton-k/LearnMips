@@ -29,6 +29,14 @@ void Interpreter::subi(Reg dst, Reg src, int inVal){
     registers[dst] = registers[src] - inVal;
 }
 
+void Interpreter::xori(Reg dst, Reg src, int inVal) {
+    registers[dst] = registers[src] ^ inVal;
+}
+
+void Interpreter::Xor(Reg dst, Reg src1, Reg src2) {
+   registers[dst] = registers[src1] xor registers[src2];
+}
+
 void Interpreter::add(Reg dst, Reg src1, Reg src2) {
     registers[dst] = registers[src1] + registers[src2];
 }
@@ -141,8 +149,10 @@ bool Interpreter::isLabel(std::string instruction) {
 static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"addi", Opcode::addi},
     {"add", Opcode::add},
+    {"xori", Opcode::xori},
     {"sll", Opcode::sll},
     {"sub", Opcode::sub},
+    {"xor", Opcode::Xor},
     {"srl", Opcode::srl},
     {"lw", Opcode::lw},
     {"sw",Opcode::sw},
@@ -260,10 +270,12 @@ std::string Interpreter::run() {
             case Opcode::sll:
             case Opcode::addi:
             case Opcode::subi:
+            case Opcode::xori:
                 executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
             case Opcode::add:
             case Opcode::sub:
+            case Opcode::Xor:
                 executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
             case Opcode::lw:
@@ -277,6 +289,7 @@ std::string Interpreter::run() {
             case Opcode::j:
                 // TODO: j doesnt work yet
                 executeJumpInstruction(opcode.value(), tokens,instruction);
+                break;
             case Opcode::syscall:
                 syscall(static_cast<Syscall>(registers[Reg::v0]));
                 break;
@@ -317,7 +330,14 @@ void Interpreter::executeImmediateInstruction(Opcode opcode, Reg dstReg, const v
         }
         case Opcode::subi: {
             subi(dstReg, srcReg1.value(), imm);
+            break;
         }
+        case Opcode::xori: {
+            xori(dstReg, srcReg1.value(), imm);
+            break;
+        }
+        default:
+            throw ("Instruction is not I-type at: "+ instruction);
     }
 }
 
@@ -339,8 +359,12 @@ void Interpreter::executeRegisterInstruction(Opcode opcode, Reg dstReg, const ve
             sub(dstReg, srcReg1.value(), srcReg2.value());
             break;
         }
+        case Opcode::Xor: {
+            Xor(dstReg, srcReg1.value(), srcReg2.value());
+            break;
+        }
         default:
-            throw ("Instruction is not I-type at: "+ instruction);
+            throw ("Instruction is not R-type at: "+ instruction);
     }
 }
 

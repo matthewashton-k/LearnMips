@@ -29,7 +29,9 @@ void testInterpreter() {
         sw $t3, 0($zero)   # stack[0] = t3
         addi $v0, $zero, 1 # v0 = 1 (print syscall code)
         lw $a0, 0($zero)   # a0 = stack[0]
-        syscall            # should print out 10
+        addi $t4, $zero, 5
+        xori $a0, $a0, 5  # a0 = a0 XOR t4
+        syscall            # should print out 15
     )";
 
     Interpreter interpreter(instructions);
