@@ -44,7 +44,6 @@ enum Opcode {
     subi,
     add,
     sub,
-    mul,
     sll,
     srl,
     lw,
@@ -103,7 +102,6 @@ private:
     void subi(Reg dst, Reg src, int inVal);
     void add(Reg dst, Reg src1, Reg src2);
     void sub(Reg dst, Reg src1, Reg src2);
-    void mul(Reg dst, Reg src1, Reg src2);
     void sll(Reg dst, Reg src, int amount);
     void srl(Reg dst, Reg src, int amount);
     void sw(Reg src, Reg src2, int offset);

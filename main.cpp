@@ -28,9 +28,8 @@ void testInterpreter() {
         # test line comment
         sw $t3, 0($zero)   # stack[0] = t3
         addi $v0, $zero, 1 # v0 = 1 (print syscall code)
-        lw $t4, 0($zero)   # t4 = stack[0]
-        mul $a0, $t4, $t4  # a0 = t4*t4
-        syscall            # should print out 100
+        lw $a0, 0($zero)   # a0 = stack[0]
+        syscall            # should print out 10
     )";
 
     Interpreter interpreter(instructions);
@@ -49,7 +48,7 @@ void testInterpreter() {
         addi $s0, $s0, 1       # s0 = 1
         bne $s0, $s1, label2   # if s0 != 5, continue loop
         addi $v0, $zero, 1     # print syscall
-        add $a0, $zero, $s0   # print contents of s0
+        add $a0, $zero, $s0   # print contents of s0 (5)
         syscall
     )";
 

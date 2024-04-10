@@ -37,10 +37,6 @@ void Interpreter::sub(Reg dst, Reg src1, Reg src2) {
     registers[dst] = registers[src1] - registers[src2];
 }
 
-void Interpreter::mul(Reg dst, Reg src1, Reg src2) {
-    registers[dst] = registers[src1] * registers[src2];
-}
-
 void Interpreter::sll(Reg dst, Reg src, int amount) {
     registers[dst] = registers[src] << amount;
 }
@@ -147,7 +143,6 @@ static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"add", Opcode::add},
     {"sll", Opcode::sll},
     {"sub", Opcode::sub},
-    {"mul", Opcode::mul},
     {"srl", Opcode::srl},
     {"lw", Opcode::lw},
     {"sw",Opcode::sw},
@@ -269,7 +264,6 @@ std::string Interpreter::run() {
                 break;
             case Opcode::add:
             case Opcode::sub:
-            case Opcode::mul:
                 executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
             case Opcode::lw:
@@ -343,10 +337,6 @@ void Interpreter::executeRegisterInstruction(Opcode opcode, Reg dstReg, const ve
         }
         case Opcode::sub: {
             sub(dstReg, srcReg1.value(), srcReg2.value());
-            break;
-        }
-        case Opcode::mul: {
-            mul(dstReg, srcReg1.value(), srcReg2.value());
             break;
         }
         default:
