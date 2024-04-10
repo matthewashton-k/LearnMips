@@ -55,6 +55,8 @@ enum Opcode {
     srl,
     lw,
     sw,
+    lb,
+    sb,
     beq,
     bne,
     j,
@@ -124,6 +126,8 @@ private:
     void srl(Reg dst, Reg src, int amount);
     void sw(Reg src, Reg src2, int offset);
     void lw(Reg dst, Reg src1, int src2);
+    void sb(Reg src, Reg src2, int offset);
+    void lb(Reg dst, Reg src1, int src2);
     void beq(Reg src1, Reg src2, int offset);
     void bne(Reg src1, Reg src2, int offset);
     void bgt(Reg src1, Reg src2, int offset);
