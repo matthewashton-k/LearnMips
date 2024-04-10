@@ -71,6 +71,19 @@ void Interpreter::lw(Reg dst, Reg src, int offset) {
     registers[dst] = value;
 }
 
+void Interpreter::sb(Reg src, Reg src2, int offset) {
+    cout << "loaded byte" << endl;
+    uint8_t value = registers[src] & 0xFF; // Get the lower 8 bits
+    int base = registers[src2] + offset;
+    stack[base] = value;
+}
+
+void Interpreter::lb(Reg dst, Reg src, int offset) {
+    int base = registers[src] + offset;
+    uint8_t value = stack[base];
+    registers[dst] = (registers[dst] & 0xFFFFFF00) | value;
+}
+
 void Interpreter::beq(Reg src1, Reg src2, int offset) {
     if (registers[src1]==registers[src2])
         this->programCounter = offset;
@@ -111,7 +124,6 @@ void Interpreter::reset() {
     std::fill_n(this->registers,13, 0);
     std::fill_n(this->stack, 32, 0);
 }
-
 
 void Interpreter::findLabels() {
     int index = 0;
@@ -167,6 +179,8 @@ static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"srl", Opcode::srl},
     {"lw", Opcode::lw},
     {"sw",Opcode::sw},
+    {"lb", Opcode::lb},
+    {"sb",Opcode::sb},
     {"beq", Opcode::beq},
     {"bne", Opcode::bne},
     {"j", Opcode::j},
@@ -296,6 +310,8 @@ std::string Interpreter::run() {
                 break;
             case Opcode::lw:
             case Opcode::sw:
+            case Opcode::lb:
+            case Opcode::sb:
                 executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
             case Opcode::beq:
@@ -412,17 +428,31 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
     }
 
     switch (opcode) {
-        case Opcode::lw:
+        case Opcode::lw: {
             lw(dstReg, srcReg.value(), offset);
             break;
+        }
 
-        case Opcode::sw:
+        case Opcode::sw: {
             std::optional<Reg> srcRegister = parseReg(tokens[1]);
             if (!srcRegister.has_value()) {
                 throw ("Invalid source register at: " + instruction);
             }
             sw(srcRegister.value(), srcReg.value(), offset);
             break;
+        }
+        case Opcode::lb: {
+            lb(dstReg, srcReg.value(), offset);
+            break;
+        }
+        case Opcode::sb: {
+            std::optional<Reg> srcRegister = parseReg(tokens[1]);
+            if (!srcRegister.has_value()) {
+                throw ("Invalid source register at: " + instruction);
+            }
+            sb(srcRegister.value(), srcReg.value(), offset);
+            break;
+        }
     }
 }
 
