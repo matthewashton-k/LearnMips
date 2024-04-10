@@ -300,7 +300,7 @@ std::string Interpreter::run() {
         }
     }
 
-    return this->stdout;
+    return this->stdOut;
 }
 
 void Interpreter::executeImmediateInstruction(Opcode opcode, Reg dstReg, const vector<string>& tokens, const string& instruction) {

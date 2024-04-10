@@ -100,7 +100,8 @@ private:
     /**
      * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
      */
-    std::string stdout = "";
+    std::string stdOut = "";
+
     void addi(Reg dst, Reg src, int inVal);
     void subi(Reg dst, Reg src, int inVal);
     void xori(Reg dst, Reg src, int inVal);
