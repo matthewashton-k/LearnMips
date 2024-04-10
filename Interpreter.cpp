@@ -88,7 +88,8 @@ void Interpreter::j(int offset) {
 void Interpreter::syscall(Syscall code) {
     switch (code) {
         case printInteger:
-            std::cout << registers[a0] << std::endl;
+            cout << registers[Reg::a0] << endl;
+            stdOut.append(to_string(registers[Reg::a0]));
             break;
         case Syscall::Exit:
             exit(registers[a0]);

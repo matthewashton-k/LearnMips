@@ -25,7 +25,8 @@ void MainWindow::runButtonClicked(){
 
     Interpreter interpreter(instructions);
     try {
-        ui->console->setText(QString::fromStdString(interpreter.run()));
+        QString str = interpreter.run().c_str();
+        ui->console->setText(str);
     } catch (std::string err) {
         cout << "Error: ";
         cout << err << endl;
