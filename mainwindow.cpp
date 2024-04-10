@@ -7,16 +7,16 @@ using std::endl;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow) , modelPtr(new Model())
 {
     ui->setupUi(this);
-
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete modelPtr;
 }
 
 void MainWindow::runButtonClicked(){

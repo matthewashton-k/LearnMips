@@ -1,3 +1,3 @@
 #include "section.h"
 
-section::section() {}
+Section::Section() {}

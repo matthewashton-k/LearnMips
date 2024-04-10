@@ -9,11 +9,22 @@ class Model : public QObject
 {
     Q_OBJECT
 private:
-    std::vector<Section> sections();
+    std::vector<std::string> codes();
+    //vector to store all the sections
+    std::vector<Section>* sections = new std::vector<Section>();
+
+    //functions to build each section
+    Section buildSection(int sectionID);
+
+    int currSection = 0;
 public:
-    explicit Model(QObject *parent = nullptr);
+    Model(QObject *parent = nullptr);
+    ~Model();
 
 signals:
+
+public slots:
+    void changeSection(int index);
 };
 
 #endif // MODEL_H
