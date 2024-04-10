@@ -21,11 +21,15 @@ enum Reg {
     s2 = 5,
     s3 = 6,
     s4 = 7,
-    t1 = 8,
-    t2 = 9,
-    t3 = 10,
-    t4 = 11,
-    zero = 12,
+    s5 = 8,
+    s6 = 9,
+    t1 = 10,
+    t2 = 11,
+    t3 = 12,
+    t4 = 13,
+    t5 = 14,
+    t6 = 15,
+    zero = 16,
 };
 
 /**
@@ -89,7 +93,7 @@ private:
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
      *
      */
-    int registers[13] = {0};
+    int registers[17] = {0};
 
     /**
      * @brief programCounter the index in the vector of instructions that is currently being executed
@@ -99,7 +103,7 @@ private:
     /**
      * @brief stack holds the
      */
-    int stack[32] = {0};
+    uint8_t stack[128] = {0};
     std::vector<std::string> instructions;
 
     std::unordered_map<std::string, int> labels;

@@ -54,11 +54,21 @@ void Interpreter::srl(Reg dst, Reg src, int amount) {
 }
 
 void Interpreter::sw(Reg src, Reg src2, int offset) {
-    stack[registers[src2] + offset] = registers[src];
+    uint32_t value = registers[src];
+    int base = registers[src2] + offset;
+    stack[base] = (value >> 24) & 0xFF;
+    stack[base + 1] = (value >> 16) & 0xFF;
+    stack[base + 2] = (value >> 8) & 0xFF;
+    stack[base + 3] = value & 0xFF;
 }
 
 void Interpreter::lw(Reg dst, Reg src, int offset) {
-    registers[dst] = stack[registers[src] + offset];
+    int base = registers[src] + offset;
+    uint32_t value = (stack[base] << 24) |
+                     (stack[base + 1] << 16) |
+                     (stack[base + 2] << 8) |
+                     stack[base + 3];
+    registers[dst] = value;
 }
 
 void Interpreter::beq(Reg src1, Reg src2, int offset) {
@@ -174,10 +184,14 @@ static const std::unordered_map<std::string, Reg> regMap = {
     {"$s2", s2},
     {"$s3", s3},
     {"$s4", s4},
+    {"$s5", s5},
+    {"$s6", s6},
     {"$t1", t1},
     {"$t2", t2},
     {"$t3", t3},
     {"$t4", t4},
+    {"$t5", t5},
+    {"$t6", t6},
     {"$zero", zero}
 };
 
