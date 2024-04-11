@@ -13,9 +13,12 @@ public:
     \
     b2Vec2 getPosition();
     float32 getAngle();
+    int getID();
 
 private:
     b2Body* physObjBody;
+    int id = 0;
+    static int id_counter;
 
 
 

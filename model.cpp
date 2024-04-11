@@ -6,6 +6,11 @@
 #include <iostream>
 
 Model::Model(QObject *parent) : QObject{parent} {
+    connect(this,
+            &Model::newPhysObj,
+            this,
+            &Model::spawnPhysBox);
+
     for(int i = 0; i < NUM_OF_SECTIONS; i++) sections->push_back(buildSection(i)); //create each section
 
     codeStrings = new std::string[NUM_OF_SECTIONS];
@@ -69,14 +74,15 @@ void Model::setupWorld() {
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
 
+    //Spawn objects
+    for(int num = 0; num < 20; num++) {
+        int x = 560-(num*5);
+        int y = 105-(num*5);
+        timer.singleShot(1000, this, [this, x, y] {emit newPhysObj(x, y);});
+    }
 
-    // TODO [Box2D]: Convert to physObject and handle spawning them with a given position
-
-    // Define the dynamic body. We set its position and call the body factory.
-    physObject body1(&world, 560, 105);
-    physObjBodies.push_back(body1);
-
-    timer.singleShot(2000, this, &Model::updateWorld);
+    // Start update loop
+    timer.singleShot(1500, this, &Model::updateWorld);
 }
 
 void Model::updateWorld() {
@@ -101,10 +107,13 @@ void Model::updateWorld() {
 
     // TODO [Box2D]: This will need to be generalized to work with many different objects
 
-    // Now print the position and angle of the body.
-    for(physObject physObjBody : physObjBodies) {
-        b2Vec2 position = physObjBody.getPosition();
-        float32 angle = physObjBody.getAngle();
+    // Check for objects to spawn
+    for(auto const& [id, physObjBody] : physObjBodies) {
+        //if()
+
+        // Now print the position and angle of the body.
+        b2Vec2 position = physObjBody->getPosition();
+        float32 angle = physObjBody->getAngle();
 
         emit newPosition(position.x, position.y);
     }
@@ -117,6 +126,11 @@ void Model::updateWorld() {
     timer.singleShot(42, this, &Model::updateWorld);
 }
 
+void Model::spawnPhysBox(int x, int y) {
+    // Define the dynamic body. We set its position and call the body factory.
+    physObject body1(&world, x, y);
+    physObjBodies[body1.getID()] = &body1;
+}
 
 
 

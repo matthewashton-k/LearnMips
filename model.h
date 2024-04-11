@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <vector>
+#include <map>
 #include <QTimer>
 #include "Box2D/Box2D.h"
 #include "section.h"
@@ -27,7 +28,10 @@ private:
     // Box2D
     b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
     b2World world = b2World(gravity);
-    std::vector<physObject> physObjBodies;
+    /**
+     * @brief physObjBodies Stores the physObjects with their id as the key
+     */
+    std::map<int, physObject*> physObjBodies;
     QTimer timer;
 
 
@@ -52,12 +56,14 @@ signals:
      * @param y
      */
     void newPosition(int x, int y);
+    void newPhysObj(int x, int y);
 
 public slots:
     void changeSection(int index);
     void saveCodeToCurrentIndex(std::string code);
 
     void updateWorld();
+    void spawnPhysBox(int x, int y);
 
 };
 
