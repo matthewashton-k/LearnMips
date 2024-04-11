@@ -72,7 +72,6 @@ void Interpreter::lw(Reg dst, Reg src, int offset) {
 }
 
 void Interpreter::sb(Reg src, Reg src2, int offset) {
-    cout << "loaded byte" << endl;
     uint8_t value = registers[src] & 0xFF; // Get the lower 8 bits
     int base = registers[src2] + offset;
     stack[base] = value;
@@ -122,11 +121,21 @@ void Interpreter::syscall(Syscall code) {
         case Syscall::Exit:
             exit(registers[a0]);
             break;
+        case Syscall::printString: {
+            //TODO: needs testing
+            string str = "";
+            char current = stack[registers[Reg::a0]];
+            while (current != '\0') {
+                str.append(current);
+            }
+            str.append('\n');
+            this->stdOut.append(str);
+        }
     }
 }
 
 void Interpreter::reset() {
-    std::fill_n(this->registers,13, 0);
+    std::fill_n(this->registers,16, 0);
     std::fill_n(this->stack, 32, 0);
 }
 
@@ -276,7 +285,6 @@ vector<string> Interpreter::tokenize(const string& str, char delimiter) {
 std::string Interpreter::run() {
     // Check for syntax errors
     // ...
-
     // Interpret instructions
     int jumps = 0;
     while (programCounter < instructions.size()) {
@@ -333,9 +341,12 @@ std::string Interpreter::run() {
                 jumps++;
                 break;
             case Opcode::syscall:
+                int code = registers[Reg::v0];
+                if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
+                    throw std::string("Invalid syscall code");
+                }
                 syscall(static_cast<Syscall>(registers[Reg::v0]));
                 break;
-
             default:
                 // Should never reach here
                 break;

@@ -38,6 +38,7 @@ enum Reg {
 enum Syscall {
     printInteger = 1,
     Exit = 10,
+    printString = 4,
 };
 
 /**
