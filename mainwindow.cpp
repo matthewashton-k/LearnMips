@@ -11,6 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
+
+    //switching section stuff
+    connect(ui->sectionTabs, &QTabWidget::currentChanged, modelPtr, &Model::changeSection);
+    connect(modelPtr, &Model::requestSaveCurrentCode, this, &MainWindow::currentCodeRequested);
+    connect(this, &MainWindow::answerCurrentCodeRequest, modelPtr, &Model::saveCodeToCurrentIndex);
+    connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QTextEdit::setText);
 }
 
 MainWindow::~MainWindow()
@@ -32,4 +38,8 @@ void MainWindow::runButtonClicked(){
         cout << "Error: " << err << endl;
     }
     //END TEMPORARY TEST!
+}
+
+void MainWindow::currentCodeRequested(){
+    emit answerCurrentCodeRequest(ui->codeEdit->toPlainText().toStdString());
 }

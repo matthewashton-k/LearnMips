@@ -14,14 +14,16 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
-    section.cpp
+    section.cpp \
+    validityFunctions.cpp
 
 HEADERS += \
     Interpreter.h \
     challenge.h \
     mainwindow.h \
     model.h \
-    section.h
+    section.h \
+    validityFunctions.h
 
 FORMS += \
     mainwindow.ui

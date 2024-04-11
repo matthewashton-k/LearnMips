@@ -21,8 +21,11 @@ public:
 private:
     Ui::MainWindow *ui;
     Model* modelPtr;
+signals:
+    void answerCurrentCodeRequest(std::string);
 
 private slots:
     void runButtonClicked();
+    void currentCodeRequested();
 };
 #endif // MAINWINDOW_H

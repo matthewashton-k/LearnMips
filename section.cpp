@@ -1,3 +1,5 @@
 #include "section.h"
 
-Section::Section() {}
+Section::Section() : challenge(Challenge()){}
+
+Section::Section(Challenge challenge) : challenge(challenge) {}

@@ -6,7 +6,7 @@
 class Section
 {
 private:
-    Challenge challenge();
+    Challenge challenge;
     bool isSectionCompleted = false;
 public:
     Section();
