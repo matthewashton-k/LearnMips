@@ -2,6 +2,7 @@
 #include <vector>
 #include "validityFunctions.h"
 #include "Box2D/Box2D.h"
+#include "physobject.h"
 #include <iostream>
 
 Model::Model(QObject *parent) : QObject{parent} {
@@ -72,31 +73,8 @@ void Model::setupWorld() {
     // TODO [Box2D]: Convert to physObject and handle spawning them with a given position
 
     // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    int labelPosX = 560;
-    int labelPosY = 105;
-    bodyDef.position.Set(labelPosX, labelPosY);
-    physObjBody = world.CreateBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(1.0f, 1.0f);
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
-    fixtureDef.restitution = 0.9f;
-
-    // Add the shape to the body.
-    physObjBody->CreateFixture(&fixtureDef);
+    physObject body1(&world, 560, 105);
+    physObjBodies.push_back(body1);
 
     timer.singleShot(2000, this, &Model::updateWorld);
 }
@@ -124,17 +102,19 @@ void Model::updateWorld() {
     // TODO [Box2D]: This will need to be generalized to work with many different objects
 
     // Now print the position and angle of the body.
-    b2Vec2 position = physObjBody->GetPosition();
-    float32 angle = physObjBody->GetAngle();
+    for(physObject physObjBody : physObjBodies) {
+        b2Vec2 position = physObjBody.getPosition();
+        float32 angle = physObjBody.getAngle();
 
-    emit newPosition(position.x, position.y);
+        emit newPosition(position.x, position.y);
+    }
 
     //qDebug() << position.x << position.y << angle;
     //qDebug("--finished update");
     // When the world destructor is called, all bodies and joints are freed. This can
     // create orphaned pointers, so be careful about your world management.
 
-    timer.singleShot(80, this, &Model::updateWorld);
+    timer.singleShot(42, this, &Model::updateWorld);
 }
 
 
