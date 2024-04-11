@@ -423,9 +423,9 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
                 std::string innerRegStr = tokens[2].substr(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
                 srcReg = parseReg(innerRegStr);
 
-                if(this->labels.find(offsetStr) != labels.end()){
-                    offset = this->labels[offsetStr];
-                }
+                // if(this->labels.find(offsetStr) != labels.end()){
+                //     offset = this->labels[offsetStr];
+                // }
             }
         } catch (exception e) { // if stoi fails
             throw ("Invalid instruction format at: " + instruction);
