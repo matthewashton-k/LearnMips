@@ -6,6 +6,7 @@
 #include <QTimer>
 #include "Box2D/Box2D.h"
 #include "section.h"
+#include "physobject.h"
 
 class Model : public QObject
 {
@@ -26,7 +27,7 @@ private:
     // Box2D
     b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
     b2World world = b2World(gravity);
-    b2Body* physObjBody;
+    std::vector<physObject> physObjBodies;
     QTimer timer;
 
 
