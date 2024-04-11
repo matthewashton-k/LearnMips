@@ -60,6 +60,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
+    physobject.cpp \
     section.cpp \
     validityFunctions.cpp
 
@@ -115,6 +116,7 @@ HEADERS += \
     challenge.h \
     mainwindow.h \
     model.h \
+    physobject.h \
     section.h \
     validityFunctions.h
 

@@ -69,7 +69,7 @@ void Model::setupWorld() {
     groundBody->CreateFixture(&groundBox, 0.0f);
 
 
-    // TODO [Box2D]: Make a class to hold physBox data and handle creating them with a given position
+    // TODO [Box2D]: Convert to physObject and handle spawning them with a given position
 
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
