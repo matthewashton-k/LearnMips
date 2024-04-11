@@ -3,6 +3,7 @@
 #include "Interpreter.h"
 #include "Box2D/Box2D.h"
 #include <iostream>
+#include <highligher.h>
 using std::cout;
 using std::endl;
 
@@ -11,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow) , modelPtr(new Model())
 {
     ui->setupUi(this);
+
+    Highlighter *highlighter = new Highlighter(ui->codeEdit->document());
 
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
 

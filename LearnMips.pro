@@ -58,6 +58,7 @@ SOURCES += \
     Interpreter.cpp \
     challenge.cpp \
     codeeditor.cpp \
+    highligher.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -116,6 +117,7 @@ HEADERS += \
     Interpreter.h \
     challenge.h \
     codeeditor.h \
+    highligher.h \
     mainwindow.h \
     model.h \
     physobject.h \

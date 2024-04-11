@@ -49,4 +49,6 @@ private:
     CodeEditor *codeEditor;
 };
 
+
+
 #endif // CODEEDITOR_H
