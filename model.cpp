@@ -48,6 +48,8 @@ void Model::setupWorld() {
     // Construct a world object, which will hold and simulate the rigid bodies.
     //world = b2World(gravity);
 
+
+    // TODO [Box2D]: set walls around the window, preferably scaled to the window size
     // Define the ground body.
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0.0f, 700.0f);
@@ -117,6 +119,9 @@ void Model::updateWorld() {
         // It is generally best to keep the time step and iterations fixed.
         world.Step(timeStep, velocityIterations, positionIterations);
     }
+
+
+    // TODO [Box2D]: This will need to be generalized to work with many different objects
 
     // Now print the position and angle of the body.
     b2Vec2 position = physObjBody->GetPosition();
