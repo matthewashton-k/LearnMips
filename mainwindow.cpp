@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sectionTabs, &QTabWidget::currentChanged, modelPtr, &Model::changeSection);
     connect(modelPtr, &Model::requestSaveCurrentCode, this, &MainWindow::currentCodeRequested);
     connect(this, &MainWindow::answerCurrentCodeRequest, modelPtr, &Model::saveCodeToCurrentIndex);
-    connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QTextEdit::setText);
+    connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QPlainTextEdit::setPlainText);
 
     // Box2D
     connect(modelPtr,

@@ -57,6 +57,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     Interpreter.cpp \
     challenge.cpp \
+    codeeditor.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -114,6 +115,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     Interpreter.h \
     challenge.h \
+    codeeditor.h \
     mainwindow.h \
     model.h \
     physobject.h \
