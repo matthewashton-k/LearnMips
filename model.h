@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <vector>
+#include <QTimer>
+#include "Box2D/Box2D.h"
 #include "section.h"
 
 class Model : public QObject
@@ -21,8 +23,19 @@ private:
     int currSection = 0;
     int nextSection = 0;
 
+    // Box2D
+    b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
+    b2World world = b2World(gravity);
+    b2Body* physObjBody;
+    QTimer timer;
+
 
     void finalizeSectionChange();
+    /**
+     * @brief setupWorld Set up the Box2D world on construction
+     */
+    void setupWorld();
+
 public:
     Model(QObject *parent = nullptr);
     ~Model();
@@ -31,9 +44,20 @@ signals:
     void requestSaveCurrentCode();
     void codeFinishedSaving();
     void codeUpdated(QString newCode);
+
+    /**
+     * @brief newPosition Tell the view to give the QLabel physObj a new position
+     * @param x
+     * @param y
+     */
+    void newPosition(int x, int y);
+
 public slots:
     void changeSection(int index);
     void saveCodeToCurrentIndex(std::string code);
+
+    void updateWorld();
+
 };
 
 #endif // MODEL_H
