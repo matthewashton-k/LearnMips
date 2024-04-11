@@ -84,6 +84,11 @@ void Interpreter::lb(Reg dst, Reg src, int offset) {
     registers[dst] = (registers[dst] & 0xFFFFFF00) | value;
 }
 
+void Interpreter::la(Reg dst, int offset){
+    registers[dst] = offset;
+    this->programCounter = offset;
+}
+
 void Interpreter::beq(Reg src1, Reg src2, int offset) {
     if (registers[src1]==registers[src2])
         this->programCounter = offset;
@@ -181,6 +186,7 @@ static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"sw",Opcode::sw},
     {"lb", Opcode::lb},
     {"sb",Opcode::sb},
+    {"la",Opcode::la},
     {"beq", Opcode::beq},
     {"bne", Opcode::bne},
     {"j", Opcode::j},
@@ -312,6 +318,7 @@ std::string Interpreter::run() {
             case Opcode::sw:
             case Opcode::lb:
             case Opcode::sb:
+            case Opcode::la:
                 executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
                 break;
             case Opcode::beq:
@@ -415,6 +422,10 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
             if (closeParenIndex != std::string::npos) {
                 std::string innerRegStr = tokens[2].substr(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
                 srcReg = parseReg(innerRegStr);
+
+                if(this->labels.find(offsetStr) != labels.end()){
+                    offset = this->labels[offsetStr];
+                }
             }
         } catch (exception e) { // if stoi fails
             throw ("Invalid instruction format at: " + instruction);
@@ -451,6 +462,10 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
                 throw ("Invalid source register at: " + instruction);
             }
             sb(srcRegister.value(), srcReg.value(), offset);
+            break;
+        }
+        case Opcode::la: {
+            la(dstReg, offset);
             break;
         }
     }
