@@ -15,7 +15,7 @@ public:
     Challenge();
     Challenge(std::string beforeCode, std::string afterCode, bool (*validityFunction)(std::string middleCode));
 
-    bool checkChallenge(std::string middleCode);
+    std::tuple<std::string, bool> executeCode(std::string middleCode, bool checkSolutionValidity);
 };
 
 #endif // CHALLENGE_H

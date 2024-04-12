@@ -12,7 +12,7 @@ public:
     Section();
     Section(Challenge challenge);
 
-    const Challenge* getChallenge();
+    Challenge* getChallenge();
 };
 
 #endif // SECTION_H

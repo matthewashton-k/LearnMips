@@ -4,6 +4,7 @@
 #include "Box2D/Box2D.h"
 #include "physobject.h"
 #include "Interpreter.h"
+#include "section.h"
 #include <iostream>
 
 Model::Model(QObject *parent) : QObject{parent} {
@@ -23,20 +24,23 @@ Model::~Model(){
 
 void Model::executeCode(QString code, bool checkSolutionValidity){
     //run code
-    std::string instructions = code.toStdString();
+    Challenge* chal = sections->at(currSection).getChallenge();
 
-    Interpreter interpreter(instructions);
-    try {
-        currentConsoleText.append(interpreter.run());
-        emit consoleTextUpdated(currentConsoleText.c_str());
-    } catch (std::string err) {
-        currentConsoleText.append(err);
-        emit consoleTextUpdated(currentConsoleText.c_str());
-        std::cout << "Error: " << err << std::endl;
-    }
-    //if checkSolutionValidy, run the relevant challenges checkChallenge function
+    std::tuple<std::string, bool> output = chal->executeCode(code.toStdString(), checkSolutionValidity);
+    std::string outputText = std::get<0>(output);
+    bool isValidSolution = std::get<1>(output);
+    currentConsoleText.append(outputText);
+
+    emit consoleTextUpdated(currentConsoleText.c_str());
+
+
     if(checkSolutionValidity){
-
+        if(isValidSolution){
+            //challenge succeeded, confetti or whatever
+        }
+        else{
+            //challenge failed, smoke, sound, rick role, whatever
+        }
     }
 }
 

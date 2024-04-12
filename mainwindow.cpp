@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     Highlighter *highlighter = new Highlighter(ui->codeEdit->document());
 
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
+    connect(ui->submitButton, &QPushButton::clicked, this, &MainWindow::submitButtonClicked);
     connect(ui->clearConsoleButton, &QPushButton::clicked, modelPtr, &Model::clearConsole);
     connect(modelPtr, &Model::consoleTextUpdated, this, &MainWindow::updateConsole);
     connect(this, &MainWindow::runRequest, modelPtr, &Model::executeCode);
@@ -43,18 +44,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::runButtonClicked(){
     emit runRequest(ui->codeEdit->toPlainText(), false);
-    //TEMPORARY TEST!
-    // std::string instructions = ui->codeEdit->toPlainText().toStdString();
+}
 
-    // Interpreter interpreter(instructions);
-    // try {
-    //     QString str = interpreter.run().c_str();
-    //     ui->console->setText(str);
-    // } catch (std::string err) {
-    //     ui->console->setText(QString(err.c_str()));
-    //     cout << "Error: " << err << endl;
-    // }
-    //END TEMPORARY TEST!
+void MainWindow::submitButtonClicked(){
+    emit runRequest(ui->codeEdit->toPlainText(), true);
 }
 
 void MainWindow::currentCodeRequested(){

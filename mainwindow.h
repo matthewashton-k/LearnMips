@@ -29,6 +29,7 @@ signals:
 
 private slots:
     void runButtonClicked();
+    void submitButtonClicked();
     void currentCodeRequested();
     /**
      * @brief moveLabel Moves the physObj label to the given x y relative to the window
