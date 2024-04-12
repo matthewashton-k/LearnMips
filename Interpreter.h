@@ -104,7 +104,7 @@ private:
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
      *
      */
-    int registers[17] = {0};
+    int registers[18] = {0};
 
     /**
      * @brief programCounter the index in the vector of instructions that is currently being executed
@@ -114,7 +114,8 @@ private:
     /**
      * @brief stack holds the
      */
-    uint8_t stack[128] = {0};
+    // uint8_t stack[128] = {0};
+    std::vector<uint8_t> stack;
     std::vector<std::string> instructions;
 
     std::unordered_map<std::string, int> labels;
@@ -203,6 +204,22 @@ private:
      * @return returns a vector of tokens
      */
     std::vector<std::string> tokenize(const std::string& str, char delimiter);
+
+    /**
+     * @brief isStringLabel decides if an instruction is a label of a string or not
+     * @param instruction the line that may or may not be a label
+     * @return true if the instruction is a label of a string
+     */
+    bool isStringLabel(std::string instruction);
+
+    /**
+     * @brief addStringLabel adds the string label to labels map
+     * @param instruction the line that may or may not be a label
+     */
+    void addStringLabel(std::string instruction);
+
+
+
 };
 
 

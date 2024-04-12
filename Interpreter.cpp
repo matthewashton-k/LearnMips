@@ -8,7 +8,7 @@
 #include <algorithm>
 
 using namespace std;
-Interpreter::Interpreter(std::string instructionsStr) {
+Interpreter::Interpreter(std::string instructionsStr) : stack(128) {
     std::istringstream iss(instructionsStr);
     std::string line;
     while (std::getline(iss, line)) {
@@ -181,6 +181,63 @@ bool Interpreter::isLabel(std::string instruction) {
     return true;
 }
 
+bool Interpreter::isStringLabel(std::string instruction){
+
+    if(!isLabel(instruction)){
+        return false;
+    }
+
+    // Find the position of the colon ':'
+    size_t colonPos = instruction.find(':');
+
+    // Check if the label is followed by ".asciiz"
+    std::string directive = instruction.substr(colonPos + 1);
+    directive = trimWhitespace(directive);
+    // .asciiz should be at the start
+    if (directive.find(".asciiz") != 0) {
+        return false;
+    }
+
+    // Check if there is a string after the ".asciiz"
+    size_t stringStart = directive.find("\""); // find the " at the start
+    size_t stringEnd = directive.rfind("\""); // find the " at the end
+
+    // Check if we didint found any, then we couldnt find a valid string.
+    if (stringStart == std::string::npos || stringEnd == std::string::npos || stringStart == stringEnd) {
+        return false;
+    }
+
+    // return true if it is a valid string label
+    return true;
+}
+
+void Interpreter::addStringLabel(std::string instruction){
+
+    size_t colonPos = instruction.find(':');
+    // label name is from the start till colomn
+    std::string label = instruction.substr(0, colonPos);
+
+    // Get the string between the double quotes
+    size_t stringStart = instruction.find('\"', colonPos);
+    size_t stringEnd = instruction.rfind('\"');
+    std::string string = instruction.substr(stringStart + 1, stringEnd - stringStart - 1);
+
+    // Get the start address of the string to save it in labels
+    int stringStartAddress = registers[Reg::sp];
+
+
+    // Add the string characters to the stack from a c++ null terminated string
+    const char* cString = string.c_str();
+    for (size_t i = 0; i < string.length() + 1; ++i) {
+        stack.push_back(cString[i]);
+        // increment stack pointer
+        registers[Reg::sp]++;
+    }
+
+    // Add label with its start adress to labels map
+    labels[label] = stringStartAddress;
+}
+
 
 static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"addi", Opcode::addi},
@@ -287,7 +344,8 @@ std::string Interpreter::run() {
     // ...
     // Interpret instructions
     int jumps = 0;
-    enum CodeSection currentCodeSection = Default;
+    // Set the defualt section to Text
+    enum CodeSection currentCodeSection = Text;
     while (programCounter < instructions.size()) {
         auto instruction = instructions.at(programCounter);
         this->programCounter++;
@@ -319,8 +377,9 @@ std::string Interpreter::run() {
         }
         else{
             switch (currentCodeSection){
-                case CodeSection::Data:{
-                // work with string labels here.
+                case CodeSection::Data:
+                if(isStringLabel(instruction)){
+                    addStringLabel(instruction);
                 }
                 break;
                 case CodeSection::Text:{
