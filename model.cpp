@@ -39,7 +39,7 @@ void Model::executeCode(QString code, bool checkSolutionValidity){
     std::string outputText = std::get<0>(output);
     bool isValidSolution = std::get<1>(output);
 
-    currentConsoleText.append(outputText);
+    currentConsoleText.append(outputText + "\n");
     emit consoleTextUpdated(currentConsoleText.c_str());
 
     if(checkSolutionValidity){
@@ -159,6 +159,7 @@ void Model::updateWorld() {
 
 //save stuff
 void Model::saveAllProgress(){
+    changeSection(currSection);
     for(int i = 0; i < NUM_OF_SECTIONS; i++){
         saveSectionASMFile(i, "./saveFiles/", "section" + std::to_string(i) + ".asm");
     }
