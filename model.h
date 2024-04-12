@@ -24,6 +24,8 @@ private:
     int currSection = 0;
     int nextSection = 0;
 
+    std::string currentConsoleText;
+
     // Box2D
     b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
     b2World world = b2World(gravity);
@@ -45,6 +47,7 @@ signals:
     void requestSaveCurrentCode();
     void codeFinishedSaving();
     void codeUpdated(QString newCode);
+    void consoleTextUpdated(QString text);
 
     /**
      * @brief newPosition Tell the view to give the QLabel physObj a new position
@@ -58,6 +61,8 @@ public slots:
     void saveCodeToCurrentIndex(std::string code);
 
     void updateWorld();
+    void clearConsole();
+    void executeCode(QString code, bool checkSolutionValidity);
 
 };
 

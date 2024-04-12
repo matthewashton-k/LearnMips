@@ -3,6 +3,7 @@
 #include "validityFunctions.h"
 #include "Box2D/Box2D.h"
 #include "physobject.h"
+#include "Interpreter.h"
 #include <iostream>
 
 Model::Model(QObject *parent) : QObject{parent} {
@@ -18,6 +19,25 @@ Model::Model(QObject *parent) : QObject{parent} {
 Model::~Model(){
     delete sections;
     delete[] codeStrings;
+}
+
+void Model::executeCode(QString code, bool checkSolutionValidity){
+    //run code
+    std::string instructions = code.toStdString();
+
+    Interpreter interpreter(instructions);
+    try {
+        currentConsoleText.append(interpreter.run());
+        emit consoleTextUpdated(currentConsoleText.c_str());
+    } catch (std::string err) {
+        currentConsoleText.append(err);
+        emit consoleTextUpdated(currentConsoleText.c_str());
+        std::cout << "Error: " << err << std::endl;
+    }
+    //if checkSolutionValidy, run the relevant challenges checkChallenge function
+    if(checkSolutionValidity){
+
+    }
 }
 
 void Model::changeSection(int index){
@@ -39,6 +59,11 @@ void Model::saveCodeToCurrentIndex(std::string code){
     finalizeSectionChange();
 }
 
+void Model::clearConsole(){
+    currentConsoleText = "";
+    QString str = currentConsoleText.c_str();
+    emit consoleTextUpdated(str);
+}
 
 void Model::setupWorld() {
     // TODO [Box2D]:

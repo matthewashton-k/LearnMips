@@ -25,6 +25,7 @@ private:
 
 signals:
     void answerCurrentCodeRequest(std::string);
+    void runRequest(QString code, bool checkSolutionValidity);
 
 private slots:
     void runButtonClicked();
@@ -35,6 +36,8 @@ private slots:
      * @param y
      */
     void moveLabel(int x, int y);
+
+    void updateConsole(QString text);
 
 };
 #endif // MAINWINDOW_H

@@ -11,6 +11,8 @@ private:
 public:
     Section();
     Section(Challenge challenge);
+
+    const Challenge* getChallenge();
 };
 
 #endif // SECTION_H
