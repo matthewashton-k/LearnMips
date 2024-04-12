@@ -9,28 +9,31 @@
 #include <variant>
 #include <optional>
 #include <unordered_map>
+
+
 /**
  * @brief the value for each variant is its index in the register Array
  */
 enum Reg {
-    v0 = 0,
-    v1 = 1,
-    a0 = 2,
-    s0 = 3,
-    s1 = 4,
-    s2 = 5,
-    s3 = 6,
-    s4 = 7,
-    s5 = 8,
-    s6 = 9,
-    t1 = 10,
-    t2 = 11,
-    t3 = 12,
-    t4 = 13,
-    t5 = 14,
-    t6 = 15,
-    zero = 16,
-    sp = 17
+    v0  ,
+    v1  ,
+    a0  ,
+    s0  ,
+    s1  ,
+    s2  ,
+    s3  ,
+    s4  ,
+    s5  ,
+    s6  ,
+    t0  ,
+    t1  ,
+    t2  ,
+    t3  ,
+    t4  ,
+    t5  ,
+    t6  ,
+    zero ,
+    sp  ,
 };
 
 /**
@@ -74,6 +77,50 @@ enum CodeSection{
     Default
 };
 
+
+static const std::unordered_map<std::string, Opcode> opcodeMap = {
+    {"addi", Opcode::addi},
+    {"add", Opcode::add},
+    {"xori", Opcode::xori},
+    {"sll", Opcode::sll},
+    {"sub", Opcode::sub},
+    {"xor", Opcode::Xor},
+    {"srl", Opcode::srl},
+    {"lw", Opcode::lw},
+    {"sw",Opcode::sw},
+    {"lb", Opcode::lb},
+    {"sb",Opcode::sb},
+    {"la",Opcode::la},
+    {"beq", Opcode::beq},
+    {"bne", Opcode::bne},
+    {"j", Opcode::j},
+    {"blt", Opcode::blt},
+    {"bgt", Opcode::bgt},
+    {"syscall", Opcode::syscall}
+};
+
+static const std::unordered_map<std::string, Reg> regMap = {
+    {"$v0", v0},
+    {"$v1", v1},
+    {"$a0", a0},
+    {"$s0", s0},
+    {"$s1", s1},
+    {"$s2", s2},
+    {"$s3", s3},
+    {"$s4", s4},
+    {"$s5", s5},
+    {"$s6", s6},
+    {"$t0", t0},
+    {"$t1", t1},
+    {"$t2", t2},
+    {"$t3", t3},
+    {"$t4", t4},
+    {"$t5", t5},
+    {"$t6", t6},
+    {"$zero", zero},
+    {"$sp", sp}
+};
+
 class Interpreter {
 public:
     /**
@@ -104,7 +151,7 @@ private:
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
      *
      */
-    int registers[18] = {0};
+    int registers[19] = {0};
 
     /**
      * @brief programCounter the index in the vector of instructions that is currently being executed
@@ -118,8 +165,15 @@ private:
     std::vector<uint8_t> stack;
     std::vector<std::string> instructions;
 
+    /**
+     * @brief labels contains the labels in the .text section only. <label, offset>
+     */
     std::unordered_map<std::string, int> labels;
 
+    /**
+     * @brief dataLabels contains labels in the data section only, <label, offset in stack>
+     */
+    std::unordered_map<std::string, int> dataLabels;
     /**
      * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
      */

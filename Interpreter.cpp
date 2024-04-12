@@ -8,6 +8,8 @@
 #include <algorithm>
 
 using namespace std;
+// using opcodeMap;
+// using regMap;
 Interpreter::Interpreter(std::string instructionsStr) : stack(128) {
     std::istringstream iss(instructionsStr);
     std::string line;
@@ -125,17 +127,17 @@ void Interpreter::syscall(Syscall code) {
             string str = "";
             char current = stack[registers[Reg::a0]];
             while (current != '\0') {
-                str.append(current);
+                str.push_back(current);
             }
-            str.append('\n');
+            str.push_back('\n');
             this->stdOut.append(str);
         }
     }
 }
 
 void Interpreter::reset() {
-    std::fill_n(this->registers,16, 0);
-    std::fill_n(this->stack, 32, 0);
+    std::fill_n(this->registers,18, 0);
+    // std::fill_n(this->stack, 32, 0);
 }
 
 void Interpreter::findLabels() {
@@ -235,51 +237,8 @@ void Interpreter::addStringLabel(std::string instruction){
     }
 
     // Add label with its start adress to labels map
-    labels[label] = stringStartAddress;
+    dataLabels[label] = stringStartAddress;
 }
-
-
-static const std::unordered_map<std::string, Opcode> opcodeMap = {
-    {"addi", Opcode::addi},
-    {"add", Opcode::add},
-    {"xori", Opcode::xori},
-    {"sll", Opcode::sll},
-    {"sub", Opcode::sub},
-    {"xor", Opcode::Xor},
-    {"srl", Opcode::srl},
-    {"lw", Opcode::lw},
-    {"sw",Opcode::sw},
-    {"lb", Opcode::lb},
-    {"sb",Opcode::sb},
-    {"la",Opcode::la},
-    {"beq", Opcode::beq},
-    {"bne", Opcode::bne},
-    {"j", Opcode::j},
-    {"blt", Opcode::blt},
-    {"bgt", Opcode::bgt},
-    {"syscall", Opcode::syscall}
-};
-
-static const std::unordered_map<std::string, Reg> regMap = {
-    {"$v0", v0},
-    {"$v1", v1},
-    {"$a0", a0},
-    {"$s0", s0},
-    {"$s1", s1},
-    {"$s2", s2},
-    {"$s3", s3},
-    {"$s4", s4},
-    {"$s5", s5},
-    {"$s6", s6},
-    {"$t1", t1},
-    {"$t2", t2},
-    {"$t3", t3},
-    {"$t4", t4},
-    {"$t5", t5},
-    {"$t6", t6},
-    {"$zero", zero},
-    {"$sp", sp}
-};
 
 std::optional<Opcode> parseOpcode(const std::string& opcodeStr) {
     auto it = opcodeMap.find(opcodeStr);
@@ -349,6 +308,14 @@ std::string Interpreter::run() {
     while (programCounter < instructions.size()) {
         auto instruction = instructions.at(programCounter);
         this->programCounter++;
+        if(instruction == ".data"){
+            currentCodeSection = Data;
+            continue;
+        }
+        else if(instruction == ".text"){
+            currentCodeSection = Text;
+            continue;
+        }
 
         if (instruction.empty() || isLabel(instruction)) {
             continue;
@@ -369,12 +336,7 @@ std::string Interpreter::run() {
             throw ("No destination register near instruction: " + instruction);
         }
 
-        if(instruction == ".data"){
-            currentCodeSection = Data;
-        }
-        else if(instruction == ".text"){
-            currentCodeSection = Text;
-        }
+
         else{
             switch (currentCodeSection){
                 case CodeSection::Data:
@@ -414,13 +376,14 @@ std::string Interpreter::run() {
                         executeJumpInstruction(opcode.value(), tokens,instruction);
                         jumps++;
                         break;
-                    case Opcode::syscall:
+                    case Opcode::syscall: {
                         int code = registers[Reg::v0];
-                        if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
-                            throw std::string("Invalid syscall code");
-                        }
+                        // if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
+                        //     // throw std::string("Invalid syscall code");
+                        // }
                         syscall(static_cast<Syscall>(registers[Reg::v0]));
                         break;
+                    }
                     default:
                         // Should never reach here
                         break;
@@ -503,7 +466,9 @@ void Interpreter::executeRegisterInstruction(Opcode opcode, Reg dstReg, const ve
 void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vector<string>& tokens, const string& instruction) {
     std::optional<Reg> srcReg;
     int offset = 0;
-
+    if (tokens.size() < 3) {
+        throw ("Invalid instruciton at: "+instruction);
+    }
     // Extract the offset and source/destination register
     size_t openParenIndex = tokens[2].find_first_of('(');
     if (openParenIndex != std::string::npos) {
@@ -517,11 +482,11 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
         } catch (exception e) { // if stoi fails
             throw ("Invalid instruction format at: " + instruction);
         }
-    } else {
+    } else if (opcode != Opcode::la) {
         throw ("Invalid instruction format at: " + instruction);
     }
 
-    if (!srcReg.has_value()) {
+    if (!srcReg.has_value() && opcode != Opcode::la) {
         throw ("Invalid source/destination register at: " + instruction);
     }
 
@@ -552,7 +517,11 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
             break;
         }
         case Opcode::la: {
-            la(dstReg, offset);
+            if (dataLabels.find(tokens[2]) != dataLabels.end()) {
+                la(dstReg, dataLabels[tokens[2]]);
+            } else {
+                throw ("Label not found at: "+ instruction);
+            }
             break;
         }
     }
