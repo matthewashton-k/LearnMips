@@ -6,12 +6,20 @@
 #include "Interpreter.h"
 #include "section.h"
 #include <iostream>
+#include <QFile>
+#include <QTextStream>
 
 Model::Model(QObject *parent) : QObject{parent} {
     for(int i = 0; i < NUM_OF_SECTIONS; i++) sections->push_back(buildSection(i)); //create each section
 
     codeStrings = new std::string[NUM_OF_SECTIONS];
     for(int i = 0; i < NUM_OF_SECTIONS; i++) codeStrings[i] = "";
+
+    progressCheckBools = new bool[NUM_OF_SECTIONS];
+    for(int i = 0; i < NUM_OF_SECTIONS; i++) progressCheckBools[i] = false;
+
+    progressCheckBools[0] = true;
+    progressCheckBools[11] = true;
 
     // Box2D
     setupWorld();
@@ -20,6 +28,7 @@ Model::Model(QObject *parent) : QObject{parent} {
 Model::~Model(){
     delete sections;
     delete[] codeStrings;
+    delete[] progressCheckBools;
 }
 
 void Model::executeCode(QString code, bool checkSolutionValidity){
@@ -29,14 +38,17 @@ void Model::executeCode(QString code, bool checkSolutionValidity){
     std::tuple<std::string, bool> output = chal->executeCode(code.toStdString(), checkSolutionValidity);
     std::string outputText = std::get<0>(output);
     bool isValidSolution = std::get<1>(output);
+
     currentConsoleText.append(outputText);
-
     emit consoleTextUpdated(currentConsoleText.c_str());
-
 
     if(checkSolutionValidity){
         if(isValidSolution){
             //challenge succeeded, confetti or whatever
+
+            //set progress check
+            progressCheckBools[currSection] = true;
+            emit progressCheckUpdated(currSection, true);
         }
         else{
             //challenge failed, smoke, sound, rick role, whatever
@@ -47,15 +59,14 @@ void Model::executeCode(QString code, bool checkSolutionValidity){
 void Model::changeSection(int index){
     nextSection = index;
     emit requestSaveCurrentCode();
-    std::cout << "save requested" << std::endl;
 }
 
 void Model::finalizeSectionChange(){
     currSection = nextSection;
     nextSection = 0;
     QString str = codeStrings[currSection].c_str();
-    std::cout << str.toStdString() << std::endl;
     emit codeUpdated(str);
+    for(int i = 0; i < NUM_OF_SECTIONS; i++) emit progressCheckUpdated(i, progressCheckBools[i]); //update check marks
 }
 
 void Model::saveCodeToCurrentIndex(std::string code){
@@ -146,7 +157,80 @@ void Model::updateWorld() {
     timer.singleShot(42, this, &Model::updateWorld);
 }
 
+//save stuff
+void Model::saveAllProgress(){
+    for(int i = 0; i < NUM_OF_SECTIONS; i++){
+        saveSectionASMFile(i, "./saveFiles/", "section" + std::to_string(i) + ".asm");
+    }
+    saveProgressChecks("./saveFiles/");
+}
 
+void Model::saveSectionASMFile(int sectionID, std::string saveLocation, std::string fileName){
+    if(!std::filesystem::exists(saveLocation))
+        std::filesystem::create_directory(saveLocation);
+
+    std::string filename = saveLocation + fileName;
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadWrite)) {
+        QTextStream stream(&file);
+        stream << codeStrings[sectionID].c_str();
+        file.close();
+    }
+
+}
+
+void Model::saveProgressChecks(std::string saveLocation){
+    if(!std::filesystem::exists(saveLocation))
+        std::filesystem::create_directory(saveLocation);
+
+    std::string filename = saveLocation + "progress.txt";
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadWrite)) {
+        QTextStream stream(&file);
+        for(int i = 0; i < NUM_OF_SECTIONS; i++)
+            stream << std::to_string(progressCheckBools[i]).c_str() << Qt::endl;
+        file.close();
+    }
+}
+//load stuff
+void Model::loadAllProgress(){
+    for(int i = 0; i < NUM_OF_SECTIONS; i++){
+        loadSectionASMFile(i, "./saveFiles/", "section" + std::to_string(i) + ".asm");
+    }
+    loadProgressChecks("./saveFiles/");
+
+    QString str = codeStrings[currSection].c_str();
+    emit codeUpdated(str);
+}
+void Model::loadSectionASMFile(int sectionID, std::string saveLocation, std::string fileName){
+    std::string filename = saveLocation + fileName;
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        QString section = stream.readAll();
+        codeStrings[sectionID] = section.toStdString();
+        file.close();
+    }
+}
+void Model::loadProgressChecks(std::string saveLocation){
+    std::string filename = saveLocation + "progress.txt";
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        for(int i = 0; i < NUM_OF_SECTIONS; i++){
+            QString line = stream.readLine();
+            if(line.toInt() == 0){
+                progressCheckBools[i] = false;
+            }
+            else{
+                progressCheckBools[i] = true;
+            }
+
+            emit progressCheckUpdated(i, progressCheckBools[i]);
+        }
+        file.close();
+    }
+}
 
 
 

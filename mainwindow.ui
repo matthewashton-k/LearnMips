@@ -580,11 +580,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkBox_1">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>20</y>
+       <y>30</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -599,7 +599,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <bool>true</bool>
      </property>
      <property name="checked">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_2">
@@ -618,7 +618,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_3">
@@ -637,7 +637,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_4">
@@ -656,7 +656,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_5">
@@ -675,7 +675,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_6">
@@ -694,7 +694,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_7">
@@ -713,7 +713,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_8">
@@ -732,7 +732,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_9">
@@ -751,7 +751,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_10">
@@ -770,7 +770,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_11">
@@ -789,7 +789,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="checkable">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_12">
@@ -811,7 +811,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <bool>true</bool>
      </property>
      <property name="checked">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
    </widget>

@@ -39,6 +39,7 @@ private slots:
     void moveLabel(int x, int y);
 
     void updateConsole(QString text);
+    void updateCheckBox(int ID, bool checked);
 
 };
 #endif // MAINWINDOW_H
