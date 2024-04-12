@@ -142,8 +142,15 @@ void Interpreter::reset() {
 
 void Interpreter::findLabels() {
     int index = 0;
+    enum CodeSection currentCodeSection = Text;
     for (auto line : instructions) {
-        if (isLabel(line)) {
+        if(line == ".data"){
+            currentCodeSection = Data;
+        }
+        else if(line == ".text"){
+            currentCodeSection = Text;
+        }
+        if (isLabel(line) && currentCodeSection == Text) {
             this->labels.insert({line.substr(0, line.find(":")), index});
         }
         index++;
