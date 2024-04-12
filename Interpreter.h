@@ -43,6 +43,7 @@ enum Syscall {
     printInteger = 1,
     Exit = 10,
     printString = 4,
+    printChar = 11,
 };
 
 /**
@@ -161,7 +162,6 @@ private:
     /**
      * @brief stack holds the
      */
-    // uint8_t stack[128] = {0};
     std::vector<uint8_t> stack;
     std::vector<std::string> instructions;
 
@@ -272,8 +272,11 @@ private:
      */
     void addStringLabel(std::string instruction);
 
-
-
+    /**
+     * @brief extendStack grow the stack by appending zeros
+     * @param ammount the ammount to add to the stack
+     */
+    void extendStack(int ammount);
 };
 
 

@@ -10,7 +10,7 @@
 using namespace std;
 // using opcodeMap;
 // using regMap;
-Interpreter::Interpreter(std::string instructionsStr) : stack(128) {
+Interpreter::Interpreter(std::string instructionsStr) {
     std::istringstream iss(instructionsStr);
     std::string line;
     while (std::getline(iss, line)) {
@@ -125,12 +125,21 @@ void Interpreter::syscall(Syscall code) {
         case Syscall::printString: {
             //TODO: needs testing
             string str = "";
-            char current = stack[registers[Reg::a0]];
+            int index = registers[Reg::a0];
+            char current = stack[index];
             while (current != '\0') {
                 str.push_back(current);
+                index++;
+                current = stack[index];
             }
             str.push_back('\n');
             this->stdOut.append(str);
+            break;
+        }
+        case Syscall::printChar: {
+            char lowerBits = registers[Reg::a0] & 0xFF;
+            this->stdOut.push_back(lowerBits);
+            break;
         }
     }
 }
@@ -138,6 +147,12 @@ void Interpreter::syscall(Syscall code) {
 void Interpreter::reset() {
     std::fill_n(this->registers,18, 0);
     // std::fill_n(this->stack, 32, 0);
+}
+
+void Interpreter::extendStack(int ammount) {
+    for (int i = 0; i < ammount; i++) {
+        stack.push_back(0);
+    }
 }
 
 void Interpreter::findLabels() {
@@ -319,12 +334,13 @@ std::string Interpreter::run() {
             currentCodeSection = Data;
             continue;
         }
-        else if(instruction == ".text"){
+        if(instruction == ".text"){
             currentCodeSection = Text;
+            extendStack(128);
             continue;
         }
 
-        if (instruction.empty() || isLabel(instruction)) {
+        if (instruction.empty() || isLabel(instruction) && !isStringLabel(instruction)) {
             continue;
         }
 
@@ -334,73 +350,71 @@ std::string Interpreter::run() {
         }
 
         std::optional<Opcode> opcode = parseOpcode(tokens[0]);
-        if (!opcode.has_value()) {
+        if (!opcode.has_value() && !isStringLabel(instruction)) {
             throw ("No opcode near instruction: " + instruction);
         }
 
         std::optional<Reg> dstReg = (tokens.size() > 2) ? parseReg(tokens[1]) : nullopt;
-        if (!dstReg.has_value() && opcode.value() != Opcode::syscall && opcode.value() != Opcode::j) {
+        if (!isStringLabel(instruction) && !dstReg.has_value() && opcode.value() != Opcode::syscall && opcode.value() != Opcode::j) {
             throw ("No destination register near instruction: " + instruction);
         }
 
-
-        else{
-            switch (currentCodeSection){
-                case CodeSection::Data:
-                if(isStringLabel(instruction)){
-                    addStringLabel(instruction);
-                }
-                break;
-                case CodeSection::Text:{
-                    switch (opcode.value()) {
-                    case Opcode::srl:
-                    case Opcode::sll:
-                    case Opcode::addi:
-                    case Opcode::subi:
-                    case Opcode::xori:
-                        executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                        break;
-                    case Opcode::add:
-                    case Opcode::sub:
-                    case Opcode::Xor:
-                        executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                        break;
-                    case Opcode::lw:
-                    case Opcode::sw:
-                    case Opcode::lb:
-                    case Opcode::sb:
-                    case Opcode::la:
-                        executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                        break;
-                    case Opcode::beq:
-                    case Opcode::bne:
-                    case Opcode::bgt:
-                    case Opcode::blt:
-                    case Opcode::j:
-                        if (jumps == maxJumps){
-                            throw (string("Max number of jumps exceeded: aborting."));
-                        }
-                        executeJumpInstruction(opcode.value(), tokens,instruction);
-                        jumps++;
-                        break;
-                    case Opcode::syscall: {
-                        int code = registers[Reg::v0];
-                        // if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
-                        //     // throw std::string("Invalid syscall code");
-                        // }
-                        syscall(static_cast<Syscall>(registers[Reg::v0]));
-                        break;
-                    }
-                    default:
-                        // Should never reach here
-                        break;
-                    }
-                }
-                break;
-                default:
-                    break;
+        switch (currentCodeSection){
+            case CodeSection::Data:
+            if(isStringLabel(instruction)){
+                addStringLabel(instruction);
             }
+            break;
+            case CodeSection::Text:{
+                switch (opcode.value()) {
+                case Opcode::srl:
+                case Opcode::sll:
+                case Opcode::addi:
+                case Opcode::subi:
+                case Opcode::xori:
+                    executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                    break;
+                case Opcode::add:
+                case Opcode::sub:
+                case Opcode::Xor:
+                    executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                    break;
+                case Opcode::lw:
+                case Opcode::sw:
+                case Opcode::lb:
+                case Opcode::sb:
+                case Opcode::la:
+                    executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                    break;
+                case Opcode::beq:
+                case Opcode::bne:
+                case Opcode::bgt:
+                case Opcode::blt:
+                case Opcode::j:
+                    if (jumps == maxJumps){
+                        throw (string("Max number of jumps exceeded: aborting."));
+                    }
+                    executeJumpInstruction(opcode.value(), tokens,instruction);
+                    jumps++;
+                    break;
+                case Opcode::syscall: {
+                    int code = registers[Reg::v0];
+                    // if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
+                    //     // throw std::string("Invalid syscall code");
+                    // }
+                    syscall(static_cast<Syscall>(registers[Reg::v0]));
+                    break;
+                }
+                default:
+                    // Should never reach here
+                    break;
+                }
+            }
+            break;
+            default:
+                break;
         }
+
     }
     return this->stdOut;
 }
