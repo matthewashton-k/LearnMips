@@ -155,69 +155,69 @@ void Model::updateWorld() {
 //logic for building each section with proper validity function
 Section Model::buildSection(int sectionID){
     switch(sectionID){
-    case 1:
+    case 0:
         return Section();
-    case 2:
+    case 1:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section2ValidityFunction));
-    case 3:
+    case 2:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section3ValidityFunction));
-    case 4:
+    case 3:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section4ValidityFunction));
-    case 5:
+    case 4:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section5ValidityFunction));
-    case 6:
+    case 5:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section6ValidityFunction));
-    case 7:
+    case 6:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section7ValidityFunction));
-    case 8:
+    case 7:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section8ValidityFunction));
-    case 9:
+    case 8:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section9ValidityFunction));
-    case 10:
+    case 9:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section10ValidityFunction));
-    case 11:
+    case 10:
         return Section(
             Challenge(
             "", //before Code
             "", //after Code
             ValidityFunctions::section11ValidityFunction));
-    case 12:
+    case 11:
         return Section();
     default:
         return Section();
