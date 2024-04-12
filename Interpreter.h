@@ -30,6 +30,7 @@ enum Reg {
     t5 = 14,
     t6 = 15,
     zero = 16,
+    sp = 17
 };
 
 /**
@@ -65,6 +66,12 @@ enum Opcode {
     blt,
     bgt,
     syscall
+};
+
+enum CodeSection{
+    Data,
+    Text,
+    Default
 };
 
 class Interpreter {
