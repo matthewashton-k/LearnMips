@@ -12,7 +12,7 @@ Challenge::Challenge(std::string beforeCode, std::string afterCode, bool (*valid
 
 std::tuple<std::string, bool> Challenge::executeCode(std::string middleCode, bool checkSolutionValidity){
     //run code
-    std::string instructions = beforeCode + middleCode + afterCode;
+    std::string instructions = beforeCode + "\n" + middleCode + "\n" + afterCode;
 
     std::string outputString;
     bool isValidSolution;

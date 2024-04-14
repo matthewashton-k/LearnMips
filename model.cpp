@@ -241,7 +241,11 @@ void Model::loadProgressChecks(std::string saveLocation){
 Section Model::buildSection(int sectionID){
     switch(sectionID){
     case 0:
-        return Section();
+        return Section(Challenge(
+            "addi $a0, $zero, 11",
+            "",
+            ValidityFunctions::section1ValidityFunction
+            ));
     case 1:
         return Section(
             Challenge(

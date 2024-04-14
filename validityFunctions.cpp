@@ -1,4 +1,18 @@
 #include "validityFunctions.h"
+#include "Interpreter.h"
+#include <iostream>
+using namespace std;
+
+bool ValidityFunctions::section1ValidityFunction(std::string code) {
+    try {
+        Interpreter interpreter1(code);
+        interpreter1.run();
+        return interpreter1.getV0() == 14;
+    } catch (string err) {
+        cout << "ERROR: " + err << endl;
+        return false;
+    }
+}
 
 bool ValidityFunctions::section2ValidityFunction(std::string code){
     return false;
