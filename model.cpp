@@ -285,7 +285,8 @@ Section Model::buildSection(int sectionID){
                 R"(.data
                     plaintext: .asciiz "unencrypted"
                     key: .asciiz "qwertyuiopa"
-                    .text)", //before Code
+                    .text
+)", //before Code
                 "", //after Code
                 ValidityFunctions::section7ValidityFunction));
     case 7:

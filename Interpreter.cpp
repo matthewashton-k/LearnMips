@@ -168,6 +168,7 @@ optional<vector<uint8_t>> Interpreter::getSymbol(string symbol, int size) {
         index++;
         current = stack[index];
     }
+    return dataVec;
 }
 
 void Interpreter::findLabels() {
@@ -349,14 +350,11 @@ std::string Interpreter::run() {
             currentCodeSection = Data;
             continue;
         }
-        // expand the stack once the .text section is reached
-        if(instruction == ".text" && this->stack.empty() ||
-        this->stack.empty() && currentCodeSection == Text){
+        //expand the stack once the .text section is reached
+        if(instruction == ".text" && this->stack.size() < 128 ||
+            this->stack.size() < 128 && currentCodeSection == Text){
             currentCodeSection = Text;
             extendStack(128);
-            continue;
-        }
-        if(instruction == ".text") {
             continue;
         }
 
