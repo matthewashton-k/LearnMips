@@ -347,7 +347,9 @@ std::string Interpreter::run() {
             currentCodeSection = Data;
             continue;
         }
-        if(instruction == ".text"){
+        // expand the stack once the .text section is reached
+        if(instruction == ".text" && this->stack.empty() ||
+        this->stack.empty() && currentCodeSection == Text){
             currentCodeSection = Text;
             extendStack(128);
             continue;
