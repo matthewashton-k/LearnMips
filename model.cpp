@@ -279,10 +279,13 @@ Section Model::buildSection(int sectionID){
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section6ValidityFunction));
-    case 6:
+    case 6: // XOR challenge
         return Section(
             Challenge(
-                "", //before Code
+                R"(.data
+                    plaintext: .asciiz "unencrypted"
+                    key: .asciiz "qwertyuiopa"
+                    .text)", //before Code
                 "", //after Code
                 ValidityFunctions::section7ValidityFunction));
     case 7:

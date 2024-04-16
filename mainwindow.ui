@@ -177,11 +177,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>611</height>
+           <height>491</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The addi (Add Immediate) instruction in MIPS assembly language is &lt;/p&gt;&lt;p&gt;used to add a signed 32-bit immediate value to the contents of a&lt;/p&gt;&lt;p&gt;register and store the result in another register. The syntax for&lt;/p&gt;&lt;p&gt;the addi instruction is as follows:&lt;/p&gt;&lt;p&gt;addi $destination, $source, immediate&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;- `$destination`: The register where the result of the addition &lt;/p&gt;&lt;p&gt;will be stored.&lt;/p&gt;&lt;p&gt;- `$source`: The register containing the value to which the &lt;/p&gt;&lt;p&gt;immediate will be added.&lt;/p&gt;&lt;p&gt;- `immediate`: A signed 32-bit immediate value that will be&lt;/p&gt;&lt;p&gt;added to the contents of the `$source` register.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;For example:&lt;/p&gt;&lt;p&gt;addi $t0, $t1, -100&lt;/p&gt;&lt;p&gt;This instruction adds the immediate value 100 to the contents of &lt;/p&gt;&lt;p&gt;register `$t1` and stores the result in register `$t0`.&lt;/p&gt;&lt;p&gt;The add instruction is similar to addi, but uses all registers&lt;/p&gt;&lt;p&gt;as parameters:&lt;/p&gt;&lt;p&gt;add $t1, $t3, $t0 # store $t3+$t0 in $t1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The addi (Add Immediate) instruction in MIPS assembly language is used to add a signed 32-bit immediate value to the contents of a register and store the result in another register. The syntax for the addi instruction is as follows:&lt;/p&gt;&lt;p&gt;addi $destination, $source, immediate&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;- `$destination`: The register where the result of the addition will be stored.&lt;/p&gt;&lt;p&gt;- `$source`: The register containing the value to which the immediate will be added.&lt;/p&gt;&lt;p&gt;- `immediate`: A signed 32-bit immediate value that will be&lt;/p&gt;&lt;p&gt;added to the contents of the `$source` register.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;For example:&lt;/p&gt;&lt;p&gt;addi $t0, $t1, -100&lt;/p&gt;&lt;p&gt;This instruction adds the immediate value 100 to the contents of  register `$t1` and stores the result in register `$t0`. The add instruction is similar to addi, but uses all registers as parameters:&lt;/p&gt;&lt;p&gt;add $t1, $t3, $t0 # store $t3+$t0 in $t1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -213,11 +216,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>91</height>
+           <height>71</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that&lt;/p&gt;&lt;p&gt;updated value in the $v0 register (commonly used for a return value).&lt;/p&gt;&lt;p&gt;Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -336,7 +342,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="t1_5">
         <attribute name="title">
@@ -408,16 +414,64 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <attribute name="title">
          <string>Learn 1</string>
         </attribute>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>321</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The MIPS &amp;quot;xor&amp;quot; (exclusive OR) and &amp;quot;xori&amp;quot; (exclusive OR immediate) instructions perform a bitwise XOR operation on two operands. The &amp;quot;xor&amp;quot; instruction operates on two registers, while &amp;quot;xori&amp;quot; operates on a register and an immediate value.&lt;/p&gt;&lt;p&gt;Example:&lt;br/&gt;Suppose we have the following values in registers:&lt;br/&gt;$t0 = 0b1010 (decimal 10)&lt;br/&gt;$t1 = 0b1100 (decimal 12)&lt;/p&gt;&lt;p&gt;Performing &amp;quot;xor $t2, $t0, $t1&amp;quot; will result in:&lt;br/&gt;$t2 = 0b0110 (decimal 6)&lt;/p&gt;&lt;p&gt;The XOR operation compares each bit of the operands and sets the corresponding bit in the result to 1 if the bits are different, and 0 if they are the same. In this example, the bits in positions 2 and 3 of $t0 and $t1 differ, so those bits are set to 1 in the result, while the other bits are set to 0.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t2_7">
         <attribute name="title">
          <string>Learn 2</string>
         </attribute>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>421</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A one-time pad (OTP) is a simple yet theoretically unbreakable encryption technique that uses a secret random key (the &amp;quot;pad&amp;quot;) to encrypt a message. The key must be at least as long as the message and is used only once, hence the name &amp;quot;one-time&amp;quot; pad.&lt;/p&gt;&lt;p&gt;In OTP encryption, each bit or character of the plaintext message is XORed with the corresponding bit or character of the key. The resulting ciphertext can only be decrypted by XORing it with the same key.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;For example, let's say we have a plaintext message &amp;quot;HELLO&amp;quot; and an arbitrary key &amp;quot;XMCKL&amp;quot;. As binary:&lt;/p&gt;&lt;p&gt;Plaintext: 01001000 01000101 01001100 01001100 01001111&lt;/p&gt;&lt;p&gt;Key: 01011000 01001101 01000011 01001011 01001100&lt;/p&gt;&lt;p&gt;Ciphertext: 00010000 00001000 00001111 00000111 00000011&lt;/p&gt;&lt;p&gt;The ciphertext is obtained by XORing each bit of the plaintext with the corresponding bit of the key. Decryption follows the same process, XORing the ciphertext with the key to recover the original plaintext.&lt;/p&gt;&lt;p&gt;OTP encryption is unbreakable if the key is truly random, as long as the message, and never reused.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t3_7">
         <attribute name="title">
          <string>Challenge 1</string>
         </attribute>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>281</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this challenge, you will implement a simple XOR encryption program in MIPS assembly. The plaintext to be encrypted is stored at the &amp;quot;plaintext&amp;quot; symbol, and the encryption key is stored at the &amp;quot;key&amp;quot; symbol. Your task is to XOR each byte of the plaintext with the corresponding byte of the key and store the resulting ciphertext in a new symbol called &amp;quot;ciphertext&amp;quot;, and store the size of the ciphertext (in bytes) in $v0.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Before attempting the challenge, we encourage you to use the editor to write and run your own code with your own plaintext and key. Feel free to use the print character (syscall 11) to print the ciphertext character by character when testing to verify if its working or not. Also remember that the key and ciphertext must be the same length in testing.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>

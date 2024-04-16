@@ -139,6 +139,18 @@ public:
     int getV0() {
         return registers[Reg::v0];
     }
+    int getV1() {
+        return registers[Reg::v1];
+    }
+
+
+    /**
+     * @brief getSymbol gets the data associated with a symbol from the stack
+     * @param symbol the label associated with some data
+     * @param size the size of the vector that should be returned
+     * @return a vector of bytes
+     */
+    std::optional<std::vector<uint8_t>> getSymbol(std::string symbol, int size);
 
 private:
 
