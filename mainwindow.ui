@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -144,11 +144,32 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="t1_1">
         <attribute name="title">
          <string>Learn 1</string>
+        </attribute>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>491</width>
+           <height>731</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>../../../Desktop/Learn Slides/S1L1.PNG</pixmap>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="t2_1">
+        <attribute name="title">
+         <string>Learn 2</string>
         </attribute>
         <widget class="QLabel" name="label_3">
          <property name="geometry">
@@ -164,9 +185,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="t2_1">
+       <widget class="QWidget" name="t3_1">
         <attribute name="title">
-         <string>Learn 2</string>
+         <string>Learn 3</string>
         </attribute>
         <widget class="QLabel" name="label_4">
          <property name="geometry">
@@ -182,7 +203,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="t3_1">
+       <widget class="QWidget" name="t4_1">
         <attribute name="title">
          <string>Challenge 1</string>
         </attribute>

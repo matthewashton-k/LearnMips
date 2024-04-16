@@ -46,7 +46,8 @@ void Model::executeCode(QString code, bool checkSolutionValidity){
         if(isValidSolution){
             //challenge succeeded, confetti or whatever
 
-            //set progress check
+            //set progress check and section completed bool
+            sections->at(currSection).setCompleted(true);
             progressCheckBools[currSection] = true;
             emit progressCheckUpdated(currSection, true);
         }
@@ -222,9 +223,11 @@ void Model::loadProgressChecks(std::string saveLocation){
             QString line = stream.readLine();
             if(line.toInt() == 0){
                 progressCheckBools[i] = false;
+                sections->at(currSection).setCompleted(false);
             }
             else{
                 progressCheckBools[i] = true;
+                sections->at(currSection).setCompleted(true);
             }
 
             emit progressCheckUpdated(i, progressCheckBools[i]);

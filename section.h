@@ -13,6 +13,7 @@ public:
     Section(Challenge challenge);
 
     Challenge* getChallenge();
+    void setCompleted(bool completed);
 };
 
 #endif // SECTION_H
