@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
             &MainWindow::moveLabel // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
         );
 
+    //set active tab to ensure ui is synced with model
+    ui->sectionTabs->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
