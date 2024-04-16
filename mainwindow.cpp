@@ -74,7 +74,8 @@ void MainWindow::createPhysLabel(int x, int y) {
     // TODO [Box2d]: destroy labels to prevent memory leaks
     QLabel* physObj = new QLabel(ui->physicsObjects);
     physObj->setText("physObject");
-    physObj->move(0, 0);
+    physObj->setGeometry(x, y, 49, 16);
+    physObj->show();
     // Might need to take in the id and save the label in a map here. otherwise should be
     // able to do ui->physicsObjects->findChildren
 

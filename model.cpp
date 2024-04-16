@@ -78,7 +78,7 @@ void Model::setupWorld() {
     for(int num = 0; num < 5; num++) {
         int x = 500-(num*5);
         int y = 105-(num*5);
-        timer.singleShot(1000, this, [this, x, y] {emit newPhysObj(x, y);});
+        timer.singleShot(1000, this, [this, num, x, y] {emit newPhysObj(num, x, y);});
     }
 
     // Start update loop
@@ -115,8 +115,6 @@ void Model::updateWorld() {
         b2Vec2 position = physObjBody->getPosition();
         float32 angle = physObjBody->getAngle();
 
-        qDebug(id + QString(": ") + (int)position.x + QString(" ") + (int)position.y);
-
         emit newPosition(id, position.x, position.y);
     }
 
@@ -128,10 +126,10 @@ void Model::updateWorld() {
     timer.singleShot(42, this, &Model::updateWorld);
 }
 
-void Model::spawnPhysBox(int x, int y) {
+void Model::spawnPhysBox(int id, int x, int y) {
     // Define the dynamic body. We set its position and call the body factory.
-    physObject body1(&world, x, y);
-    physObjBodies[body1.getID()] = &body1;
+    physObject* physObj = new physObject(&world, x, y);
+    physObjBodies[id] = physObj;
 }
 
 

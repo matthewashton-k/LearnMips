@@ -10,15 +10,15 @@ class physObject
 {
 public:
     physObject(b2World* world, int x, int y, float32 boxHX = 1.0f, float32 boxHY = 1.0f, float32 density = 1.0f, float32 friction = 0.3f, float32 restitution = 0.9f);
-    \
+    ~physObject();
     b2Vec2 getPosition();
     float32 getAngle();
     int getID();
 
 private:
     b2Body* physObjBody;
-    int id = 0;
-    static int id_counter;
+    //int id = 0;
+    //static int id_counter;
 
 
 

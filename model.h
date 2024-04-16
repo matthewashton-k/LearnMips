@@ -56,14 +56,14 @@ signals:
      * @param y
      */
     void newPosition(int id, int x, int y);
-    void newPhysObj(int x, int y);
+    void newPhysObj(int id, int x, int y);
 
 public slots:
     void changeSection(int index);
     void saveCodeToCurrentIndex(std::string code);
 
     void updateWorld();
-    void spawnPhysBox(int x, int y);
+    void spawnPhysBox(int id, int x, int y);
 
 };
 

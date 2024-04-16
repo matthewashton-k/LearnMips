@@ -1,11 +1,11 @@
 #include "physobject.h"
 #include "Box2D/Box2D.h"
 
-int physObject::id_counter = 0;
+//int physObject::id_counter = 0;
 
 physObject::physObject(b2World* world, int x, int y, float32 boxHX, float32 boxHY, float32 density, float32 friction, float32 restitution) {
 
-    id = id_counter++;
+    //id = id_counter++;
 
     // Define the dynamic body. We set its position and call the body factory.
     b2BodyDef bodyDef;
@@ -33,6 +33,10 @@ physObject::physObject(b2World* world, int x, int y, float32 boxHX, float32 boxH
     physObjBody->CreateFixture(&fixtureDef);
 }
 
+physObject::~physObject() {
+
+}
+
 b2Vec2 physObject::getPosition() {
     return physObjBody->GetPosition();
 }
@@ -42,5 +46,5 @@ float32 physObject::getAngle() {
 }
 
 int physObject::getID() {
-    return id;
+    return -1;//id;
 }
