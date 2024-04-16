@@ -1,4 +1,6 @@
 #include "codeeditor.h"
+#include <QStyleHints>
+#include <QGuiApplication>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
@@ -57,9 +59,13 @@ void CodeEditor::highlightCurrentLine()
     if (!isReadOnly()) {
         QTextEdit::ExtraSelection selection;
 
-        QColor lineColor = QColor(Qt::yellow).lighter(190);
+        const QStyleHints *styleHints = QGuiApplication::styleHints();
 
-        //selection.format.setBackground(lineColor);    //commenting out until I figure out how to change based on light-mode/dark-mode
+        QColor lineColor = QColor(Qt::yellow).lighter(190);
+        if(styleHints->colorScheme() == Qt::ColorScheme::Dark) {
+            lineColor = QColor(Qt::gray).lighter(120);
+        }
+        selection.format.setBackground(lineColor);    //commenting out until I figure out how to change based on light-mode/dark-mode
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
