@@ -13,7 +13,7 @@ Highlighter::Highlighter(QTextDocument *parent)
 
     // Instruction format (e.g., ADD, SUB, LW, SW, etc.)
     instructionFormat.setForeground(Qt::blue);
-    rule.pattern = QRegularExpression(QStringLiteral("\\b(ADD|SUB|LW|SW|J|JR|BEQ)\\b"));
+    rule.pattern = QRegularExpression(QStringLiteral("\\b(addi|subi|xori|xor|add|sub|sll|srl|lw|sw|lb|sb|la|beq|bne|j|blt|bgt|syscall)\\b"));
     rule.format = instructionFormat;
     highlightingRules.append(rule);
 
