@@ -356,6 +356,9 @@ std::string Interpreter::run() {
             extendStack(128);
             continue;
         }
+        if(instruction == ".text") {
+            continue;
+        }
 
         if (instruction.empty() || isLabel(instruction) && !isStringLabel(instruction)) {
             continue;
