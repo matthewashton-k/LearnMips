@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::runRequest, modelPtr, &Model::executeCode);
     connect(ui->actionSave_All_Progress, &QAction::triggered, modelPtr, &Model::saveAllProgress);
     connect(ui->actionLoad_All_Progress, &QAction::triggered, modelPtr, &Model::loadAllProgress);
+    connect(ui->actionInstruction_Reference, &QAction::triggered, this, &MainWindow::displayReferenceWindow);
 
     //switching section stuff
     connect(ui->sectionTabs, &QTabWidget::currentChanged, modelPtr, &Model::changeSection);
@@ -45,6 +46,39 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete modelPtr;
+}
+
+void MainWindow::displayReferenceWindow(){
+    QWidget* referenceWindow = new QWidget();
+    QLabel* list = new QLabel(referenceWindow);
+    QFont font("Arial", 12, 1, false);
+    list->setWindowTitle("Instruction Reference");
+    list->setFont(font);
+    //TODO: finish writing all the text and descriptions
+    list->setText(
+R"(addi $dest, $source, immediate:
+subi $dest, $source, immediate:
+xori :
+Xor :
+add $dest, $source, $source:
+sub $dest, $source, $source:
+sll :
+srl :
+lw $dest, offset($source address):
+sw $source, offset($source address):
+lb $dest, offset($source address):
+sb $source, offset($source address):
+la :
+beq $source, $source, label:
+bne $source, $source, label:
+j label:
+blt $source, $source, label:
+bgt $source, $source, label:
+syscall: uses the value in $v0 and $a0-3 to tell the system what to do)");
+
+    list->show();
+    referenceWindow->show();
+
 }
 
 void MainWindow::runButtonClicked(){

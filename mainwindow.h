@@ -40,6 +40,7 @@ private slots:
 
     void updateConsole(QString text);
     void updateCheckBox(int ID, bool checked);
+    void displayReferenceWindow();
 
 };
 #endif // MAINWINDOW_H

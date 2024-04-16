@@ -884,7 +884,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="actionSave_All_Progress"/>
     <addaction name="actionLoad_All_Progress"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionInstruction_Reference"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave_All_Progress">
@@ -895,6 +902,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionLoad_All_Progress">
    <property name="text">
     <string>Load All Progress</string>
+   </property>
+  </action>
+  <action name="actionInstruction_Reference">
+   <property name="text">
+    <string>Instruction Reference</string>
    </property>
   </action>
  </widget>
