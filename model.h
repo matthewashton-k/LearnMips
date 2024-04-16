@@ -55,7 +55,7 @@ signals:
      * @param x
      * @param y
      */
-    void newPosition(int x, int y);
+    void newPosition(int id, int x, int y);
     void newPhysObj(int x, int y);
 
 public slots:

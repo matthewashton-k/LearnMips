@@ -34,7 +34,13 @@ private slots:
      * @param x
      * @param y
      */
-    void moveLabel(int x, int y);
+    void moveLabel(int id, int x, int y);
+    /**
+     * @brief createPhysLabel creates a QLabel with physics at the given x y coordinate
+     * @param x
+     * @param y
+     */
+    void createPhysLabel(int x, int y);
 
 };
 #endif // MAINWINDOW_H

@@ -75,8 +75,8 @@ void Model::setupWorld() {
     groundBody->CreateFixture(&groundBox, 0.0f);
 
     //Spawn objects
-    for(int num = 0; num < 20; num++) {
-        int x = 560-(num*5);
+    for(int num = 0; num < 5; num++) {
+        int x = 500-(num*5);
         int y = 105-(num*5);
         timer.singleShot(1000, this, [this, x, y] {emit newPhysObj(x, y);});
     }
@@ -115,7 +115,9 @@ void Model::updateWorld() {
         b2Vec2 position = physObjBody->getPosition();
         float32 angle = physObjBody->getAngle();
 
-        emit newPosition(position.x, position.y);
+        qDebug(id + QString(": ") + (int)position.x + QString(" ") + (int)position.y);
+
+        emit newPosition(id, position.x, position.y);
     }
 
     //qDebug() << position.x << position.y << angle;

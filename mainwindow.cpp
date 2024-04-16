@@ -27,8 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(modelPtr,
             &Model::newPosition,
             this,
-            &MainWindow::moveLabel // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
-        );
+            &MainWindow::moveLabel);
+
+    connect(modelPtr,
+            &Model::newPhysObj,
+            this,
+            &MainWindow::createPhysLabel);
 
 }
 
@@ -57,7 +61,21 @@ void MainWindow::currentCodeRequested(){
     emit answerCurrentCodeRequest(ui->codeEdit->toPlainText().toStdString());
 }
 
-void MainWindow::moveLabel(int x, int y) {
+void MainWindow::moveLabel(int id, int x, int y) {
     // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
-    ui->physObj->move(x,y);
+    //qDebug() << id << ": (" << x << ", " << y << ")";
+    QLabel* physObjLabel = ui->physicsObjects->findChildren<QLabel*>().at(id);
+    physObjLabel->move(x,y);
+    //qDebug() << id << ": " << physObjLabel->pos();
+}
+
+void MainWindow::createPhysLabel(int x, int y) {
+    // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
+    // TODO [Box2d]: destroy labels to prevent memory leaks
+    QLabel* physObj = new QLabel(ui->physicsObjects);
+    physObj->setText("physObject");
+    physObj->move(0, 0);
+    // Might need to take in the id and save the label in a map here. otherwise should be
+    // able to do ui->physicsObjects->findChildren
+
 }

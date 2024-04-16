@@ -828,11 +828,25 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>PhysObj</string>
     </property>
    </widget>
+   <widget class="QWidget" name="physicsObjects" native="true">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>-21</x>
+      <y>-21</y>
+      <width>1341</width>
+      <height>811</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>tutorialWidget</zorder>
    <zorder>consoleWidget</zorder>
    <zorder>controlBar</zorder>
    <zorder>codeEdit</zorder>
    <zorder>physObj</zorder>
+   <zorder>physicsObjects</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -840,7 +854,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1323</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -880,8 +894,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1284</x>
-     <y>740</y>
+     <x>1289</x>
+     <y>761</y>
     </hint>
     <hint type="destinationlabel">
      <x>1212</x>
