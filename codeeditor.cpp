@@ -59,7 +59,7 @@ void CodeEditor::highlightCurrentLine()
 
         QColor lineColor = QColor(Qt::yellow).lighter(190);
 
-        selection.format.setBackground(lineColor);
+        //selection.format.setBackground(lineColor);    //commenting out until I figure out how to change based on light-mode/dark-mode
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
