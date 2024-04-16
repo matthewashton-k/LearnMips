@@ -155,6 +155,19 @@ void Interpreter::extendStack(int ammount) {
     }
 }
 
+optional<vector<uint8_t>> Interpreter::getSymbol(string symbol, int size) {
+    if (dataLabels.find(symbol) == dataLabels.end())
+        return nullopt;
+    vector<uint8_t> dataVec;
+    int index = dataLabels.at(symbol);
+    char current = stack[index];
+    for (int i = 0; i < size; i++) {
+        dataVec.push_back(current);
+        index++;
+        current = stack[index];
+    }
+}
+
 void Interpreter::findLabels() {
     int index = 0;
     enum CodeSection currentCodeSection = Text;

@@ -7,6 +7,7 @@ bool ValidityFunctions::section1ValidityFunction(std::string code) {
     try {
         Interpreter interpreter1(code);
         interpreter1.run();
+        cout << interpreter1.getV0() << endl;
         return interpreter1.getV0() == 14;
     } catch (string err) {
         cout << "ERROR: " + err << endl;
@@ -34,6 +35,7 @@ bool ValidityFunctions::section6ValidityFunction(std::string code){
     return false;
 }
 
+/// XOR challenge
 bool ValidityFunctions::section7ValidityFunction(std::string code){
     return false;
 }
