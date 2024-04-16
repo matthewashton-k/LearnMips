@@ -173,7 +173,7 @@ void Model::saveSectionASMFile(int sectionID, std::string saveLocation, std::str
 
     std::string filename = saveLocation + fileName;
     QFile file(filename.c_str());
-    if (file.open(QIODevice::ReadWrite)) {
+    if (file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
         QTextStream stream(&file);
         stream << codeStrings[sectionID].c_str();
         file.close();

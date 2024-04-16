@@ -357,6 +357,10 @@ std::string Interpreter::run() {
             extendStack(128);
             continue;
         }
+        if (instruction == ".text"){
+            currentCodeSection = Text;
+            continue;
+        }
 
         if (instruction.empty() || isLabel(instruction) && !isStringLabel(instruction)) {
             continue;
