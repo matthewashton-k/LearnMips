@@ -138,7 +138,9 @@ void Interpreter::syscall(Syscall code) {
         }
         case Syscall::printChar: {
             char lowerBits = registers[Reg::a0] & 0xFF;
-            this->stdOut.push_back(lowerBits);
+            if (lowerBits != '\0') {
+                this->stdOut.push_back(lowerBits);
+            }
             break;
         }
     }
@@ -352,6 +354,9 @@ std::string Interpreter::run() {
         this->stack.empty() && currentCodeSection == Text){
             currentCodeSection = Text;
             extendStack(128);
+            continue;
+        }
+        if(instruction == ".text") {
             continue;
         }
 
