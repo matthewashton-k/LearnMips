@@ -355,7 +355,6 @@ std::string Interpreter::run() {
             this->stack.size() < 128 && currentCodeSection == Text){
             currentCodeSection = Text;
             extendStack(128);
-            continue;
         }
         if (instruction == ".text"){
             currentCodeSection = Text;
