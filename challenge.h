@@ -8,13 +8,14 @@ class Challenge
 private:
     std::string beforeCode = "";
     std::string afterCode = "";
-    //bool checkChallenge(std::string middleCode);
+    //bool validityFunction(std::string middleCode);
     //pointer to validity function
-    bool (*checkChallenge)(std::string) = [](std::string){return true;};
+    bool (*validityFunction)(std::string) = [](std::string){return true;};
 public:
     Challenge();
-    Challenge(std::string beforeCode, std::string afterCode, bool (*checkChallenge)(std::string middleCode));
+    Challenge(std::string beforeCode, std::string afterCode, bool (*validityFunction)(std::string middleCode));
 
+    std::tuple<std::string, bool> executeCode(std::string middleCode, bool checkSolutionValidity);
 };
 
 #endif // CHALLENGE_H

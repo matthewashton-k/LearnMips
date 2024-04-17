@@ -25,9 +25,11 @@ private:
 
 signals:
     void answerCurrentCodeRequest(std::string);
+    void runRequest(QString code, bool checkSolutionValidity);
 
 private slots:
     void runButtonClicked();
+    void submitButtonClicked();
     void currentCodeRequested();
     /**
      * @brief moveLabel Moves the physObj label to the given x y relative to the window
@@ -41,6 +43,10 @@ private slots:
      * @param y
      */
     void createPhysLabel(int x, int y);
+
+    void updateConsole(QString text);
+    void updateCheckBox(int ID, bool checked);
+    void displayReferenceWindow();
 
 };
 #endif // MAINWINDOW_H

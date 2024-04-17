@@ -3,18 +3,24 @@
 #include "validityFunctions.h"
 #include "Box2D/Box2D.h"
 #include "physobject.h"
+#include "Interpreter.h"
+#include "section.h"
 #include <iostream>
+#include <QFile>
+#include <QTextStream>
 
 Model::Model(QObject *parent) : QObject{parent} {
-    // connect(this,
-    //         &Model::newPhysObj,
-    //         this,
-    //         &Model::spawnPhysBox);
 
     for(int i = 0; i < NUM_OF_SECTIONS; i++) sections->push_back(buildSection(i)); //create each section
 
     codeStrings = new std::string[NUM_OF_SECTIONS];
     for(int i = 0; i < NUM_OF_SECTIONS; i++) codeStrings[i] = "";
+
+    progressCheckBools = new bool[NUM_OF_SECTIONS];
+    for(int i = 0; i < NUM_OF_SECTIONS; i++) progressCheckBools[i] = false;
+
+    progressCheckBools[0] = true;
+    progressCheckBools[11] = true;
 
     // Box2D
     setupWorld();
@@ -23,20 +29,48 @@ Model::Model(QObject *parent) : QObject{parent} {
 Model::~Model(){
     delete sections;
     delete[] codeStrings;
+    delete[] progressCheckBools;
+}
+
+void Model::executeCode(QString code, bool checkSolutionValidity){
+    //run code
+    Challenge* chal = sections->at(currSection).getChallenge();
+
+    std::tuple<std::string, bool> output = chal->executeCode(code.toStdString(), checkSolutionValidity);
+    std::string outputText = std::get<0>(output);
+    bool isValidSolution = std::get<1>(output);
+
+    currentConsoleText.append(outputText + "\n");
+    emit consoleTextUpdated(currentConsoleText.c_str());
+
+    if(checkSolutionValidity){
+        if(isValidSolution){
+            //challenge succeeded, confetti or whatever
+            // TODO [Box2D]: confetti
+            // spawnConfetti();
+
+            //set progress check and section completed bool
+            sections->at(currSection).setCompleted(true);
+            progressCheckBools[currSection] = true;
+            emit progressCheckUpdated(currSection, true);
+        }
+        else{
+            //challenge failed, smoke, sound, rick role, whatever
+        }
+    }
 }
 
 void Model::changeSection(int index){
     nextSection = index;
     emit requestSaveCurrentCode();
-    std::cout << "save requested" << std::endl;
 }
 
 void Model::finalizeSectionChange(){
     currSection = nextSection;
     nextSection = 0;
     QString str = codeStrings[currSection].c_str();
-    std::cout << str.toStdString() << std::endl;
     emit codeUpdated(str);
+    for(int i = 0; i < NUM_OF_SECTIONS; i++) emit progressCheckUpdated(i, progressCheckBools[i]); //update check marks
 }
 
 void Model::saveCodeToCurrentIndex(std::string code){
@@ -44,6 +78,11 @@ void Model::saveCodeToCurrentIndex(std::string code){
     finalizeSectionChange();
 }
 
+void Model::clearConsole(){
+    currentConsoleText = "";
+    QString str = currentConsoleText.c_str();
+    emit consoleTextUpdated(str);
+}
 
 void Model::setupWorld() {
     // TODO [Box2D]:
@@ -127,8 +166,6 @@ void Model::updateWorld() {
 
     // Check for objects to spawn
     for(auto const& [id, physObjBody] : physObjBodies) {
-        //if()
-
         // Now print the position and angle of the body.
         b2Vec2 position = physObjBody->getPosition();
         float32 angle = physObjBody->getAngle();
@@ -144,10 +181,6 @@ void Model::updateWorld() {
     timer.singleShot(42, this, &Model::updateWorld);
 }
 
-// void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
-//     spawnPhysBox(id, shape, x, y);
-// }
-
 void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
     // Define the dynamic body. We set its position and call the body factory.
     physObject* physObj = new physObject(&world, shape, x, y);
@@ -160,6 +193,83 @@ void Model::spawnConfetti() {
 
 }
 
+//save stuff
+void Model::saveAllProgress(){
+    changeSection(currSection);
+    for(int i = 0; i < NUM_OF_SECTIONS; i++){
+        saveSectionASMFile(i, "./saveFiles/", "section" + std::to_string(i) + ".asm");
+    }
+    saveProgressChecks("./saveFiles/");
+}
+
+void Model::saveSectionASMFile(int sectionID, std::string saveLocation, std::string fileName){
+    if(!std::filesystem::exists(saveLocation))
+        std::filesystem::create_directory(saveLocation);
+
+    std::string filename = saveLocation + fileName;
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
+        QTextStream stream(&file);
+        stream << codeStrings[sectionID].c_str();
+        file.close();
+    }
+
+}
+
+void Model::saveProgressChecks(std::string saveLocation){
+    if(!std::filesystem::exists(saveLocation))
+        std::filesystem::create_directory(saveLocation);
+
+    std::string filename = saveLocation + "progress.txt";
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadWrite)) {
+        QTextStream stream(&file);
+        for(int i = 0; i < NUM_OF_SECTIONS; i++)
+            stream << std::to_string(progressCheckBools[i]).c_str() << Qt::endl;
+        file.close();
+    }
+}
+//load stuff
+void Model::loadAllProgress(){
+    for(int i = 0; i < NUM_OF_SECTIONS; i++){
+        loadSectionASMFile(i, "./saveFiles/", "section" + std::to_string(i) + ".asm");
+    }
+    loadProgressChecks("./saveFiles/");
+
+    QString str = codeStrings[currSection].c_str();
+    emit codeUpdated(str);
+}
+void Model::loadSectionASMFile(int sectionID, std::string saveLocation, std::string fileName){
+    std::string filename = saveLocation + fileName;
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        QString section = stream.readAll();
+        codeStrings[sectionID] = section.toStdString();
+        file.close();
+    }
+}
+void Model::loadProgressChecks(std::string saveLocation){
+    std::string filename = saveLocation + "progress.txt";
+    QFile file(filename.c_str());
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        for(int i = 0; i < NUM_OF_SECTIONS; i++){
+            QString line = stream.readLine();
+            if(line.toInt() == 0){
+                progressCheckBools[i] = false;
+                sections->at(currSection).setCompleted(false);
+            }
+            else{
+                progressCheckBools[i] = true;
+                sections->at(currSection).setCompleted(true);
+            }
+
+            emit progressCheckUpdated(i, progressCheckBools[i]);
+        }
+        file.close();
+    }
+}
 
 
 
@@ -168,69 +278,77 @@ void Model::spawnConfetti() {
 //logic for building each section with proper validity function
 Section Model::buildSection(int sectionID){
     switch(sectionID){
+    case 0:
+        return Section(Challenge(
+            "addi $a0, $zero, 11",
+            "",
+            ValidityFunctions::section1ValidityFunction
+            ));
     case 1:
-        return Section();
-    case 2:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section2ValidityFunction));
-    case 3:
+    case 2:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section3ValidityFunction));
-    case 4:
+    case 3:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section4ValidityFunction));
-    case 5:
+    case 4:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section5ValidityFunction));
-    case 6:
+    case 5:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section6ValidityFunction));
+    case 6: // XOR challenge
+        return Section(
+            Challenge(
+                R"(.data
+                    plaintext: .asciiz "unencrypted"
+                    key: .asciiz "qwertyuiopa"
+                    .text
+)", //before Code
+                "", //after Code
+                ValidityFunctions::section7ValidityFunction));
     case 7:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
-                ValidityFunctions::section7ValidityFunction));
+                ValidityFunctions::section8ValidityFunction));
     case 8:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
-                ValidityFunctions::section8ValidityFunction));
+                ValidityFunctions::section9ValidityFunction));
     case 9:
         return Section(
             Challenge(
                 "", //before Code
                 "", //after Code
-                ValidityFunctions::section9ValidityFunction));
-    case 10:
-        return Section(
-            Challenge(
-                "", //before Code
-                "", //after Code
                 ValidityFunctions::section10ValidityFunction));
-    case 11:
+    case 10:
         return Section(
             Challenge(
             "", //before Code
             "", //after Code
             ValidityFunctions::section11ValidityFunction));
-    case 12:
+    case 11:
         return Section();
     default:
         return Section();

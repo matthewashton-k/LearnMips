@@ -5,6 +5,7 @@
 class ValidityFunctions
 {
 public:
+    static bool section1ValidityFunction(std::string);
     static bool section2ValidityFunction(std::string);
     static bool section3ValidityFunction(std::string);
     static bool section4ValidityFunction(std::string);

@@ -9,27 +9,31 @@
 #include <variant>
 #include <optional>
 #include <unordered_map>
+
+
 /**
  * @brief the value for each variant is its index in the register Array
  */
 enum Reg {
-    v0 = 0,
-    v1 = 1,
-    a0 = 2,
-    s0 = 3,
-    s1 = 4,
-    s2 = 5,
-    s3 = 6,
-    s4 = 7,
-    s5 = 8,
-    s6 = 9,
-    t1 = 10,
-    t2 = 11,
-    t3 = 12,
-    t4 = 13,
-    t5 = 14,
-    t6 = 15,
-    zero = 16,
+    v0  ,
+    v1  ,
+    a0  ,
+    s0  ,
+    s1  ,
+    s2  ,
+    s3  ,
+    s4  ,
+    s5  ,
+    s6  ,
+    t0  ,
+    t1  ,
+    t2  ,
+    t3  ,
+    t4  ,
+    t5  ,
+    t6  ,
+    zero ,
+    sp  ,
 };
 
 /**
@@ -38,6 +42,8 @@ enum Reg {
 enum Syscall {
     printInteger = 1,
     Exit = 10,
+    printString = 4,
+    printChar = 11,
 };
 
 /**
@@ -66,6 +72,56 @@ enum Opcode {
     syscall
 };
 
+enum CodeSection{
+    Data,
+    Text,
+    Default
+};
+
+
+static const std::unordered_map<std::string, Opcode> opcodeMap = {
+    {"addi", Opcode::addi},
+    {"add", Opcode::add},
+    {"xori", Opcode::xori},
+    {"sll", Opcode::sll},
+    {"sub", Opcode::sub},
+    {"xor", Opcode::Xor},
+    {"srl", Opcode::srl},
+    {"lw", Opcode::lw},
+    {"sw",Opcode::sw},
+    {"lb", Opcode::lb},
+    {"sb",Opcode::sb},
+    {"la",Opcode::la},
+    {"beq", Opcode::beq},
+    {"bne", Opcode::bne},
+    {"j", Opcode::j},
+    {"blt", Opcode::blt},
+    {"bgt", Opcode::bgt},
+    {"syscall", Opcode::syscall}
+};
+
+static const std::unordered_map<std::string, Reg> regMap = {
+    {"$v0", v0},
+    {"$v1", v1},
+    {"$a0", a0},
+    {"$s0", s0},
+    {"$s1", s1},
+    {"$s2", s2},
+    {"$s3", s3},
+    {"$s4", s4},
+    {"$s5", s5},
+    {"$s6", s6},
+    {"$t0", t0},
+    {"$t1", t1},
+    {"$t2", t2},
+    {"$t3", t3},
+    {"$t4", t4},
+    {"$t5", t5},
+    {"$t6", t6},
+    {"$zero", zero},
+    {"$sp", sp}
+};
+
 class Interpreter {
 public:
     /**
@@ -83,6 +139,18 @@ public:
     int getV0() {
         return registers[Reg::v0];
     }
+    int getV1() {
+        return registers[Reg::v1];
+    }
+
+
+    /**
+     * @brief getSymbol gets the data associated with a symbol from the stack
+     * @param symbol the label associated with some data
+     * @param size the size of the vector that should be returned
+     * @return a vector of bytes
+     */
+    std::optional<std::vector<uint8_t>> getSymbol(std::string symbol, int size);
 
 private:
 
@@ -96,7 +164,7 @@ private:
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
      *
      */
-    int registers[17] = {0};
+    int registers[19] = {0};
 
     /**
      * @brief programCounter the index in the vector of instructions that is currently being executed
@@ -106,11 +174,18 @@ private:
     /**
      * @brief stack holds the
      */
-    uint8_t stack[128] = {0};
+    std::vector<uint8_t> stack;
     std::vector<std::string> instructions;
 
+    /**
+     * @brief labels contains the labels in the .text section only. <label, offset>
+     */
     std::unordered_map<std::string, int> labels;
 
+    /**
+     * @brief dataLabels contains labels in the data section only, <label, offset in stack>
+     */
+    std::unordered_map<std::string, int> dataLabels;
     /**
      * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
      */
@@ -195,6 +270,25 @@ private:
      * @return returns a vector of tokens
      */
     std::vector<std::string> tokenize(const std::string& str, char delimiter);
+
+    /**
+     * @brief isStringLabel decides if an instruction is a label of a string or not
+     * @param instruction the line that may or may not be a label
+     * @return true if the instruction is a label of a string
+     */
+    bool isStringLabel(std::string instruction);
+
+    /**
+     * @brief addStringLabel adds the string label to labels map
+     * @param instruction the line that may or may not be a label
+     */
+    void addStringLabel(std::string instruction);
+
+    /**
+     * @brief extendStack grow the stack by appending zeros
+     * @param ammount the ammount to add to the stack
+     */
+    void extendStack(int ammount);
 };
 
 

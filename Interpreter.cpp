@@ -8,6 +8,8 @@
 #include <algorithm>
 
 using namespace std;
+// using opcodeMap;
+// using regMap;
 Interpreter::Interpreter(std::string instructionsStr) {
     std::istringstream iss(instructionsStr);
     std::string line;
@@ -72,7 +74,6 @@ void Interpreter::lw(Reg dst, Reg src, int offset) {
 }
 
 void Interpreter::sb(Reg src, Reg src2, int offset) {
-    cout << "loaded byte" << endl;
     uint8_t value = registers[src] & 0xFF; // Get the lower 8 bits
     int base = registers[src2] + offset;
     stack[base] = value;
@@ -86,7 +87,6 @@ void Interpreter::lb(Reg dst, Reg src, int offset) {
 
 void Interpreter::la(Reg dst, int offset){
     registers[dst] = offset;
-    this->programCounter = offset;
 }
 
 void Interpreter::beq(Reg src1, Reg src2, int offset) {
@@ -122,18 +122,66 @@ void Interpreter::syscall(Syscall code) {
         case Syscall::Exit:
             exit(registers[a0]);
             break;
+        case Syscall::printString: {
+            //TODO: needs testing
+            string str = "";
+            int index = registers[Reg::a0];
+            char current = stack[index];
+            while (current != '\0') {
+                str.push_back(current);
+                index++;
+                current = stack[index];
+            }
+            str.push_back('\n');
+            this->stdOut.append(str);
+            break;
+        }
+        case Syscall::printChar: {
+            char lowerBits = registers[Reg::a0] & 0xFF;
+            if (lowerBits != '\0') {
+                this->stdOut.push_back(lowerBits);
+            }
+            break;
+        }
     }
 }
 
 void Interpreter::reset() {
-    std::fill_n(this->registers,13, 0);
-    std::fill_n(this->stack, 32, 0);
+    std::fill_n(this->registers,18, 0);
+    // std::fill_n(this->stack, 32, 0);
+}
+
+void Interpreter::extendStack(int ammount) {
+    for (int i = 0; i < ammount; i++) {
+        stack.push_back(0);
+    }
+}
+
+optional<vector<uint8_t>> Interpreter::getSymbol(string symbol, int size) {
+    if (dataLabels.find(symbol) == dataLabels.end())
+        return nullopt;
+    vector<uint8_t> dataVec;
+    int index = dataLabels.at(symbol);
+    char current = stack[index];
+    for (int i = 0; i < size; i++) {
+        dataVec.push_back(current);
+        index++;
+        current = stack[index];
+    }
+    return dataVec;
 }
 
 void Interpreter::findLabels() {
     int index = 0;
+    enum CodeSection currentCodeSection = Text;
     for (auto line : instructions) {
-        if (isLabel(line)) {
+        if(line == ".data"){
+            currentCodeSection = Data;
+        }
+        else if(line == ".text"){
+            currentCodeSection = Text;
+        }
+        if (isLabel(line) && currentCodeSection == Text) {
             this->labels.insert({line.substr(0, line.find(":")), index});
         }
         index++;
@@ -173,47 +221,62 @@ bool Interpreter::isLabel(std::string instruction) {
     return true;
 }
 
+bool Interpreter::isStringLabel(std::string instruction){
 
-static const std::unordered_map<std::string, Opcode> opcodeMap = {
-    {"addi", Opcode::addi},
-    {"add", Opcode::add},
-    {"xori", Opcode::xori},
-    {"sll", Opcode::sll},
-    {"sub", Opcode::sub},
-    {"xor", Opcode::Xor},
-    {"srl", Opcode::srl},
-    {"lw", Opcode::lw},
-    {"sw",Opcode::sw},
-    {"lb", Opcode::lb},
-    {"sb",Opcode::sb},
-    {"la",Opcode::la},
-    {"beq", Opcode::beq},
-    {"bne", Opcode::bne},
-    {"j", Opcode::j},
-    {"blt", Opcode::blt},
-    {"bgt", Opcode::bgt},
-    {"syscall", Opcode::syscall}
-};
+    if(!isLabel(instruction)){
+        return false;
+    }
 
-static const std::unordered_map<std::string, Reg> regMap = {
-    {"$v0", v0},
-    {"$v1", v1},
-    {"$a0", a0},
-    {"$s0", s0},
-    {"$s1", s1},
-    {"$s2", s2},
-    {"$s3", s3},
-    {"$s4", s4},
-    {"$s5", s5},
-    {"$s6", s6},
-    {"$t1", t1},
-    {"$t2", t2},
-    {"$t3", t3},
-    {"$t4", t4},
-    {"$t5", t5},
-    {"$t6", t6},
-    {"$zero", zero}
-};
+    // Find the position of the colon ':'
+    size_t colonPos = instruction.find(':');
+
+    // Check if the label is followed by ".asciiz"
+    std::string directive = instruction.substr(colonPos + 1);
+    directive = trimWhitespace(directive);
+    // .asciiz should be at the start
+    if (directive.find(".asciiz") != 0) {
+        return false;
+    }
+
+    // Check if there is a string after the ".asciiz"
+    size_t stringStart = directive.find("\""); // find the " at the start
+    size_t stringEnd = directive.rfind("\""); // find the " at the end
+
+    // Check if we didint found any, then we couldnt find a valid string.
+    if (stringStart == std::string::npos || stringEnd == std::string::npos || stringStart == stringEnd) {
+        return false;
+    }
+
+    // return true if it is a valid string label
+    return true;
+}
+
+void Interpreter::addStringLabel(std::string instruction){
+
+    size_t colonPos = instruction.find(':');
+    // label name is from the start till colomn
+    std::string label = instruction.substr(0, colonPos);
+
+    // Get the string between the double quotes
+    size_t stringStart = instruction.find('\"', colonPos);
+    size_t stringEnd = instruction.rfind('\"');
+    std::string string = instruction.substr(stringStart + 1, stringEnd - stringStart - 1);
+
+    // Get the start address of the string to save it in labels
+    int stringStartAddress = registers[Reg::sp];
+
+
+    // Add the string characters to the stack from a c++ null terminated string
+    const char* cString = string.c_str();
+    for (size_t i = 0; i < string.length() + 1; ++i) {
+        stack.push_back(cString[i]);
+        // increment stack pointer
+        registers[Reg::sp]++;
+    }
+
+    // Add label with its start adress to labels map
+    dataLabels[label] = stringStartAddress;
+}
 
 std::optional<Opcode> parseOpcode(const std::string& opcodeStr) {
     auto it = opcodeMap.find(opcodeStr);
@@ -276,13 +339,30 @@ vector<string> Interpreter::tokenize(const string& str, char delimiter) {
 std::string Interpreter::run() {
     // Check for syntax errors
     // ...
-
     // Interpret instructions
     int jumps = 0;
+    // Set the defualt section to Text
+    enum CodeSection currentCodeSection = Text;
     while (programCounter < instructions.size()) {
         auto instruction = instructions.at(programCounter);
         this->programCounter++;
-        if (instruction.empty() || isLabel(instruction)) {
+        if(instruction == ".data"){
+            currentCodeSection = Data;
+            continue;
+        }
+        //expand the stack once the .text section is reached
+        if(instruction == ".text" && this->stack.size() < 128 ||
+            this->stack.size() < 128 && currentCodeSection == Text){
+            currentCodeSection = Text;
+            extendStack(128);
+            continue;
+        }
+        if (instruction == ".text"){
+            currentCodeSection = Text;
+            continue;
+        }
+
+        if (instruction.empty() || isLabel(instruction) && !isStringLabel(instruction)) {
             continue;
         }
 
@@ -292,54 +372,71 @@ std::string Interpreter::run() {
         }
 
         std::optional<Opcode> opcode = parseOpcode(tokens[0]);
-        if (!opcode.has_value()) {
+        if (!opcode.has_value() && !isStringLabel(instruction)) {
             throw ("No opcode near instruction: " + instruction);
         }
 
         std::optional<Reg> dstReg = (tokens.size() > 2) ? parseReg(tokens[1]) : nullopt;
-        if (!dstReg.has_value() && opcode.value() != Opcode::syscall && opcode.value() != Opcode::j) {
+        if (!isStringLabel(instruction) && !dstReg.has_value() && opcode.value() != Opcode::syscall && opcode.value() != Opcode::j) {
             throw ("No destination register near instruction: " + instruction);
         }
 
-        switch (opcode.value()) {
-            case Opcode::srl:
-            case Opcode::sll:
-            case Opcode::addi:
-            case Opcode::subi:
-            case Opcode::xori:
-                executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                break;
-            case Opcode::add:
-            case Opcode::sub:
-            case Opcode::Xor:
-                executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                break;
-            case Opcode::lw:
-            case Opcode::sw:
-            case Opcode::lb:
-            case Opcode::sb:
-            case Opcode::la:
-                executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                break;
-            case Opcode::beq:
-            case Opcode::bne:
-            case Opcode::bgt:
-            case Opcode::blt:
-            case Opcode::j:
-                if (jumps == maxJumps){
-                    throw (string("Max number of jumps exceeded: aborting."));
+        switch (currentCodeSection){
+            case CodeSection::Data:
+            if(isStringLabel(instruction)){
+                addStringLabel(instruction);
+            }
+            break;
+            case CodeSection::Text:{
+                switch (opcode.value()) {
+                case Opcode::srl:
+                case Opcode::sll:
+                case Opcode::addi:
+                case Opcode::subi:
+                case Opcode::xori:
+                    executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                    break;
+                case Opcode::add:
+                case Opcode::sub:
+                case Opcode::Xor:
+                    executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                    break;
+                case Opcode::lw:
+                case Opcode::sw:
+                case Opcode::lb:
+                case Opcode::sb:
+                case Opcode::la:
+                    executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                    break;
+                case Opcode::beq:
+                case Opcode::bne:
+                case Opcode::bgt:
+                case Opcode::blt:
+                case Opcode::j:
+                    if (jumps == maxJumps){
+                        throw (string("Max number of jumps exceeded: aborting."));
+                    }
+                    executeJumpInstruction(opcode.value(), tokens,instruction);
+                    jumps++;
+                    break;
+                case Opcode::syscall: {
+                    int code = registers[Reg::v0];
+                    // if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
+                    //     // throw std::string("Invalid syscall code");
+                    // }
+                    syscall(static_cast<Syscall>(registers[Reg::v0]));
+                    break;
                 }
-                executeJumpInstruction(opcode.value(), tokens,instruction);
-                jumps++;
-                break;
-            case Opcode::syscall:
-                syscall(static_cast<Syscall>(registers[Reg::v0]));
-                break;
-
+                default:
+                    // Should never reach here
+                    break;
+                }
+            }
+            break;
             default:
-                // Should never reach here
                 break;
         }
+
     }
     return this->stdOut;
 }
@@ -412,7 +509,9 @@ void Interpreter::executeRegisterInstruction(Opcode opcode, Reg dstReg, const ve
 void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vector<string>& tokens, const string& instruction) {
     std::optional<Reg> srcReg;
     int offset = 0;
-
+    if (tokens.size() < 3) {
+        throw ("Invalid instruciton at: "+instruction);
+    }
     // Extract the offset and source/destination register
     size_t openParenIndex = tokens[2].find_first_of('(');
     if (openParenIndex != std::string::npos) {
@@ -422,21 +521,15 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
             if (closeParenIndex != std::string::npos) {
                 std::string innerRegStr = tokens[2].substr(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
                 srcReg = parseReg(innerRegStr);
-
-                std::string offset_str = std::to_string(offset);
-                if (this->labels.find(offset_str) != this->labels.end()) {
-                    offset = this->labels[offset_str];
-                }
-
             }
         } catch (exception e) { // if stoi fails
             throw ("Invalid instruction format at: " + instruction);
         }
-    } else {
+    } else if (opcode != Opcode::la) {
         throw ("Invalid instruction format at: " + instruction);
     }
 
-    if (!srcReg.has_value()) {
+    if (!srcReg.has_value() && opcode != Opcode::la) {
         throw ("Invalid source/destination register at: " + instruction);
     }
 
@@ -467,7 +560,11 @@ void Interpreter::executeMemoryInstruction(Opcode opcode, Reg dstReg, const vect
             break;
         }
         case Opcode::la: {
-            la(dstReg, offset);
+            if (dataLabels.find(tokens[2]) != dataLabels.end()) {
+                la(dstReg, dataLabels[tokens[2]]);
+            } else {
+                throw ("Label not found at: "+ instruction);
+            }
             break;
         }
     }
