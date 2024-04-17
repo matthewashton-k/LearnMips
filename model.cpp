@@ -143,9 +143,6 @@ void Model::setupWorld() {
 }
 
 void Model::updateWorld() {
-    // TODO [Box2D]:
-
-    //qDebug("--start update");
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
@@ -160,9 +157,6 @@ void Model::updateWorld() {
         // It is generally best to keep the time step and iterations fixed.
         world.Step(timeStep, velocityIterations, positionIterations);
     }
-
-
-    // TODO [Box2D]: This will need to be generalized to work with many different objects
 
     // Check for objects to spawn
     for(auto const& [id, physObjBody] : physObjBodies) {
@@ -188,6 +182,10 @@ void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
 
     emit newPhysObj(id, x, y);
 }
+
+// void Model::destroyPhysObject(int id) {
+
+// }
 
 void Model::spawnConfetti() {
 

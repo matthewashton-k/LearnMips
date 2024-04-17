@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionLoad_All_Progress, &QAction::triggered, modelPtr, &Model::loadAllProgress);
     connect(ui->actionInstruction_Reference, &QAction::triggered, this, &MainWindow::displayReferenceWindow);
 
-    //switching section stuff
+    // switching section stuff
     connect(ui->sectionTabs, &QTabWidget::currentChanged, modelPtr, &Model::changeSection);
     connect(modelPtr, &Model::requestSaveCurrentCode, this, &MainWindow::currentCodeRequested);
     connect(this, &MainWindow::answerCurrentCodeRequest, modelPtr, &Model::saveCodeToCurrentIndex);
@@ -42,8 +42,10 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::createPhysLabel);
 
-    //set active tab to ensure ui is synced with model
+    // set active tab to ensure ui is synced with model
     ui->sectionTabs->setCurrentIndex(0);
+    // set Box2D physics label container attribute to ignore mouse clicks
+    ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
 MainWindow::~MainWindow()

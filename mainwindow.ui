@@ -916,11 +916,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </rect>
     </property>
    </widget>
-   <zorder>physicsObjects</zorder>
    <zorder>tutorialWidget</zorder>
    <zorder>consoleWidget</zorder>
    <zorder>controlBar</zorder>
    <zorder>codeEdit</zorder>
+   <zorder>physicsObjects</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
