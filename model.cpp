@@ -6,10 +6,10 @@
 #include <iostream>
 
 Model::Model(QObject *parent) : QObject{parent} {
-    connect(this,
-            &Model::newPhysObj,
-            this,
-            &Model::spawnPhysBox);
+    // connect(this,
+    //         &Model::newPhysObj,
+    //         this,
+    //         &Model::spawnPhysBox);
 
     for(int i = 0; i < NUM_OF_SECTIONS; i++) sections->push_back(buildSection(i)); //create each section
 
@@ -74,11 +74,29 @@ void Model::setupWorld() {
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 0.0f);
 
+
+    b2BodyDef testBodyDef;
+    testBodyDef.position.Set(0.0f, 0.0f);
+    b2Body* testBoundingBoxBody = world.CreateBody(&testBodyDef);
+
+    int numOfVerticies = 6;
+    b2Vec2 vs[numOfVerticies];
+    vs[0].Set(100.0f, 0.0f);
+    vs[1].Set(600.0f, 0.0f);
+    vs[2].Set(600.0f, 400.0f);
+    vs[3].Set(400.0f, 500.0f);
+    vs[4].Set(300.0f, 500.0f);
+    vs[5].Set(100.0f, 400.0f);
+    b2ChainShape testBox;
+    testBox.CreateLoop(vs, numOfVerticies);
+
+    testBoundingBoxBody->CreateFixture(&testBox, 0.0f);
+
     //Spawn objects
     for(int num = 0; num < 5; num++) {
-        int x = 500-(num*5);
-        int y = 105-(num*5);
-        timer.singleShot(1000, this, [this, num, x, y] {emit newPhysObj(num, x, y);});
+        int x = 500-(num*50);
+        int y = 105-(num*20);
+        timer.singleShot(1000, this, [this, num, x, y] {spawnPhysObject(num, rect, x, y);});
     }
 
     // Start update loop
@@ -126,10 +144,20 @@ void Model::updateWorld() {
     timer.singleShot(42, this, &Model::updateWorld);
 }
 
-void Model::spawnPhysBox(int id, int x, int y) {
+// void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
+//     spawnPhysBox(id, shape, x, y);
+// }
+
+void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
     // Define the dynamic body. We set its position and call the body factory.
-    physObject* physObj = new physObject(&world, x, y);
+    physObject* physObj = new physObject(&world, shape, x, y);
     physObjBodies[id] = physObj;
+
+    emit newPhysObj(id, x, y);
+}
+
+void Model::spawnConfetti() {
+
 }
 
 

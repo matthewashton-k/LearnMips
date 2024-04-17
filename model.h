@@ -41,6 +41,8 @@ private:
      */
     void setupWorld();
 
+    //void spawnPhysObject(int id, int x, int y);
+
 public:
     Model(QObject *parent = nullptr);
     ~Model();
@@ -63,7 +65,9 @@ public slots:
     void saveCodeToCurrentIndex(std::string code);
 
     void updateWorld();
-    void spawnPhysBox(int id, int x, int y);
+    void spawnPhysObject(int id, Shape shape, int x, int y);
+
+    void spawnConfetti();
 
 };
 
