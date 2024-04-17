@@ -24,7 +24,7 @@ std::tuple<std::string, bool> Challenge::executeCode(std::string middleCode, boo
         else outputString = "Invalid Solution";
     }
     else{
-        Interpreter interpreter(middleCode);
+        Interpreter interpreter(instructions);
         isValidSolution = true;
 
         try {

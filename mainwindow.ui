@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -144,8 +144,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
+       <widget class="QWidget" name="t1_1">
+        <attribute name="title">
+         <string>Learn 1</string>
+        </attribute>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>621</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a name=&quot;docs-internal-guid-64eee561-7fff-e6c7-fdb5-ec84cf0dd2ef&quot;/&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:14pt; color:#000000; background-color:transparent;&quot;&gt;W&lt;/span&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:14pt; color:#000000; background-color:transparent;&quot;&gt;hat is MIPS?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;MIPS is a type of Assembly Language.  This means that it is the closest to machine code that a human can still read with relative ease.  Each instruction refers to actual functions the circuits on the cpu can perform.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:14pt; color:#000000; background-color:transparent;&quot;&gt;What is a register?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;The cpu has several small blocks of memory that it can use to store some values before saving them to a longer-term memory.  It is useful to think of the registers as a “scratch pad” to do computations on or variable names. Registers roughly can be referred to with $t0-t9 for “temp” variables, $a0-a3 for function arguments, $v0-v1 for return values, $s1-s7 for “saved temporary,” and $zero that always refers to 0.  Before you set the value of a register to something, it is filled with garbage data.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:14pt; color:#000000; background-color:transparent;&quot;&gt;How does each line of code look?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;Each line of code will look something like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;add $t0, $t1, $t3, or instruction $dest, $source, $source&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;The “add” is the instruction, which defines what the line of code will do.  The destination register is the register that will be changed, and the source register will contain what is read.  There are several types of instructions, which determine how many source, destination, and immediates (32 bit numbers) are included as a parameter for the instruction.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:14pt; color:#000000; background-color:transparent;&quot;&gt;What is .data and .text?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;These are tags that determine how the instructions below are interpreted.  .data refers to resources such as ascii strings while .text refers to regular code.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
        <widget class="QWidget" name="t2_1">
         <attribute name="title">
          <string>Learn 2</string>
@@ -156,11 +177,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>491</height>
+           <height>661</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The addi (Add Immediate) instruction in MIPS assembly language is used to add a signed 32-bit immediate value to the contents of a register and store the result in another register. The syntax for the addi instruction is as follows:&lt;/p&gt;&lt;p&gt;addi $destination, $source, immediate&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;- `$destination`: The register where the result of the addition will be stored.&lt;/p&gt;&lt;p&gt;- `$source`: The register containing the value to which the immediate will be added.&lt;/p&gt;&lt;p&gt;- `immediate`: A signed 32-bit immediate value that will be&lt;/p&gt;&lt;p&gt;added to the contents of the `$source` register.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;For example:&lt;/p&gt;&lt;p&gt;addi $t0, $t1, -100&lt;/p&gt;&lt;p&gt;This instruction adds the immediate value 100 to the contents of  register `$t1` and stores the result in register `$t0`. The add instruction is similar to addi, but uses all registers as parameters:&lt;/p&gt;&lt;p&gt;add $t1, $t3, $t0 # store $t3+$t0 in $t1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a name=&quot;docs-internal-guid-ce9d04a1-7fff-bb09-2d86-d1b898173ace&quot;/&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;he addi (Add Immediate) instruction in MIPS assembly language is used to add a signed 32-bit immediate value to the contents of a register and store the result in another register. The syntax for the addi instruction is as follows:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;addi $destination, $source, immediate&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;- `$destination`: The register where the result of the addition&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;will be stored.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;- `$source`: The register containing the value to which the&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;immediate will be added.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;- `immediate`: A signed 32-bit immediate value that will be&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;added to the contents of the `$source` register.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;For example: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;    addi $t0, $t1, -100&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;This instruction adds the immediate value 100 to the contents of register `$t1` and stores the result in register `$t0`. The add instruction is similar to addi, but uses all registers as parameters:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;add $t1, $t3, $t0 # store $t3+$t0 in $t1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;The sub and subi instruction also exist as pseudo-instructions, meaning they are translated to add instructions at compile time:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;     subi $t1, $t3, 5&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;Translates to:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:12pt; color:#000000; background-color:transparent;&quot;&gt;     addi $t1, $t3, -5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -182,6 +203,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In MIPS assembly language, the $zero register is a special register &lt;/p&gt;&lt;p&gt;that always contains the value zero. It is a hardwired register and &lt;/p&gt;&lt;p&gt;cannot be modified. The $zero register can be used in various ways, &lt;/p&gt;&lt;p&gt;including storing an immediate value in a register like so:&lt;/p&gt;&lt;p&gt;addi $t0, $zero, 11 # store 11 in $t0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
          </property>
         </widget>
        </widget>
@@ -441,11 +465,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>281</height>
+           <height>261</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this challenge, you will implement a simple XOR encryption program in MIPS assembly. The plaintext to be encrypted is stored at the &amp;quot;plaintext&amp;quot; symbol, and the encryption key is stored at the &amp;quot;key&amp;quot; symbol. Your task is to XOR each byte of the plaintext with the corresponding byte of the key and store the resulting ciphertext in a new symbol called &amp;quot;ciphertext&amp;quot;, and store the size of the ciphertext (in bytes) in $v0.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Before attempting the challenge, we encourage you to use the editor to write and run your own code with your own plaintext and key. Feel free to use the print character (syscall 11) to print the ciphertext character by character when testing to verify if its working or not. Also remember that the key and ciphertext must be the same length in testing.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this challenge, you will implement a simple XOR encryption program in MIPS assembly. The plaintext to be encrypted is stored at the &amp;quot;plaintext&amp;quot; symbol, and the encryption key is stored at the &amp;quot;key&amp;quot; symbol. Your task is to XOR each byte of the plaintext with the corresponding byte of the key and store the resulting ciphertext in a new symbol called &amp;quot;ciphertext&amp;quot;, and store the size of the ciphertext (in bytes) in $v0.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Before attempting the challenge, we encourage you to use the editor to write and run your own code using the stored plaintext and key. Feel free to use the print character (syscall 11) to print the ciphertext character by character when testing to verify if its working or not. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -651,7 +675,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>30</y>
+       <y>20</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -673,7 +697,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>70</y>
+       <y>80</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -692,7 +716,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>120</y>
+       <y>140</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -711,7 +735,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>170</y>
+       <y>200</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -730,7 +754,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>220</y>
+       <y>250</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -749,7 +773,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>270</y>
+       <y>310</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -768,7 +792,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>320</y>
+       <y>370</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -787,7 +811,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>370</y>
+       <y>430</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -806,7 +830,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>420</y>
+       <y>480</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -825,7 +849,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>470</y>
+       <y>540</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -844,7 +868,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>520</y>
+       <y>600</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -863,7 +887,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>570</y>
+       <y>660</y>
        <width>16</width>
        <height>16</height>
       </rect>
