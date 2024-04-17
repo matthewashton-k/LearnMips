@@ -58,12 +58,12 @@ void MainWindow::displayReferenceWindow(){
     list->setText(
 R"(addi $dest, $source, immediate:
 subi $dest, $source, immediate:
-xori :
-Xor :
+xori $dest, $source, immediate:
+xor $dest, $source, $source:
 add $dest, $source, $source:
 sub $dest, $source, $source:
-sll :
-srl :
+sll $dest, $source, immediate:
+srl $dest, $source, immediate:
 lw $dest, offset($source address):
 sw $source, offset($source address):
 lb $dest, offset($source address):
