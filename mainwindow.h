@@ -32,15 +32,16 @@ private slots:
     void submitButtonClicked();
     void currentCodeRequested();
     /**
-     * @brief moveLabel Moves the physObj label to the given x y relative to the window
-     * @param x
-     * @param y
+     * @brief moveLabel Moves the physObj label with the specified id to the given x y relative to the window
+     * @param id of the physicsObj label to move
+     * @param x the horizontal component in pixels
+     * @param y the vertical component in pixels
      */
     void moveLabel(int id, int x, int y);
     /**
      * @brief createPhysLabel creates a QLabel with physics at the given x y coordinate
-     * @param x
-     * @param y
+     * @param x the horizontal component in pixels
+     * @param y the vertical component in pixels
      */
     void createPhysLabel(int x, int y);
 
