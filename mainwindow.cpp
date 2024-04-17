@@ -156,8 +156,9 @@ void MainWindow::createPhysLabel(int x, int y) {
     // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
     // TODO [Box2d]: destroy labels to prevent memory leaks
     QLabel* physObj = new QLabel(ui->physicsObjects);
-    physObj->setText("physObject");
-    physObj->setGeometry(x, y, 49, 16);
+    physObj->setPixmap(QPixmap(":/res/images/star_50x50.png"));
+    //physObj->setText("physObject");
+    physObj->setGeometry(x, y, 50, 50);
     physObj->show();
     // Might need to take in the id and save the label in a map here. otherwise should be
     // able to do ui->physicsObjects->findChildren

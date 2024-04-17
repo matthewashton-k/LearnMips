@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="res">
+        <file>images/star_50x50.png</file>
+    </qresource>
+</RCC>
