@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "ui_mainwindow.h"
 #include "model.h"
 
 
@@ -25,7 +26,7 @@ private:
     /**
      * @brief physObjBodies Stores physics QLabels with their id as the key
      */
-    //std::map<int, QLabel*> physObjLabels;
+    std::map<int, QLabel*> physObjLabels;
 
 signals:
     void answerCurrentCodeRequest(std::string);
@@ -47,10 +48,10 @@ private slots:
      * @param x the horizontal component in pixels
      * @param y the vertical component in pixels
      */
-    void createPhysLabel(int x, int y);
+    void createPhysLabel(int id, int x, int y);
     /**
      * @brief deletePhysLabel Deletes the physics label with the given id.
-     * @param id of the physicsObj to be deleted
+     * @param id of the physicsObj to be deleted.
      */
     void deletePhysLabel(int id);
 

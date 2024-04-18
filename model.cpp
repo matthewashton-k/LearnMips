@@ -187,6 +187,11 @@ void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
 }
 
 void Model::destroyPhysObject(int id) {
+    if(!physObjBodies.count(id)) {
+        qDebug("ID doesn't exist");
+        return;
+    }
+
     delete physObjBodies[id];
     physObjBodies.erase(id);
 

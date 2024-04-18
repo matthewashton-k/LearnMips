@@ -50,13 +50,14 @@ MainWindow::MainWindow(QWidget *parent)
     // set active tab to ensure ui is synced with model
     ui->sectionTabs->setCurrentIndex(0);
     // set Box2D physics label container attribute to ignore mouse clicks
-    ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
+    //ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete modelPtr;
+    physObjLabels.clear();
 }
 
 void MainWindow::displayReferenceWindow(){
@@ -153,24 +154,48 @@ void MainWindow::updateCheckBox(int ID, bool checked){
 }
 
 void MainWindow::moveLabel(int id, int x, int y) {
+    if(!physObjLabels.count(id)) {
+        qDebug() << "ID doesn't exist. MainWindow::moveLabel";
+        return;
+    }
     // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
-    QLabel* physObjLabel = ui->physicsObjects->findChildren<QLabel*>().at(id);
-    physObjLabel->move(x,y);
+    try {
+        QLabel* physObjLabel = physObjLabels.at(id);
+        physObjLabel->move(x,y);
+    } catch (std::out_of_range e) {
+        qDebug() << "Invalid label ID: " << id << ". Cannot find label to move.";
+    }
 }
 
-void MainWindow::createPhysLabel(int x, int y) {
+void MainWindow::createPhysLabel(int id, int x, int y) {
+    if(physObjLabels.count(id)) {
+        qDebug() << "ID already exists. MainWindow::createPhysLabel";
+        return;
+    }
     // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
     // TODO [Box2d]: destroy labels to prevent memory leaks
-    QLabel* physObj = new QLabel(ui->physicsObjects);
-    physObj->setPixmap(QPixmap(":/res/images/star_50x50.png"));
+    QLabel* physObjLabel = new QLabel(ui->centralwidget);
+    physObjLabels[id] = physObjLabel;
+    physObjLabel->setPixmap(QPixmap(":/res/images/star_50x50.png"));
     //physObj->setText("physObject");
-    physObj->setGeometry(x, y, 50, 50);
-    physObj->show();
+    physObjLabel->setGeometry(x, y, 50, 50);
+    physObjLabel->show();
     // Might need to take in the id and save the label in a map here. otherwise should be
     // able to do ui->physicsObjects->findChildren
 }
 
 void MainWindow::deletePhysLabel(int id) {
-    QLabel* physObjLabel = ui->physicsObjects->findChildren<QLabel*>().at(id);
-    physObjLabel->hide();
+    if(!physObjLabels.count(id)) {
+        qDebug() << "ID doesn't exist. MainWindow::deletePhysLabel";
+        return;
+    }
+
+    try {
+        //QLabel* physObjLabel = physObjLabels.at(id);
+        //physObjLabel->hide();
+        delete physObjLabels[id];
+        physObjLabels.erase(id);
+    } catch (std::out_of_range e) {
+        qDebug() << "Invalid label ID: " << id << ". Cannot find label to delete.";
+    }
 }
