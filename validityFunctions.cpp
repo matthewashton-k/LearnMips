@@ -7,7 +7,6 @@ bool ValidityFunctions::section1ValidityFunction(std::string code) {
     try {
         Interpreter interpreter1(code);
         interpreter1.run();
-        cout << interpreter1.getV0() << endl;
         return interpreter1.getV0() == 14;
     } catch (string err) {
         cout << "ERROR: " + err << endl;
@@ -24,7 +23,16 @@ bool ValidityFunctions::section3ValidityFunction(std::string code){
 }
 
 bool ValidityFunctions::section4ValidityFunction(std::string code){
-    return false;
+    //5 + 5 + 5 + 5 + 5 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 = 93
+    try {
+        Interpreter interpreter4(code);
+        interpreter4.run();
+        cout << interpreter4.getV0() << endl;
+        return interpreter4.getV0() == 93;
+    } catch (string err) {
+        cout << "ERROR: " + err << endl;
+        return false;
+    }
 }
 
 bool ValidityFunctions::section5ValidityFunction(std::string code){

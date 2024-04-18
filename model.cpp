@@ -285,32 +285,32 @@ Section Model::buildSection(int sectionID){
             ValidityFunctions::section1ValidityFunction
             ));
     case 1:
-        return Section(
+        return Section( // srl/sll challenge
             Challenge(
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section2ValidityFunction));
     case 2:
         return Section(
-            Challenge(
+            Challenge( // syscalls/strings
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section3ValidityFunction));
     case 3:
         return Section(
-            Challenge(
-                "", //before Code
+            Challenge(//j, labels, challenge: make a for loop that does something and prints each loop Bne, beq, blt, bgt, some basic conditional logic stuff
+                "addi $a0, $zero, 12", //before Code
                 "", //after Code
                 ValidityFunctions::section4ValidityFunction));
     case 4:
         return Section(
-            Challenge(
+            Challenge( //Lw, sw, sp register, challenge: work on storing 32 bit integers
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section5ValidityFunction));
     case 5:
         return Section(
-            Challenge(
+            Challenge( //Challenge - Lb, sb, la, edit a string, or character count, etc
                 "", //before Code
                 "", //after Code
                 ValidityFunctions::section6ValidityFunction));
