@@ -22,6 +22,10 @@ public:
 private:
     Ui::MainWindow *ui;
     Model* modelPtr;
+    /**
+     * @brief physObjBodies Stores physics QLabels with their id as the key
+     */
+    //std::map<int, QLabel*> physObjLabels;
 
 signals:
     void answerCurrentCodeRequest(std::string);
@@ -44,6 +48,11 @@ private slots:
      * @param y the vertical component in pixels
      */
     void createPhysLabel(int x, int y);
+    /**
+     * @brief deletePhysLabel Deletes the physics label with the given id.
+     * @param id of the physicsObj to be deleted
+     */
+    void deletePhysLabel(int id);
 
     void updateConsole(QString text);
     void updateCheckBox(int ID, bool checked);

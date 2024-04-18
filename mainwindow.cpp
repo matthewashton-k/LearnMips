@@ -42,6 +42,11 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::createPhysLabel);
 
+    connect(modelPtr,
+            &Model::deletePhysLabel,
+            this,
+            &MainWindow::deletePhysLabel);
+
     // set active tab to ensure ui is synced with model
     ui->sectionTabs->setCurrentIndex(0);
     // set Box2D physics label container attribute to ignore mouse clicks
@@ -149,7 +154,6 @@ void MainWindow::updateCheckBox(int ID, bool checked){
 
 void MainWindow::moveLabel(int id, int x, int y) {
     // TODO [Box2D]: make a custom promoted QLabel that handles displaying physics objects
-    //qDebug() << id << ": (" << x << ", " << y << ")";
     QLabel* physObjLabel = ui->physicsObjects->findChildren<QLabel*>().at(id);
     physObjLabel->move(x,y);
 }
@@ -164,5 +168,9 @@ void MainWindow::createPhysLabel(int x, int y) {
     physObj->show();
     // Might need to take in the id and save the label in a map here. otherwise should be
     // able to do ui->physicsObjects->findChildren
+}
 
+void MainWindow::deletePhysLabel(int id) {
+    QLabel* physObjLabel = ui->physicsObjects->findChildren<QLabel*>().at(id);
+    physObjLabel->hide();
 }

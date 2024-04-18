@@ -80,11 +80,16 @@ signals:
     void newPosition(int id, int x, int y);
     /**
      * @brief newPhysObj Creates a new QLabel with physics as a child of the physicsObjects QWidget
-     * @param id of the physicsObj label to move
+     * @param id of the physicsObj label
      * @param x the horizontal component in pixels
      * @param y the vertical component in pixels
      */
     void newPhysObj(int id, int x, int y);
+    /**
+     * @brief deletePhysObj Tell the view to delete the physics label with the given id
+     * @param id of the physicsObj label
+     */
+    void deletePhysLabel(int id);
 
 public slots:
     void changeSection(int index);
@@ -104,6 +109,10 @@ public slots:
      * @param y the vertical component in pixels
      */
     void spawnPhysObject(int id, Shape shape, int x, int y);
+    /**
+     * @brief destroyPhysObject Delete all physics objects currently spawned
+     */
+    void destroyPhysObject(int id);
     void spawnConfetti();
 
     void clearConsole();

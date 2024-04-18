@@ -131,14 +131,18 @@ void Model::setupWorld() {
     testBoundingBoxBody->CreateFixture(&testBox, 0.0f);
 
     //Spawn objects
-    for(int num = 0; num < 5; num++) {
-        int x = 500-(num*50);
-        int y = 105-(num*20);
+    for(int num = 0; num < 50; num++) {
+        int x = 1300-(num*30);
+        int y = 5+(num*5);
         timer.singleShot(1000, this, [this, num, x, y] {spawnPhysObject(num, rect, x, y);});
     }
 
     // Start update loop
     timer.singleShot(1500, this, &Model::updateWorld);
+
+    for(int id = 0; id < 50; id++) {
+        timer.singleShot(10000, this, [this, id] {destroyPhysObject(id);});
+    }
 }
 
 void Model::updateWorld() {
@@ -182,9 +186,12 @@ void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
     emit newPhysObj(id, x, y);
 }
 
-// void Model::destroyPhysObject(int id) {
+void Model::destroyPhysObject(int id) {
+    delete physObjBodies[id];
+    physObjBodies.erase(id);
 
-// }
+    emit deletePhysLabel(id);
+}
 
 void Model::spawnConfetti() {
 
@@ -210,7 +217,6 @@ void Model::saveSectionASMFile(int sectionID, std::string saveLocation, std::str
         stream << codeStrings[sectionID].c_str();
         file.close();
     }
-
 }
 
 void Model::saveProgressChecks(std::string saveLocation){
