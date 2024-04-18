@@ -58,6 +58,9 @@ void Interpreter::srl(Reg dst, Reg src, int amount) {
 void Interpreter::sw(Reg src, Reg src2, int offset) {
     uint32_t value = registers[src];
     int base = registers[src2] + offset;
+    if (base>=stack.size()){
+        throw string("Memory access violation: address out of bounds at offset: "+offset);
+    }
     stack[base] = (value >> 24) & 0xFF;
     stack[base + 1] = (value >> 16) & 0xFF;
     stack[base + 2] = (value >> 8) & 0xFF;
@@ -66,6 +69,9 @@ void Interpreter::sw(Reg src, Reg src2, int offset) {
 
 void Interpreter::lw(Reg dst, Reg src, int offset) {
     int base = registers[src] + offset;
+    if (base>=stack.size()){
+        throw ("Memory access violation: address out of bounds at offset: " + to_string(offset));
+    }
     uint32_t value = (stack[base] << 24) |
                      (stack[base + 1] << 16) |
                      (stack[base + 2] << 8) |
@@ -76,12 +82,18 @@ void Interpreter::lw(Reg dst, Reg src, int offset) {
 void Interpreter::sb(Reg src, Reg src2, int offset) {
     uint8_t value = registers[src] & 0xFF; // Get the lower 8 bits
     int base = registers[src2] + offset;
+    if (base>=stack.size()){
+        throw string("Memory access violation: address out of bounds at offset: "+offset);
+    }
     stack[base] = value;
 }
 
 void Interpreter::lb(Reg dst, Reg src, int offset) {
     int base = registers[src] + offset;
     uint8_t value = stack[base];
+    if (base>=stack.size()){
+        throw string("Memory access violation: address out of bounds at offset: "+offset);
+    }
     registers[dst] = (registers[dst] & 0xFFFFFF00) | value;
 }
 
