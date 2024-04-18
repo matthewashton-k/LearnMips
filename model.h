@@ -31,7 +31,13 @@ private:
 
 
     // Box2D
+    /**
+     * @brief gravity of the world
+     */
     b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
+    /**
+     * @brief world The Box2D world
+     */
     b2World world = b2World(gravity);
     /**
      * @brief physObjBodies Stores the physObjects with their id as the key
@@ -66,11 +72,18 @@ signals:
 
     // Box2D signals
     /**
-     * @brief newPosition Tell the view to give the QLabel physObj a new position
-     * @param x
-     * @param y
+     * @brief newPosition Tell the view to give the QLabel physObj with the given id a new position
+     * @param id of the physicsObj label to move
+     * @param x the horizontal component in pixels
+     * @param y the vertical component in pixels
      */
     void newPosition(int id, int x, int y);
+    /**
+     * @brief newPhysObj Creates a new QLabel with physics as a child of the physicsObjects QWidget
+     * @param id of the physicsObj label to move
+     * @param x the horizontal component in pixels
+     * @param y the vertical component in pixels
+     */
     void newPhysObj(int id, int x, int y);
 
 public slots:
@@ -78,7 +91,18 @@ public slots:
     void saveCodeToCurrentIndex(std::string code);
 
     // Box2D slots
+    /**
+     * @brief updateWorld Starts an event loop that updates Box2D dynamic and kenetic objects
+     * at approximately 24 frames per second.
+     */
     void updateWorld();
+    /**
+     * @brief spawnPhysObject
+     * @param id of the physicsObj label to spawn
+     * @param shape Only supports rect. Circles aren't implemented but could be in the future.
+     * @param x the horizontal component in pixels
+     * @param y the vertical component in pixels
+     */
     void spawnPhysObject(int id, Shape shape, int x, int y);
     void spawnConfetti();
 
