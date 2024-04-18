@@ -19,7 +19,6 @@ Model::Model(QObject *parent) : QObject{parent} {
     progressCheckBools = new bool[NUM_OF_SECTIONS];
     for(int i = 0; i < NUM_OF_SECTIONS; i++) progressCheckBools[i] = false;
 
-    progressCheckBools[0] = true;
     progressCheckBools[11] = true;
 
     // Box2D

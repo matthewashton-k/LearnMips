@@ -74,7 +74,7 @@ lw $dest, offset($source address):
 sw $source, offset($source address):
 lb $dest, offset($source address):
 sb $source, offset($source address):
-la :
+la $dest, label:
 beq $source, $source, label:
 bne $source, $source, label:
 j label:

@@ -726,6 +726,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
     </widget>
     <widget class="QCheckBox" name="checkBox_1">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -748,6 +751,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -767,6 +773,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_3">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -786,6 +795,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_4">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -805,6 +817,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -824,6 +839,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_6">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -843,6 +861,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_7">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -862,6 +883,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_8">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -881,12 +905,15 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_9">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>480</y>
+       <y>483</y>
        <width>16</width>
-       <height>16</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="layoutDirection">
@@ -900,10 +927,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_10">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>540</y>
+       <y>543</y>
        <width>16</width>
        <height>16</height>
       </rect>
@@ -919,6 +949,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_11">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -938,6 +971,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_12">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -963,10 +999,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <widget class="QWidget" name="physicsObjects" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1321</width>
-      <height>761</height>
+      <x>540</x>
+      <y>70</y>
+      <width>621</width>
+      <height>571</height>
      </rect>
     </property>
    </widget>
