@@ -44,8 +44,7 @@ void Model::executeCode(QString code, bool checkSolutionValidity) {
 
     if(checkSolutionValidity){
         if(isValidSolution){
-            //challenge succeeded, confetti or whatever
-            // TODO [Box2D]: stars
+            //challenge succeeded stars
             spawnStars();
 
             //set progress check and section completed bool
@@ -86,14 +85,9 @@ void Model::clearConsole(){
 void Model::setupWorld() {
     // TODO [Box2D]:
 
-    // Define the gravity vector.
-    //gravity = b2Vec2(0.0f, -10.0f);
-
-    // Construct a world object, which will hold and simulate the rigid bodies.
-    //world = b2World(gravity);
-
 
     // TODO [Box2D]: set walls around the window, preferably scaled to the window size
+
     // // Define the ground body.
     // b2BodyDef groundBodyDef;
     // groundBodyDef.position.Set(1323.0f/2, 700.0f);
@@ -113,20 +107,23 @@ void Model::setupWorld() {
     // groundBody->CreateFixture(&groundBox, 0.0f);
 
 
-    b2BodyDef testBodyDef;
-    testBodyDef.position.Set(0.0f, 0.0f);
-    b2Body* testBoundingBoxBody = world.CreateBody(&testBodyDef);
+    b2BodyDef boundingBoxBodyDef;
+    boundingBoxBodyDef.position.Set(0.0f, 0.0f);
+    b2Body* boundingBoxBody = world.CreateBody(&boundingBoxBodyDef);
+
     int numOfVerticies = 4;
     b2Vec2 vs[numOfVerticies];
+    // TODO [Box2D]: use a global width and height here
     vs[0].Set(0.0f, 0.0f);
     vs[1].Set(1323.0f, 0.0f);
     vs[2].Set(1323.0f, 640.0f);
     vs[3].Set(0.0f, 640.0f);
     // vs[4].Set(300.0f, 500.0f);
     // vs[5].Set(100.0f, 400.0f);
-    b2ChainShape testBox;
-    testBox.CreateLoop(vs, numOfVerticies);
-    testBoundingBoxBody->CreateFixture(&testBox, 0.0f);
+    b2ChainShape boundingBoxChain;
+    boundingBoxChain.CreateLoop(vs, numOfVerticies);
+
+    boundingBoxBody->CreateFixture(&boundingBoxChain, 0.0f);
 
     // //Spawn objects
     // for(int num = 0; num < 50; num++) {
@@ -205,8 +202,12 @@ void Model::destroyAllPhysObjects() {
 }
 
 void Model::spawnStars() {
+    if(physObjBodies.size() > 0)
+        return;
+
     int numOfStars = 100;
     // Spawn numOfStars stars randomly across the top
+    // TODO [Box2D]: create a global width and height for physics objects + the b2World
     for(int id = 0; id < numOfStars; id++) {
         int x = std::rand() % 1323;
         int y = std::rand() % 768;
