@@ -1,6 +1,7 @@
-//
-// Created by thivmcthiv on 4/2/24.
-//
+/**
+ * Description: header file for the interpreter, which interprets/emulates a subset of the mips instruction setz
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan,
+*/
 
 #ifndef MIPS_INTERPRETER_INTERPRETER_H
 #define MIPS_INTERPRETER_INTERPRETER_H
@@ -37,7 +38,7 @@ enum Reg {
 };
 
 /**
- * @brief The Syscall enum
+ * @brief The Syscall enum contains list of valid syscall codes
  */
 enum Syscall {
     printInteger = 1,
@@ -47,7 +48,7 @@ enum Syscall {
 };
 
 /**
- * @brief The Opcode enum
+ * @brief The Opcode enum, used for opcode parsing
  */
 enum Opcode {
     addi,
@@ -72,13 +73,18 @@ enum Opcode {
     syscall
 };
 
+/**
+ * @brief The CodeSection enum is used in Interpreter.run() for keeping track of what section the program counter is in
+ */
 enum CodeSection{
     Data,
     Text,
     Default
 };
 
-
+/**
+ * @brief opcodeMap used in parsing for searching if a string is a valid opcode or not
+ */
 static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"addi", Opcode::addi},
     {"add", Opcode::add},
@@ -100,6 +106,9 @@ static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"syscall", Opcode::syscall}
 };
 
+/**
+ * @brief regMap used in parsing to see if a string is a valid register or not
+ */
 static const std::unordered_map<std::string, Reg> regMap = {
     {"$v0", v0},
     {"$v1", v1},
@@ -175,6 +184,10 @@ private:
      * @brief stack holds the
      */
     std::vector<uint8_t> stack;
+
+    /**
+     * @brief instructions contains all the instructions in the program, and is indexed by the program counter
+     */
     std::vector<std::string> instructions;
 
     /**
@@ -186,11 +199,15 @@ private:
      * @brief dataLabels contains labels in the data section only, <label, offset in stack>
      */
     std::unordered_map<std::string, int> dataLabels;
+
     /**
      * @brief stdout holds the standard output of the interpreter if someone has a syscall to print
      */
     std::string stdOut = "";
 
+    /**
+     * All of these functions are simple, and carry out the instruction changing the state of the interpreters stack, and register array.
+     */
     void addi(Reg dst, Reg src, int inVal);
     void subi(Reg dst, Reg src, int inVal);
     void xori(Reg dst, Reg src, int inVal);
@@ -242,6 +259,12 @@ private:
      */
     void executeRegisterInstruction(Opcode opcode, Reg dstReg, const std::vector<std::string>& tokens, const std::string& instruction);
 
+    /**
+     * @brief executeJumpInstruction executes/parses a jump or branch instruction, updating the program counter accordingly
+     * @param opcode the type of instruction
+     * @param tokens the tokens in the instruction
+     * @param instruction the instruction as a string
+     */
     void executeJumpInstruction(Opcode opcode, const std::vector<std::string>& tokens, const std::string& instruction);
 
     /**

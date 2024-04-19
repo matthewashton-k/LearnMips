@@ -605,7 +605,7 @@ void Interpreter::executeJumpInstruction(Opcode opcode, const std::vector<string
     if (!srcReg2.has_value() && opcode != Opcode::j) {
         throw ("Invalid source register at: " + instruction);
     }
-    // TODO: handle j opcode
+    // handle each opcode differently
     switch (opcode) {
         case Opcode::beq: {
             beq(srcReg1.value(), srcReg2.value(), offset);
