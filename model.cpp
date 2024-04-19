@@ -306,7 +306,7 @@ Section Model::buildSection(int sectionID){
     switch(sectionID){
     case 0:
         return Section(Challenge(
-            "addi $a0, $zero, 11",
+            "\n.text\naddi $a0, $zero, 11 \n",
             "",
             ValidityFunctions::section1ValidityFunction
             ));
@@ -325,7 +325,7 @@ Section Model::buildSection(int sectionID){
     case 3:
         return Section(
             Challenge(//j, labels, challenge: make a for loop that does something and prints each loop Bne, beq, blt, bgt, some basic conditional logic stuff
-                "addi $a0, $zero, 12", //before Code
+                "\n.text\naddi $a0, $zero, 12 \n", //before Code
                 "", //after Code
                 ValidityFunctions::section4ValidityFunction));
     case 4:
