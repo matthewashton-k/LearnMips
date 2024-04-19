@@ -50,6 +50,7 @@ public:
     float32 getAngle();
 
 private:
+    b2World* worldPtr;
     /**
      * @brief physObjBody The backing b2Body
      */

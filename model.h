@@ -113,7 +113,8 @@ public slots:
      * @brief destroyPhysObject Delete all physics objects currently spawned
      */
     void destroyPhysObject(int id);
-    void spawnConfetti();
+    void destroyAllPhysObjects();
+    void spawnStars();
 
     void clearConsole();
     void executeCode(QString code, bool checkSolutionValidity);

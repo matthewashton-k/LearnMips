@@ -31,7 +31,7 @@ Model::~Model(){
     delete[] progressCheckBools;
 }
 
-void Model::executeCode(QString code, bool checkSolutionValidity){
+void Model::executeCode(QString code, bool checkSolutionValidity) {
     //run code
     Challenge* chal = sections->at(currSection).getChallenge();
 
@@ -45,8 +45,8 @@ void Model::executeCode(QString code, bool checkSolutionValidity){
     if(checkSolutionValidity){
         if(isValidSolution){
             //challenge succeeded, confetti or whatever
-            // TODO [Box2D]: confetti
-            // spawnConfetti();
+            // TODO [Box2D]: stars
+            spawnStars();
 
             //set progress check and section completed bool
             sections->at(currSection).setCompleted(true);
@@ -94,55 +94,53 @@ void Model::setupWorld() {
 
 
     // TODO [Box2D]: set walls around the window, preferably scaled to the window size
-    // Define the ground body.
-    b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0.0f, 700.0f);
+    // // Define the ground body.
+    // b2BodyDef groundBodyDef;
+    // groundBodyDef.position.Set(1323.0f/2, 700.0f);
 
-    // Call the body factory which allocates memory for the ground body
-    // from a pool and creates the ground box shape (also from a pool).
-    // The body is also added to the world.
-    b2Body* groundBody = world.CreateBody(&groundBodyDef);
+    // // Call the body factory which allocates memory for the ground body
+    // // from a pool and creates the ground box shape (also from a pool).
+    // // The body is also added to the world.
+    // b2Body* groundBody = world.CreateBody(&groundBodyDef);
 
-    // Define the ground box shape.
-    b2PolygonShape groundBox;
+    // // Define the ground box shape.
+    // b2PolygonShape groundBox;
 
-    // The extents are the half-widths of the box.
-    groundBox.SetAsBox(1000.0f, 50.0f);
+    // // The extents are the half-widths of the box.
+    // groundBox.SetAsBox(1323.0f/2, 50.0f);
 
-    // Add the ground fixture to the ground body.
-    groundBody->CreateFixture(&groundBox, 0.0f);
+    // // Add the ground fixture to the ground body.
+    // groundBody->CreateFixture(&groundBox, 0.0f);
 
 
     b2BodyDef testBodyDef;
     testBodyDef.position.Set(0.0f, 0.0f);
     b2Body* testBoundingBoxBody = world.CreateBody(&testBodyDef);
-
-    int numOfVerticies = 6;
+    int numOfVerticies = 4;
     b2Vec2 vs[numOfVerticies];
-    vs[0].Set(100.0f, 0.0f);
-    vs[1].Set(600.0f, 0.0f);
-    vs[2].Set(600.0f, 400.0f);
-    vs[3].Set(400.0f, 500.0f);
-    vs[4].Set(300.0f, 500.0f);
-    vs[5].Set(100.0f, 400.0f);
+    vs[0].Set(0.0f, 0.0f);
+    vs[1].Set(1323.0f, 0.0f);
+    vs[2].Set(1323.0f, 640.0f);
+    vs[3].Set(0.0f, 640.0f);
+    // vs[4].Set(300.0f, 500.0f);
+    // vs[5].Set(100.0f, 400.0f);
     b2ChainShape testBox;
     testBox.CreateLoop(vs, numOfVerticies);
-
     testBoundingBoxBody->CreateFixture(&testBox, 0.0f);
 
-    //Spawn objects
-    for(int num = 0; num < 50; num++) {
-        int x = 1300-(num*30);
-        int y = 5+(num*5);
-        timer.singleShot(1000, this, [this, num, x, y] {spawnPhysObject(num, rect, x, y);});
-    }
+    // //Spawn objects
+    // for(int num = 0; num < 50; num++) {
+    //     int x = 1300-(num*30);
+    //     int y = 5+(num*5);
+    //     timer.singleShot(1000, this, [this, num, x, y] {spawnPhysObject(num, rect, x, y);});
+    // }
 
     // Start update loop
     timer.singleShot(1500, this, &Model::updateWorld);
 
-    for(int id = 0; id < 50; id++) {
-        timer.singleShot(10000, this, [this, id] {destroyPhysObject(id);});
-    }
+    // for(int id = 0; id < 50; id++) {
+    //     timer.singleShot(10000, this, [this, id] {destroyPhysObject(id);});
+    // }
 }
 
 void Model::updateWorld() {
@@ -161,7 +159,7 @@ void Model::updateWorld() {
         world.Step(timeStep, velocityIterations, positionIterations);
     }
 
-    // Check for objects to spawn
+    // Check for objects to update
     for(auto const& [id, physObjBody] : physObjBodies) {
         // Now print the position and angle of the body.
         b2Vec2 position = physObjBody->getPosition();
@@ -198,8 +196,27 @@ void Model::destroyPhysObject(int id) {
     emit deletePhysLabel(id);
 }
 
-void Model::spawnConfetti() {
+void Model::destroyAllPhysObjects() {
+    for(auto const& [id, physObjBody] : physObjBodies) {
+        delete physObjBodies[id];
+        emit deletePhysLabel(id);
+    }
+    physObjBodies.clear();
+}
 
+void Model::spawnStars() {
+    int numOfStars = 100;
+    // Spawn numOfStars stars randomly across the top
+    for(int id = 0; id < numOfStars; id++) {
+        int x = std::rand() % 1323;
+        int y = std::rand() % 768;
+        timer.singleShot(0, this, [this, id, x, y] {spawnPhysObject(id, rect, x, y);});
+    }
+
+    // After some time, delete them
+    for(int id = 0; id < numOfStars; id++) {
+        timer.singleShot(8000, this, [this, id] {destroyPhysObject(id);});
+    }
 }
 
 //save stuff
