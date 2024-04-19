@@ -36,7 +36,13 @@ bool ValidityFunctions::section4ValidityFunction(std::string code){
 }
 
 bool ValidityFunctions::section5ValidityFunction(std::string code){
-    return false;
+    try {
+        Interpreter interpreter5(code);
+        interpreter5.run();
+        return interpreter5.getV0() == 12;
+    } catch (string err) {
+        cout << "ERROR: " + err <<endl;
+    }
 }
 
 bool ValidityFunctions::section6ValidityFunction(std::string code){
