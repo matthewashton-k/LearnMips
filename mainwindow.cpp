@@ -4,6 +4,8 @@
 #include "Box2D/Box2D.h"
 #include <iostream>
 #include <highligher.h>
+#include <QStyleFactory>
+
 using std::cout;
 using std::endl;
 
@@ -51,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->sectionTabs->setCurrentIndex(0);
     // set Box2D physics label container attribute to ignore mouse clicks
     //ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
+    qApp->setStyle(QStyleFactory::create("Fusion"));
 }
 
 MainWindow::~MainWindow()
