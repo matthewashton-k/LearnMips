@@ -27,6 +27,7 @@ private:
      * @brief physObjBodies Stores physics QLabels with their id as the key
      */
     std::map<int, QLabel*> physObjLabels;
+    void closeEvent (QCloseEvent *event); //override of close event
 
 signals:
     void answerCurrentCodeRequest(std::string);

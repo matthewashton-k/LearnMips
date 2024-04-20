@@ -5,6 +5,10 @@
 #include <iostream>
 #include <highligher.h>
 #include <QStyleFactory>
+#include <QIcon>
+#include <QShortcut>
+#include <QCloseEvent>
+#include <QMessageBox>
 
 using std::cout;
 using std::endl;
@@ -54,6 +58,15 @@ MainWindow::MainWindow(QWidget *parent)
     // set Box2D physics label container attribute to ignore mouse clicks
     //ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
     qApp->setStyle(QStyleFactory::create("Fusion"));
+
+    //create hotkeys for save/load
+    ui->actionLoad_All_Progress->setShortcut(Qt::Key_L | Qt::CTRL);
+    ui->actionSave_All_Progress->setShortcut(Qt::Key_S | Qt::CTRL);
+
+    //load progress on startup
+    ui->actionLoad_All_Progress->trigger();
+
+
 }
 
 MainWindow::~MainWindow()
@@ -153,6 +166,22 @@ void MainWindow::updateCheckBox(int ID, bool checked){
         break;
     default:
         break;
+    }
+}
+
+void MainWindow::closeEvent (QCloseEvent *event)
+{
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "LearnMips", tr("Save Progress?\n"), QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+
+    if (resBtn == QMessageBox::Yes) {
+        ui->actionSave_All_Progress->trigger();
+        event->accept();
+    }
+    else if(resBtn == QMessageBox::No) {
+        event->accept();
+    }
+    else {
+        event->ignore();
     }
 }
 
