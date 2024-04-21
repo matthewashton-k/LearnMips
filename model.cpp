@@ -19,8 +19,6 @@ Model::Model(QObject *parent) : QObject{parent} {
     progressCheckBools = new bool[NUM_OF_SECTIONS];
     for(int i = 0; i < NUM_OF_SECTIONS; i++) progressCheckBools[i] = false;
 
-    progressCheckBools[11] = true;
-
     // Box2D
     setupWorld();
 }
@@ -51,6 +49,7 @@ void Model::executeCode(QString code, bool checkSolutionValidity) {
             sections->at(currSection).setCompleted(true);
             progressCheckBools[currSection] = true;
             emit progressCheckUpdated(currSection, true);
+            if(currSection < NUM_OF_SECTIONS - 1) emit makeTabVisible(currSection+1, true);
         }
         else{
             //challenge failed, smoke, sound, rick role, whatever
@@ -80,6 +79,17 @@ void Model::clearConsole(){
     currentConsoleText = "";
     QString str = currentConsoleText.c_str();
     emit consoleTextUpdated(str);
+}
+
+void Model::pushTabVisibilities(){
+    emit makeTabVisible(0, true);
+
+    for(int i = 0; i < NUM_OF_SECTIONS - 1; i++){
+        if(sections->at(i).isComplete()){
+            emit makeTabVisible(i, true);
+            emit makeTabVisible(i + 1, true);
+        }
+    }
 }
 
 void Model::setupWorld() {
@@ -292,6 +302,11 @@ void Model::loadProgressChecks(std::string saveLocation){
             }
 
             emit progressCheckUpdated(i, progressCheckBools[i]);
+            if(progressCheckBools[i]){
+                emit makeTabVisible(i, true);
+                if(i < NUM_OF_SECTIONS - 1) emit makeTabVisible(i+1, true);
+            }
+
         }
         file.close();
     }

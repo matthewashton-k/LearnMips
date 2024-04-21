@@ -11,3 +11,7 @@ Challenge* Section::getChallenge(){
 void Section::setCompleted(bool completed){
     isSectionCompleted = completed;
 }
+
+bool Section::isComplete(){
+    return isSectionCompleted;
+}

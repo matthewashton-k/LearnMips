@@ -14,6 +14,7 @@ public:
 
     Challenge* getChallenge();
     void setCompleted(bool completed);
+    bool isComplete();
 };
 
 #endif // SECTION_H

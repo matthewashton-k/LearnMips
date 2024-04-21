@@ -69,6 +69,7 @@ signals:
     void codeUpdated(QString newCode);
     void consoleTextUpdated(QString text);
     void progressCheckUpdated(int ID, bool state);
+    void makeTabVisible(int ID, bool state);
 
     // Box2D signals
     /**
@@ -120,6 +121,7 @@ public slots:
     void executeCode(QString code, bool checkSolutionValidity);
     void saveAllProgress();
     void loadAllProgress();
+    void pushTabVisibilities();
 
 };
 

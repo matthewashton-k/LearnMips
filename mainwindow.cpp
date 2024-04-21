@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(modelPtr, &Model::requestSaveCurrentCode, this, &MainWindow::currentCodeRequested);
     connect(this, &MainWindow::answerCurrentCodeRequest, modelPtr, &Model::saveCodeToCurrentIndex);
     connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QPlainTextEdit::setPlainText);
+    connect(modelPtr, &Model::makeTabVisible, ui->sectionTabs, &QTabWidget::setTabVisible);
+    connect(this, &MainWindow::requestTabVisibilities, modelPtr, &Model::pushTabVisibilities);
 
     // Box2D
     connect(modelPtr,
@@ -70,7 +72,12 @@ MainWindow::MainWindow(QWidget *parent)
     //load progress on startup
     ui->actionLoad_All_Progress->trigger();
 
+    //hide all tabs
+    for(int i = 0; i < 12; i++){
+        ui->sectionTabs->setTabVisible(i, false);
+    }
 
+    emit requestTabVisibilities();
 }
 
 MainWindow::~MainWindow()
