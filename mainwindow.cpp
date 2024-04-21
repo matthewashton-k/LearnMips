@@ -55,8 +55,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // set active tab to ensure ui is synced with model
     ui->sectionTabs->setCurrentIndex(0);
+    ui->sectionTabs->setIconSize(QSize(12, 10));
+
     // set Box2D physics label container attribute to ignore mouse clicks
     //ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
+
+    //use Fusion style to allow for dark mode support on windows
     qApp->setStyle(QStyleFactory::create("Fusion"));
 
     //create hotkeys for save/load
@@ -127,46 +131,8 @@ void MainWindow::updateConsole(QString text){
 }
 
 void MainWindow::updateCheckBox(int ID, bool checked){
-    switch (ID) {
-    case 0:
-        ui->checkBox_1->setChecked(checked);
-        break;
-    case 1:
-        ui->checkBox_2->setChecked(checked);
-        break;
-    case 2:
-        ui->checkBox_3->setChecked(checked);
-        break;
-    case 3:
-        ui->checkBox_4->setChecked(checked);
-        break;
-    case 4:
-        ui->checkBox_5->setChecked(checked);
-        break;
-    case 5:
-        ui->checkBox_6->setChecked(checked);
-        break;
-    case 6:
-        ui->checkBox_7->setChecked(checked);
-        break;
-    case 7:
-        ui->checkBox_8->setChecked(checked);
-        break;
-    case 8:
-        ui->checkBox_9->setChecked(checked);
-        break;
-    case 9:
-        ui->checkBox_10->setChecked(checked);
-        break;
-    case 10:
-        ui->checkBox_11->setChecked(checked);
-        break;
-    case 11:
-        ui->checkBox_12->setChecked(checked);
-        break;
-    default:
-        break;
-    }
+    if(checked) ui->sectionTabs->setTabIcon(ID, QIcon(":/res/images/checkmark_50x50.png"));
+    else ui->sectionTabs->setTabIcon(ID, QIcon());
 }
 
 void MainWindow::closeEvent (QCloseEvent *event)

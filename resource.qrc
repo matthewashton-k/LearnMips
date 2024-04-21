@@ -1,8 +1,7 @@
 <RCC>
     <qresource prefix="/res">
         <file>images/star_50x50.png</file>
+        <file>images/checkmark_50x50.png</file>
     </qresource>
-    <qresource prefix="/">
-        <file>images/check-mark-symbol-transparent-background-24.png</file>
-    </qresource>
+    <qresource prefix="/"/>
 </RCC>
