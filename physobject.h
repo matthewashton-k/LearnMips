@@ -1,3 +1,7 @@
+/**
+ * Description: header file for the class representing a Box2D physics object
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
 #ifndef PHYSOBJECT_H
 #define PHYSOBJECT_H
 

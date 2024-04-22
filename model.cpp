@@ -1,3 +1,8 @@
+/**
+ * Description: cpp file for the model of the Learn Mips application which handles all of the logic for the app
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
+
 #include "model.h"
 #include <vector>
 #include "validityFunctions.h"
@@ -240,9 +245,11 @@ void Model::saveAllProgress(){
 }
 
 void Model::saveSectionASMFile(int sectionID, std::string saveLocation, std::string fileName){
+    //ensure save folder exists and create otherwise
     if(!std::filesystem::exists(saveLocation))
         std::filesystem::create_directory(saveLocation);
 
+    //save the string to a file
     std::string filename = saveLocation + fileName;
     QFile file(filename.c_str());
     if (file.open(QIODevice::ReadWrite | QIODevice::Truncate)) {
@@ -253,9 +260,11 @@ void Model::saveSectionASMFile(int sectionID, std::string saveLocation, std::str
 }
 
 void Model::saveProgressChecks(std::string saveLocation){
+    //ensure save folder exists, create otherwise
     if(!std::filesystem::exists(saveLocation))
         std::filesystem::create_directory(saveLocation);
 
+    //save progress
     std::string filename = saveLocation + "progress.txt";
     QFile file(filename.c_str());
     if (file.open(QIODevice::ReadWrite)) {
@@ -265,6 +274,7 @@ void Model::saveProgressChecks(std::string saveLocation){
         file.close();
     }
 }
+
 //load stuff
 void Model::loadAllProgress(){
     for(int i = 0; i < NUM_OF_SECTIONS; i++){
@@ -290,6 +300,8 @@ void Model::loadProgressChecks(std::string saveLocation){
     QFile file(filename.c_str());
     if (file.open(QIODevice::ReadOnly)) {
         QTextStream stream(&file);
+
+        //loop through each line and update the temporary storage and view as needed
         for(int i = 0; i < NUM_OF_SECTIONS; i++){
             QString line = stream.readLine();
             if(line.toInt() == 0){
@@ -311,10 +323,6 @@ void Model::loadProgressChecks(std::string saveLocation){
         file.close();
     }
 }
-
-
-
-
 
 //logic for building each section with proper validity function
 Section Model::buildSection(int sectionID){

@@ -1,3 +1,8 @@
+/**
+ * Description: cpp file for the model of the Learn Mips application which handles all of the logic for the app
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
+
 #include "physobject.h"
 #include "Box2D/Box2D.h"
 

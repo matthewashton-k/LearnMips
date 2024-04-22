@@ -1,3 +1,8 @@
+/**
+ * Description: header file for a static class that stores each of the validity functions for the challenges in each section of the Learn Mips app
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
+
 #include "validityFunctions.h"
 #include "Interpreter.h"
 #include <iostream>

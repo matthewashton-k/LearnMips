@@ -1,3 +1,8 @@
+/**
+ * Description: header file for the model of the Learn Mips application which handles all of the logic for the app
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
+
 #ifndef MODEL_H
 #define MODEL_H
 
@@ -14,19 +19,46 @@ class Model : public QObject
 {
     Q_OBJECT
 private:
+    /**
+     * @brief NUM_OF_SECTIONS defines how many sections the app has
+     */
     int NUM_OF_SECTIONS = 12;
 
+    /**
+     * @brief codeStrings array of strings to temporarily store the code in the editor for each section
+     */
     std::string* codeStrings;
+
+    /**
+     * @brief progressCheckBools an arroay that stores whether a section has been completed or not
+     */
     bool* progressCheckBools;
-    //vector to store all the sections
+
+    /**
+     * @brief sections vector to store all the sections
+     */
     std::vector<Section>* sections = new std::vector<Section>();
 
-    //functions to build each section
+    /**
+     * @brief buildSection function to build each section
+     * @param sectionID the id of the section to build
+     * @return the resulting section
+     */
     Section buildSection(int sectionID);
 
+    /**
+     * @brief currSection int that stores the current section that is selected
+     */
     int currSection = 0;
+
+    /**
+     * @brief nextSection the next section to switch to when switching sections
+     */
     int nextSection = 0;
 
+    /**
+     * @brief currentConsoleText a string storing the current console output
+     */
     std::string currentConsoleText;
 
 
@@ -43,6 +75,10 @@ private:
      * @brief physObjBodies Stores the physObjects with their id as the key
      */
     std::map<int, physObject*> physObjBodies;
+
+    /**
+     * @brief timer timer to schedule events
+     */
     QTimer timer;
 
     // Box2D
@@ -51,24 +87,87 @@ private:
      */
     void setupWorld();
 
+    /**
+     * @brief finalizeSectionChange the last step of changing the current section
+     */
     void finalizeSectionChange();
 
+    /**
+     * @brief saveSectionASMFile saves a .asm file containing the code in the given section
+     * @param sectionID Id of section to save
+     * @param saveLocation location of where to save
+     * @param fileName name of file to save
+     */
     void saveSectionASMFile(int sectionID, std::string saveLocation, std::string fileName);
+
+    /**
+     * @brief saveProgressChecks saves the current completion states for all sections
+     * @param saveLocation the location to save at
+     */
     void saveProgressChecks(std::string saveLocation);
+
+    /**
+     * @brief loadSectionASMFile loads a .asm file into the editor
+     * @param sectionID the id to load the file into
+     * @param fileLocation the location to load from
+     * @param fileName the name of the file to load
+     */
     void loadSectionASMFile(int sectionID, std::string fileLocation, std::string fileName);
+
+    /**
+     * @brief loadProgressChecks loads all the completion states of the sections
+     * @param fileLocation the location of the file to load
+     */
     void loadProgressChecks(std::string fileLocation);
 
 
 public:
+    /**
+     * @brief Model constructor for the model
+     * @param parent parent widget
+     */
     Model(QObject *parent = nullptr);
+
+    /**
+     * @brief deconstructor for the model
+     */
     ~Model();
 
 signals:
+    /**
+     * @brief requestSaveCurrentCode signal to request the code currently in the editor
+     */
     void requestSaveCurrentCode();
+
+    /**
+     * @brief codeFinishedSaving signal to emit when the code has finished being saved into the string array
+     */
     void codeFinishedSaving();
+
+    /**
+     * @brief codeUpdated signal to emit when the code editor should be updated
+     * @param newCode the new code to be displayed
+     */
     void codeUpdated(QString newCode);
+
+    /**
+     * @brief consoleTextUpdated signal to emit when the console should be updated
+     * @param text the new text
+     */
     void consoleTextUpdated(QString text);
+
+    /**
+     * @brief progressCheckUpdated signal to emit when a completion state should be updated
+     * @param ID the id of the section to update
+     * @param state the new completion state
+     */
     void progressCheckUpdated(int ID, bool state);
+
+    /**
+     * @brief makeTabVisible signal to emit when a section's tab should become visible
+     * @param ID the id to change
+     * @param state the new state
+     */
     void makeTabVisible(int ID, bool state);
 
     // Box2D signals
@@ -93,7 +192,16 @@ signals:
     void deletePhysLabel(int id);
 
 public slots:
+    /**
+     * @brief changeSection the slot to handle changing to a new section
+     * @param index
+     */
     void changeSection(int index);
+
+    /**
+     * @brief saveCodeToCurrentIndex slot that saves a stirng to the currSection index in the string array
+     * @param code the code to save
+     */
     void saveCodeToCurrentIndex(std::string code);
 
     // Box2D slots
@@ -117,10 +225,31 @@ public slots:
     void destroyAllPhysObjects();
     void spawnStars();
 
+    /**
+     * @brief clearConsole slot that clears the console
+     */
     void clearConsole();
+
+    /**
+     * @brief executeCode slot that handles executing the code or running the validity check for a solution
+     * @param code the code to run
+     * @param checkSolutionValidity whether or not to check the solution
+     */
     void executeCode(QString code, bool checkSolutionValidity);
+
+    /**
+     * @brief saveAllProgress slot to save all the progress
+     */
     void saveAllProgress();
+
+    /**
+     * @brief loadAllProgress slot to load all the progress
+     */
     void loadAllProgress();
+
+    /**
+     * @brief pushTabVisibilities slot to respond to tab visibility requests from the main window
+     */
     void pushTabVisibilities();
 
 };

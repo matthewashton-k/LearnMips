@@ -1,3 +1,8 @@
+/**
+ * Description: cpp file for the interpreter, which interprets/emulates a subset of the mips instruction setz
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan,
+*/
+
 #include "Interpreter.h"
 #include <iostream>
 #include <sstream>

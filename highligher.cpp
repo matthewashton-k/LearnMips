@@ -1,3 +1,7 @@
+/**
+ * Description: cpp file for the Highlighter class, which is a custom syntax highlighter that extends QSyntaxHighlighter
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
 #include "highligher.h"
 
 Highlighter::Highlighter(QTextDocument *parent)

@@ -1,3 +1,8 @@
+/**
+ * Description: cpp file for the Main Window of the Learn Mips application
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Interpreter.h"
@@ -21,12 +26,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     Highlighter *highlighter = new Highlighter(ui->codeEdit->document());
 
+    //connect ui
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
     connect(ui->submitButton, &QPushButton::clicked, this, &MainWindow::submitButtonClicked);
     connect(ui->clearConsoleButton, &QPushButton::clicked, modelPtr, &Model::clearConsole);
+
+    //connect model/main window communication signals/slots
     connect(modelPtr, &Model::consoleTextUpdated, this, &MainWindow::updateConsole);
     connect(modelPtr, &Model::progressCheckUpdated, this, &MainWindow::updateCheckBox);
     connect(this, &MainWindow::runRequest, modelPtr, &Model::executeCode);
+
+    //connect save/load actions
     connect(ui->actionSave_All_Progress, &QAction::triggered, modelPtr, &Model::saveAllProgress);
     connect(ui->actionLoad_All_Progress, &QAction::triggered, modelPtr, &Model::loadAllProgress);
     connect(ui->actionInstruction_Reference, &QAction::triggered, this, &MainWindow::displayReferenceWindow);
@@ -77,6 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->sectionTabs->setTabVisible(i, false);
     }
 
+    //get initial tab visibilities
     emit requestTabVisibilities();
 }
 
@@ -88,11 +99,14 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::displayReferenceWindow(){
+    //set up window
     QWidget* referenceWindow = new QWidget();
     QLabel* list = new QLabel(referenceWindow);
     QFont font("Arial", 12, 1, false);
     list->setWindowTitle("Instruction Reference");
     list->setFont(font);
+
+    //the text to display
     //TODO: finish writing all the text and descriptions
     list->setText(
 R"(addi $dest, $source, immediate:
@@ -115,6 +129,7 @@ blt $source, $source, label:
 bgt $source, $source, label:
 syscall: uses the value in $v0 and $a0-3 to tell the system what to do)");
 
+    //show window and text label
     list->show();
     referenceWindow->show();
 
@@ -144,8 +159,10 @@ void MainWindow::updateCheckBox(int ID, bool checked){
 
 void MainWindow::closeEvent (QCloseEvent *event)
 {
+    //create message box
     QMessageBox::StandardButton resBtn = QMessageBox::question( this, "LearnMips", tr("Save Progress?\n"), QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
 
+    //check message box output
     if (resBtn == QMessageBox::Yes) {
         ui->actionSave_All_Progress->trigger();
         event->accept();

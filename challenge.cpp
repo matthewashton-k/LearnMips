@@ -1,3 +1,8 @@
+/**
+ * Description: cpp file for the challenge class, which represents a coding challenge with an ability to check if a solution is valid
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
+
 #include "challenge.h"
 #include <string>
 #include <iostream>
@@ -11,9 +16,10 @@ Challenge::Challenge(std::string beforeCode, std::string afterCode, bool (*valid
     validityFunction(validityFunction) {}
 
 std::tuple<std::string, bool> Challenge::executeCode(std::string middleCode, bool checkSolutionValidity){
-    //run code
+    //combine code
     std::string instructions = beforeCode + "\n" + middleCode + "\n" + afterCode;
 
+    //declare output variables
     std::string outputString;
     bool isValidSolution;
 
@@ -35,5 +41,6 @@ std::tuple<std::string, bool> Challenge::executeCode(std::string middleCode, boo
         }
     }
 
+    //return tuple
     return std::make_tuple(outputString, isValidSolution);
 }

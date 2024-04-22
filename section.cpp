@@ -1,3 +1,7 @@
+/**
+ * Description: cpp file for a class representing a section in the Learn Mips app
+ * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
+*/
 #include "section.h"
 
 Section::Section() : challenge(Challenge()){}
