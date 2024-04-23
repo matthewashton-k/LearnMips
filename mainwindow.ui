@@ -101,8 +101,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -144,7 +144,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="t1_1">
         <attribute name="title">
@@ -223,7 +223,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A secret value has been placed in register $a0.&lt;/p&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -246,7 +246,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="t1_2">
         <attribute name="title">
@@ -258,11 +258,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>10</y>
            <width>481</width>
-           <height>481</height>
+           <height>601</height>
           </rect>
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SRL (Shift Right Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS 'srl' (Shift Right Logical) instruction shifts the bits of a register to the right by a specified number of positions. Each bit is shifted to the next lower position, and 0s are introduced at the most significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b10101010 (decimal 170)&lt;/p&gt;&lt;p&gt;Performing srl $t1, $t0, 3 will shift the bits in $t0 right by 3 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b00010101 (decimal 21)&lt;/p&gt;&lt;p&gt;After shifting right by 3 positions, the original bits are moved three places to the right, and zeros are filled in on the left.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SLL (Shift Left Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS sll (Shift Left Logical) instruction shifts the bits of a register to the left by a specified number of positions. Each bit is shifted to the next higher position, and 0s are introduced at the least significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example&lt;/span&gt;:&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b00001111 (decimal 15)&lt;/p&gt;&lt;p&gt;Performing sll $t1, $t0, 4 will shift the bits in $t0 left by 4 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b11110000 (decimal 240)&lt;/p&gt;&lt;p&gt;The SLL operation multiplies the number by 2 for each shift position if the number &lt;/p&gt;&lt;p&gt;is unsigned&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -276,11 +279,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>5</y>
            <width>481</width>
-           <height>391</height>
+           <height>411</height>
           </rect>
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In MIPS assembly language, SLL (Shift Left Logical) and SRL (Shift Right Logical) are &lt;/p&gt;&lt;p&gt;bitwise operations that can effectively be used to multiply and &lt;/p&gt;&lt;p&gt;divide numbers by powers of two. &lt;/p&gt;&lt;p&gt;Understanding these operations can significantly enhance your ability to write efficient &lt;/p&gt;&lt;p&gt;code for arithmetic operations. Here’s a detailed guide on how these operations work and &lt;/p&gt;&lt;p&gt;how they correspond to multiplication and division.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use in Multiplication: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Shifting bits to the left by one position effectively multiplies the binary number by 2.&lt;/p&gt;&lt;p&gt;For example, if you have a binary number '0001' (which is 1 in decimal)&lt;/p&gt;&lt;p&gt;and you apply SLL by 1, it becomes '0010', which is 2 in decimal.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use in Division: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Shifting bits to the right by one position effectively divides the binary number by 2&lt;/p&gt;&lt;p&gt;(ignoring the remainder). For example, if you have a binary number '0010' (which is 2 in decimal) and you apply SRL by 1, it becomes '0001', &lt;/p&gt;&lt;p&gt;which is 1 in decimal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -511,23 +517,23 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The lw instruction loads a 32-bit word from memory into a register.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It calculates the memory address by adding the offset (a constant immediate value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The loaded word is then stored in the target register $t0.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;sw (Store Word):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;Syntax: sw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The sw instruction stores a 32-bit word from a register into memory.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It calculates the memory address by adding the offset (a constant value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The word from the target register $t0 is then stored at the calculated memory address.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;sp (Stack Pointer):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The sp register is a special-purpose register used to point to the top of the stack.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It is conventionally used to manage the stack, which is a region of memory used for temporary storage.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The stack grows downward in memory, so the sp register is decremented when pushing data onto the stack and incremented when popping data off the stack. (Although this will not be strictly nescessary for the upcoming challenges)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The lw instruction loads a 32-bit word from memory into a register.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It calculates the memory address by adding the offset (a constant immediate value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The loaded word is then stored in the target register $t0.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;sw (Store Word):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: sw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The sw instruction stores a 32-bit word from a register into memory.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It calculates the memory address by adding the offset (a constant value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The word from the target register $t0 is then stored at the calculated memory address.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;sp (Stack Pointer):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The sp register is a special-purpose register used to point to the top of the stack.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It is conventionally used to manage the stack, which is a region of memory used for temporary storage.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The stack grows downward in memory, so the sp register is decremented when pushing data onto the stack and incremented when popping data off the stack. (Although this will not be strictly nescessary for the upcoming challenges)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </widget>
@@ -891,7 +897,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1323</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
