@@ -35,7 +35,7 @@ public:
      * @param friction The friction of the Box2D object. usually in the range [0,1]. Default is 0.3f.
      * @param restitution The restitution or elasticity of the Box2D object. usually in the range [0,1]. Default is 0.9f.
      */
-    physObject(b2World* world, Shape shape, int x, int y, float32 hx = 1.0f, float32 hy = 1.0f, float32 density = 1.0f, float32 friction = 0.3f, float32 restitution = 0.9f);
+    physObject(b2World* world, Shape shape, int x, int y, float32 hx = 1.0f, float32 hy = 1.0f, float32 density = 1.0f, float32 friction = 0.3f, float32 restitution = 1.0f);
     /**
      * @brief Destructor for physObject
      */
@@ -52,6 +52,8 @@ public:
      * @return b2Vec2 of this physObject's angle
      */
     float32 getAngle();
+
+    void applyForce();
 
 private:
     b2World* worldPtr;

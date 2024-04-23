@@ -96,61 +96,27 @@ void Model::pushTabVisibilities(){
 }
 
 void Model::setupWorld() {
-    // TODO [Box2D]:
-
-
     // TODO [Box2D]: set walls around the window, preferably scaled to the window size
-
-    // // Define the ground body.
-    // b2BodyDef groundBodyDef;
-    // groundBodyDef.position.Set(1323.0f/2, 700.0f);
-
-    // // Call the body factory which allocates memory for the ground body
-    // // from a pool and creates the ground box shape (also from a pool).
-    // // The body is also added to the world.
-    // b2Body* groundBody = world.CreateBody(&groundBodyDef);
-
-    // // Define the ground box shape.
-    // b2PolygonShape groundBox;
-
-    // // The extents are the half-widths of the box.
-    // groundBox.SetAsBox(1323.0f/2, 50.0f);
-
-    // // Add the ground fixture to the ground body.
-    // groundBody->CreateFixture(&groundBox, 0.0f);
 
 
     b2BodyDef boundingBoxBodyDef;
     boundingBoxBodyDef.position.Set(0.0f, 0.0f);
     b2Body* boundingBoxBody = world.CreateBody(&boundingBoxBodyDef);
 
+    // Set a bounding box around the window
     int numOfVerticies = 4;
     b2Vec2 vs[numOfVerticies];
-    // TODO [Box2D]: use a global width and height here
-    vs[0].Set(0.0f, 0.0f);
-    vs[1].Set(1323.0f, 0.0f);
-    vs[2].Set(1323.0f, 640.0f);
-    vs[3].Set(0.0f, 640.0f);
-    // vs[4].Set(300.0f, 500.0f);
-    // vs[5].Set(100.0f, 400.0f);
+    vs[0].Set(0.0f, -screenHeight);
+    vs[1].Set(screenWidth, -screenHeight);
+    vs[2].Set(screenWidth, screenHeight);
+    vs[3].Set(0.0f, screenHeight);
     b2ChainShape boundingBoxChain;
     boundingBoxChain.CreateLoop(vs, numOfVerticies);
 
     boundingBoxBody->CreateFixture(&boundingBoxChain, 0.0f);
 
-    // //Spawn objects
-    // for(int num = 0; num < 50; num++) {
-    //     int x = 1300-(num*30);
-    //     int y = 5+(num*5);
-    //     timer.singleShot(1000, this, [this, num, x, y] {spawnPhysObject(num, rect, x, y);});
-    // }
-
     // Start update loop
     timer.singleShot(1500, this, &Model::updateWorld);
-
-    // for(int id = 0; id < 50; id++) {
-    //     timer.singleShot(10000, this, [this, id] {destroyPhysObject(id);});
-    // }
 }
 
 void Model::updateWorld() {
@@ -171,15 +137,9 @@ void Model::updateWorld() {
 
     // Check for objects to update
     for(auto const& [id, physObjBody] : physObjBodies) {
-        // Now print the position and angle of the body.
         b2Vec2 position = physObjBody->getPosition();
-        //float32 angle = physObjBody->getAngle();
-
         emit newPosition(id, position.x, position.y);
     }
-
-    //qDebug() << position.x << position.y << angle;
-    //qDebug("--finished update");
     // When the world destructor is called, all bodies and joints are freed. This can
     // create orphaned pointers, so be careful about your world management.
 
@@ -190,6 +150,7 @@ void Model::spawnPhysObject(int id, Shape shape, int x, int y) {
     // Define the dynamic body. We set its position and call the body factory.
     physObject* physObj = new physObject(&world, shape, x, y);
     physObjBodies[id] = physObj;
+    physObj->applyForce();
 
     emit newPhysObj(id, x, y);
 }
@@ -222,9 +183,9 @@ void Model::spawnStars() {
     // Spawn numOfStars stars randomly across the top
     // TODO [Box2D]: create a global width and height for physics objects + the b2World
     for(int id = 0; id < numOfStars; id++) {
-        int x = std::rand() % 1323;
-        int y = std::rand() % 768;
-        timer.singleShot(0, this, [this, id, x, y] {spawnPhysObject(id, rect, x, y);});
+        int x = std::rand() % screenWidth;
+        int y = std::rand() % screenWidth;
+        timer.singleShot(0, this, [this, id, x, y] {spawnPhysObject(id, rect, x, -y);});
     }
 
     // After some time, delete them

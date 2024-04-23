@@ -64,6 +64,14 @@ private:
 
     // Box2D
     /**
+     * @brief screenWidth The width of the screen.
+     */
+    int screenWidth = 1323;
+    /**
+     * @brief screenHeight The height of the screen
+     */
+    int screenHeight = 881;
+    /**
      * @brief gravity of the world
      */
     b2Vec2 gravity = b2Vec2(0.0f, 10.0f);

@@ -58,3 +58,9 @@ float32 physObject::getAngle() {
     return physObjBody->GetAngle();
 }
 
+void physObject::applyForce() {
+    b2Vec2 force(-32, -32);
+    b2Vec2 point = physObjBody->GetPosition();
+    physObjBody->ApplyLinearImpulse(force, point, false);
+}
+
