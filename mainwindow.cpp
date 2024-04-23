@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSave_All_Progress, &QAction::triggered, modelPtr, &Model::saveAllProgress);
     connect(ui->actionLoad_All_Progress, &QAction::triggered, modelPtr, &Model::loadAllProgress);
     connect(ui->actionInstruction_Reference, &QAction::triggered, this, &MainWindow::displayReferenceWindow);
+    connect(ui->actionSyscall_Op_Code_Reference, &QAction::triggered, this, &MainWindow::displayOpCodeReferenceWindow);
 
     // switching section stuff
     connect(ui->sectionTabs, &QTabWidget::currentChanged, modelPtr, &Model::changeSection);
@@ -128,6 +129,30 @@ j label:
 blt $source, $source, label:
 bgt $source, $source, label:
 syscall: uses the value in $v0 and $a0-3 to tell the system what to do)");
+
+    //show window and text label
+    list->show();
+    referenceWindow->show();
+
+}
+
+void MainWindow::displayOpCodeReferenceWindow(){
+    //set up window
+    QWidget* referenceWindow = new QWidget();
+    QLabel* list = new QLabel(referenceWindow);
+    QFont font("Arial", 12, 1, false);
+    list->setWindowTitle("Op Code Reference");
+    list->setFont(font);
+
+    //the text to display
+    list->setText(
+        R"($v0 should contain the code when the syscall is made
+
+1: Print Integer ($a0 should countain the integer to print)
+4: Print String ($a0 should contain the address to the string
+to print. Best achieved by using a label)
+10: Exit (Exits the program)
+11: Print Character ($a0 should contain the character to print))");
 
     //show window and text label
     list->show();

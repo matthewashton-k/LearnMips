@@ -149,7 +149,7 @@ void Interpreter::syscall(Syscall code) {
                 index++;
                 current = stack[index];
             }
-            str.push_back('\n');
+            //str.push_back('\n');
             this->stdOut.append(str);
             break;
         }

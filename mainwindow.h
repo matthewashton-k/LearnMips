@@ -128,6 +128,11 @@ private slots:
     void displayReferenceWindow();
 
     /**
+     * @brief displayReferenceWindow slot to display the op code reference list window
+     */
+    void displayOpCodeReferenceWindow();
+
+    /**
      * @brief setSectionTabVisible sets a tab's visibility
      * @param ID the tab to set
      * @param state the new state to set the tab to

@@ -334,7 +334,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;How to Define an ASCII String&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A string needs to be defined after a .data tag. The declaration should be preceded by an asciiz operator and a label. For example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.data&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;helloText: asciiz &amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;This example stores the text &amp;quot;Hello World!&amp;quot; as ascii characters refered to by the label &amp;quot;helloText&amp;quot;. Each character takes up one byte in memory, so a single word can store 4 characters. This is important later for navigating through a string, one character at a time.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;After defining any strings, a .text tag should be used to signify that everything following it is code.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;How to Define an ASCII String&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A string needs to be defined after a .data tag. The declaration should be preceded by an asciiz operator and a label. For example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.data&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;helloText: .asciiz &amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;This example stores the text &amp;quot;Hello World!&amp;quot; as ascii characters refered to by the label &amp;quot;helloText&amp;quot;. Each character takes up one byte in memory, so a single word can store 4 characters. This is important later for navigating through a string, one character at a time.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;After defining any strings, a .text tag should be used to signify that everything following it is code.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -351,11 +351,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>491</width>
-           <height>481</height>
+           <height>521</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in $a0-3 registers. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by helloText into $a0. This is the parameter. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in the $a0 register. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.text&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by helloText into $a0. This is the parameter. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. When printing an integer or char, $a0 should contain the actual integer or char and not an address.  What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -903,6 +903,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>Help</string>
     </property>
     <addaction name="actionInstruction_Reference"/>
+    <addaction name="actionSyscall_Op_Code_Reference"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -921,6 +922,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionInstruction_Reference">
    <property name="text">
     <string>Instruction Reference</string>
+   </property>
+  </action>
+  <action name="actionSyscall_Op_Code_Reference">
+   <property name="text">
+    <string>Syscall Op Code Reference</string>
    </property>
   </action>
  </widget>
