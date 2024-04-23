@@ -56,6 +56,7 @@ bool ValidityFunctions::section5ValidityFunction(std::string code){
         return interpreter5.getV0() == 12;
     } catch (string err) {
         cout << "ERROR: " + err <<endl;
+        return false;
     }
 }
 

@@ -5,8 +5,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Interpreter.h"
-#include "Box2D/Box2D.h"
+// #include "Box2D/Box2D.h"
 #include <iostream>
 #include <highligher.h>
 #include <QStyleFactory>
@@ -24,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    Highlighter *highlighter = new Highlighter(ui->codeEdit->document());
+    highlighter = new Highlighter(ui->codeEdit->document());
 
     //connect ui
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
@@ -89,13 +88,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionLoad_All_Progress->trigger();
 
     //get starting tab visibilities
-    emit requestTabVisibilities();
+    refreshTabVisibilities();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete modelPtr;
+    delete highlighter;
     physObjLabels.clear();
 }
 
@@ -172,6 +172,10 @@ void MainWindow::currentCodeRequested(){
     emit answerCurrentCodeRequest(ui->codeEdit->toPlainText().toStdString());
 }
 
+void MainWindow::refreshTabVisibilities(){
+    emit requestTabVisibilities();
+}
+
 
 void MainWindow::updateConsole(QString text){
     ui->console->setText(text);
@@ -213,7 +217,7 @@ void MainWindow::moveLabel(int id, int x, int y) {
     try {
         QLabel* physObjLabel = physObjLabels.at(id);
         physObjLabel->move(x,y);
-    } catch (std::out_of_range e) {
+    } catch (std::out_of_range) {
         qDebug() << "Invalid label ID: " << id << ". Cannot find label to move.";
     }
 }
@@ -246,7 +250,7 @@ void MainWindow::deletePhysLabel(int id) {
         //physObjLabel->hide();
         delete physObjLabels[id];
         physObjLabels.erase(id);
-    } catch (std::out_of_range e) {
+    } catch (std::out_of_range) {
         qDebug() << "Invalid label ID: " << id << ". Cannot find label to delete.";
     }
 }

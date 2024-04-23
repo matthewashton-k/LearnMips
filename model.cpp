@@ -6,11 +6,8 @@
 #include "model.h"
 #include <vector>
 #include "validityFunctions.h"
-#include "Box2D/Box2D.h"
 #include "physobject.h"
-#include "Interpreter.h"
 #include "section.h"
-#include <iostream>
 #include <QFile>
 #include <QTextStream>
 
@@ -176,7 +173,7 @@ void Model::updateWorld() {
     for(auto const& [id, physObjBody] : physObjBodies) {
         // Now print the position and angle of the body.
         b2Vec2 position = physObjBody->getPosition();
-        float32 angle = physObjBody->getAngle();
+        //float32 angle = physObjBody->getAngle();
 
         emit newPosition(id, position.x, position.y);
     }

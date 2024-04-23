@@ -3,7 +3,6 @@
  * Authors: Matthew Ashton Knochel, Carter Dean, Abdulla Alnuaimi, Logan Luker, Aidan Sheehan
 */
 #include "section.h"
-#include <iostream>
 
 Section::Section() : challenge(Challenge()){}
 

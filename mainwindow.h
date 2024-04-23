@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "model.h"
+#include "highligher.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -45,6 +46,11 @@ private:
     Model* modelPtr;
 
     /**
+     * @brief highlighter text highlighter to add colors
+     */
+    Highlighter *highlighter;
+
+    /**
      * @brief physObjBodies Stores physics QLabels with their id as the key
      */
     std::map<int, QLabel*> physObjLabels;
@@ -54,6 +60,11 @@ private:
      * @param event the event
      */
     void closeEvent (QCloseEvent *event);
+
+    /**
+     * @brief refreshTabVisibilities helper function that requests tab visibilities from the model
+     */
+    void refreshTabVisibilities();
 
 signals:
     /**
