@@ -6,11 +6,8 @@
 #include "model.h"
 #include <vector>
 #include "validityFunctions.h"
-#include "Box2D/Box2D.h"
 #include "physobject.h"
-#include "Interpreter.h"
 #include "section.h"
-#include <iostream>
 #include <QFile>
 #include <QTextStream>
 
@@ -88,6 +85,7 @@ void Model::clearConsole(){
 
 void Model::pushTabVisibilities(){
     emit makeTabVisible(0, true);
+    emit makeTabVisible(11, true);
 
     for(int i = 0; i < NUM_OF_SECTIONS - 1; i++){
         if(sections->at(i).isComplete()){
@@ -175,7 +173,7 @@ void Model::updateWorld() {
     for(auto const& [id, physObjBody] : physObjBodies) {
         // Now print the position and angle of the body.
         b2Vec2 position = physObjBody->getPosition();
-        float32 angle = physObjBody->getAngle();
+        //float32 angle = physObjBody->getAngle();
 
         emit newPosition(id, position.x, position.y);
     }
@@ -304,16 +302,17 @@ void Model::loadProgressChecks(std::string saveLocation){
         //loop through each line and update the temporary storage and view as needed
         for(int i = 0; i < NUM_OF_SECTIONS; i++){
             QString line = stream.readLine();
-            if(line.toInt() == 0){
-                progressCheckBools[i] = false;
-                sections->at(currSection).setCompleted(false);
+            if(line.toInt() == 1){
+                progressCheckBools[i] = true;
+                sections->at(i).setCompleted(true);
             }
             else{
-                progressCheckBools[i] = true;
-                sections->at(currSection).setCompleted(true);
+                progressCheckBools[i] = false;
+                sections->at(i).setCompleted(false);
             }
 
             emit progressCheckUpdated(i, progressCheckBools[i]);
+
             if(progressCheckBools[i]){
                 emit makeTabVisible(i, true);
                 if(i < NUM_OF_SECTIONS - 1) emit makeTabVisible(i+1, true);
@@ -342,7 +341,7 @@ Section Model::buildSection(int sectionID){
     case 2:
         return Section(
             Challenge( // syscalls/strings
-                "", //before Code
+                "\n.text\naddi $s0, $zero, 32767 \n", //before Code
                 "", //after Code
                 ValidityFunctions::section3ValidityFunction));
     case 3:

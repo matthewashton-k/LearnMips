@@ -4,7 +4,6 @@
 */
 
 #include "physobject.h"
-#include "Box2D/Box2D.h"
 
 physObject::physObject(b2World* world, Shape shape, int x, int y, float32 hx, float32 hy, float32 density, float32 friction, float32 restitution) {
     worldPtr = world;

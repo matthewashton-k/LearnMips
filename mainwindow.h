@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "model.h"
+#include "highligher.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -45,6 +46,11 @@ private:
     Model* modelPtr;
 
     /**
+     * @brief highlighter text highlighter to add colors
+     */
+    Highlighter *highlighter;
+
+    /**
      * @brief physObjBodies Stores physics QLabels with their id as the key
      */
     std::map<int, QLabel*> physObjLabels;
@@ -54,6 +60,11 @@ private:
      * @param event the event
      */
     void closeEvent (QCloseEvent *event);
+
+    /**
+     * @brief refreshTabVisibilities helper function that requests tab visibilities from the model
+     */
+    void refreshTabVisibilities();
 
 signals:
     /**
@@ -126,5 +137,17 @@ private slots:
      * @brief displayReferenceWindow slot to display the reference list window
      */
     void displayReferenceWindow();
+
+    /**
+     * @brief displayReferenceWindow slot to display the op code reference list window
+     */
+    void displayOpCodeReferenceWindow();
+
+    /**
+     * @brief setSectionTabVisible sets a tab's visibility
+     * @param ID the tab to set
+     * @param state the new state to set the tab to
+     */
+    void setSectionTabVisible(int ID, bool state);
 };
 #endif // MAINWINDOW_H

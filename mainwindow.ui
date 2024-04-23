@@ -128,11 +128,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 1</string>
       </attribute>
       <widget class="QTabWidget" name="s1Widget">
        <property name="geometry">
@@ -234,7 +234,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s2Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 2</string>
       </attribute>
       <widget class="QTabWidget" name="s2Widget">
        <property name="geometry">
@@ -309,7 +309,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s3Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 3</string>
       </attribute>
       <widget class="QTabWidget" name="s3Widget">
        <property name="geometry">
@@ -321,28 +321,76 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="t1_3">
         <attribute name="title">
          <string>Learn 1</string>
         </attribute>
+        <widget class="QLabel" name="label_18">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>291</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;How to Define an ASCII String&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A string needs to be defined after a .data tag. The declaration should be preceded by an asciiz operator and a label. For example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.data&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;helloText: .asciiz &amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;This example stores the text &amp;quot;Hello World!&amp;quot; as ascii characters refered to by the label &amp;quot;helloText&amp;quot;. Each character takes up one byte in memory, so a single word can store 4 characters. This is important later for navigating through a string, one character at a time.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;After defining any strings, a .text tag should be used to signify that everything following it is code.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t2_3">
         <attribute name="title">
          <string>Learn 2</string>
         </attribute>
+        <widget class="QLabel" name="label_19">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>491</width>
+           <height>521</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in the $a0 register. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.text&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by helloText into $a0. This is the parameter. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. When printing an integer or char, $a0 should contain the actual integer or char and not an address.  What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t3_3">
         <attribute name="title">
          <string>Challenge 1</string>
         </attribute>
+        <widget class="QLabel" name="label_20">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>301</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;The Mystery of the Stolen Eggs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Jerry is a known egg thief. To figure out how many eggs Jerry has stolen, you must print the value Jerry hid in $s0 that shows the full extent of his crimes, however, you must reveal this to your friends and a simple number isn't dramatic enough. Give the number some context when you print it out.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In this challenge, you will define a string that contains &amp;quot;Jerry STOLE &amp;quot; and another string that contains &amp;quot; eggs on his spree!&amp;quot; (note the spaces after &amp;quot;stole&amp;quot; and before &amp;quot;eggs&amp;quot;).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;You will then print &amp;quot;Jerry STOLE &amp;quot; + $s0 + &amp;quot; eggs on his spree!&amp;quot; to the console. The solution is case sensitive&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
      <widget class="QWidget" name="s4Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 4</string>
       </attribute>
       <widget class="QTabWidget" name="s4Widget">
        <property name="geometry">
@@ -429,7 +477,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s5Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 5</string>
       </attribute>
       <widget class="QTabWidget" name="s5Widget">
        <property name="geometry">
@@ -526,7 +574,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s6Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 6</string>
       </attribute>
       <widget class="QTabWidget" name="s6Widget">
        <property name="geometry">
@@ -559,7 +607,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s7Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 7</string>
       </attribute>
       <widget class="QTabWidget" name="s7Widget">
        <property name="geometry">
@@ -640,7 +688,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s8Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 8</string>
       </attribute>
       <widget class="QTabWidget" name="s8Widget">
        <property name="geometry">
@@ -673,7 +721,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s9Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Bonus Challenge 1</string>
       </attribute>
       <widget class="QTabWidget" name="s9Widget">
        <property name="geometry">
@@ -706,7 +754,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s10Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Bonus Challenge 2</string>
       </attribute>
       <widget class="QTabWidget" name="s10Widget">
        <property name="geometry">
@@ -739,7 +787,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s11Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Bonus Challenge 3</string>
       </attribute>
       <widget class="QTabWidget" name="s11Widget">
        <property name="geometry">
@@ -772,7 +820,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s12Tab">
       <attribute name="title">
-       <string>Open</string>
+       <string>Open Editor</string>
       </attribute>
       <widget class="QTabWidget" name="s12Widget">
        <property name="geometry">
@@ -858,6 +906,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>Help</string>
     </property>
     <addaction name="actionInstruction_Reference"/>
+    <addaction name="actionSyscall_Op_Code_Reference"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -876,6 +925,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionInstruction_Reference">
    <property name="text">
     <string>Instruction Reference</string>
+   </property>
+  </action>
+  <action name="actionSyscall_Op_Code_Reference">
+   <property name="text">
+    <string>Syscall Op Code Reference</string>
    </property>
   </action>
  </widget>

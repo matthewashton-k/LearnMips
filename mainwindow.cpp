@@ -5,8 +5,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Interpreter.h"
-#include "Box2D/Box2D.h"
+// #include "Box2D/Box2D.h"
 #include <iostream>
 #include <highligher.h>
 #include <QStyleFactory>
@@ -24,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    Highlighter *highlighter = new Highlighter(ui->codeEdit->document());
+    highlighter = new Highlighter(ui->codeEdit->document());
 
     //connect ui
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
@@ -40,13 +39,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSave_All_Progress, &QAction::triggered, modelPtr, &Model::saveAllProgress);
     connect(ui->actionLoad_All_Progress, &QAction::triggered, modelPtr, &Model::loadAllProgress);
     connect(ui->actionInstruction_Reference, &QAction::triggered, this, &MainWindow::displayReferenceWindow);
+    connect(ui->actionSyscall_Op_Code_Reference, &QAction::triggered, this, &MainWindow::displayOpCodeReferenceWindow);
 
     // switching section stuff
     connect(ui->sectionTabs, &QTabWidget::currentChanged, modelPtr, &Model::changeSection);
     connect(modelPtr, &Model::requestSaveCurrentCode, this, &MainWindow::currentCodeRequested);
     connect(this, &MainWindow::answerCurrentCodeRequest, modelPtr, &Model::saveCodeToCurrentIndex);
     connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QPlainTextEdit::setPlainText);
-    connect(modelPtr, &Model::makeTabVisible, ui->sectionTabs, &QTabWidget::setTabVisible);
+    connect(modelPtr, &Model::makeTabVisible, this, &MainWindow::setSectionTabVisible);
     connect(this, &MainWindow::requestTabVisibilities, modelPtr, &Model::pushTabVisibilities);
 
     // Box2D
@@ -79,22 +79,23 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionLoad_All_Progress->setShortcut(Qt::Key_L | Qt::CTRL);
     ui->actionSave_All_Progress->setShortcut(Qt::Key_S | Qt::CTRL);
 
-    //load progress on startup
-    ui->actionLoad_All_Progress->trigger();
-
     //hide all tabs
     for(int i = 0; i < 12; i++){
         ui->sectionTabs->setTabVisible(i, false);
     }
 
-    //get initial tab visibilities
-    emit requestTabVisibilities();
+    //load progress on startup
+    ui->actionLoad_All_Progress->trigger();
+
+    //get starting tab visibilities
+    refreshTabVisibilities();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete modelPtr;
+    delete highlighter;
     physObjLabels.clear();
 }
 
@@ -135,6 +136,30 @@ syscall: uses the value in $v0 and $a0-3 to tell the system what to do)");
 
 }
 
+void MainWindow::displayOpCodeReferenceWindow(){
+    //set up window
+    QWidget* referenceWindow = new QWidget();
+    QLabel* list = new QLabel(referenceWindow);
+    QFont font("Arial", 12, 1, false);
+    list->setWindowTitle("Op Code Reference");
+    list->setFont(font);
+
+    //the text to display
+    list->setText(
+        R"($v0 should contain the code when the syscall is made
+
+1: Print Integer ($a0 should countain the integer to print)
+4: Print String ($a0 should contain the address to the string
+to print. Best achieved by using a label)
+10: Exit (Exits the program)
+11: Print Character ($a0 should contain the character to print))");
+
+    //show window and text label
+    list->show();
+    referenceWindow->show();
+
+}
+
 void MainWindow::runButtonClicked(){
     emit runRequest(ui->codeEdit->toPlainText(), false);
 }
@@ -145,6 +170,10 @@ void MainWindow::submitButtonClicked(){
 
 void MainWindow::currentCodeRequested(){
     emit answerCurrentCodeRequest(ui->codeEdit->toPlainText().toStdString());
+}
+
+void MainWindow::refreshTabVisibilities(){
+    emit requestTabVisibilities();
 }
 
 
@@ -175,6 +204,10 @@ void MainWindow::closeEvent (QCloseEvent *event)
     }
 }
 
+void MainWindow::setSectionTabVisible(int ID, bool state){
+    ui->sectionTabs->setTabVisible(ID, state);
+}
+
 void MainWindow::moveLabel(int id, int x, int y) {
     if(!physObjLabels.count(id)) {
         qDebug() << "ID doesn't exist. MainWindow::moveLabel";
@@ -184,7 +217,7 @@ void MainWindow::moveLabel(int id, int x, int y) {
     try {
         QLabel* physObjLabel = physObjLabels.at(id);
         physObjLabel->move(x,y);
-    } catch (std::out_of_range e) {
+    } catch (std::out_of_range) {
         qDebug() << "Invalid label ID: " << id << ". Cannot find label to move.";
     }
 }
@@ -217,7 +250,7 @@ void MainWindow::deletePhysLabel(int id) {
         //physObjLabel->hide();
         delete physObjLabels[id];
         physObjLabels.erase(id);
-    } catch (std::out_of_range e) {
+    } catch (std::out_of_range) {
         qDebug() << "Invalid label ID: " << id << ". Cannot find label to delete.";
     }
 }

@@ -24,7 +24,16 @@ bool ValidityFunctions::section2ValidityFunction(std::string code){
 }
 
 bool ValidityFunctions::section3ValidityFunction(std::string code){
-    return false;
+    try {
+        Interpreter interpreter3(code);
+        string expectedString = "Jerry STOLE 32767 eggs on his spree!";
+        string outputString = interpreter3.run();
+        return expectedString == outputString;
+
+    } catch (string err) {
+        cout << "ERROR: " + err << endl;
+        return false;
+    }
 }
 
 bool ValidityFunctions::section4ValidityFunction(std::string code){
@@ -47,6 +56,7 @@ bool ValidityFunctions::section5ValidityFunction(std::string code){
         return interpreter5.getV0() == 12;
     } catch (string err) {
         cout << "ERROR: " + err <<endl;
+        return false;
     }
 }
 
