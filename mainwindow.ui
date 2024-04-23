@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>11</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -246,22 +246,61 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="t1_2">
         <attribute name="title">
          <string>Learn 1</string>
         </attribute>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>481</width>
+           <height>481</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SRL (Shift Right Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS 'srl' (Shift Right Logical) instruction shifts the bits of a register to the right by a specified number of positions. Each bit is shifted to the next lower position, and 0s are introduced at the most significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b10101010 (decimal 170)&lt;/p&gt;&lt;p&gt;Performing srl $t1, $t0, 3 will shift the bits in $t0 right by 3 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b00010101 (decimal 21)&lt;/p&gt;&lt;p&gt;After shifting right by 3 positions, the original bits are moved three places to the right, and zeros are filled in on the left.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SLL (Shift Left Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS sll (Shift Left Logical) instruction shifts the bits of a register to the left by a specified number of positions. Each bit is shifted to the next higher position, and 0s are introduced at the least significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example&lt;/span&gt;:&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b00001111 (decimal 15)&lt;/p&gt;&lt;p&gt;Performing sll $t1, $t0, 4 will shift the bits in $t0 left by 4 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b11110000 (decimal 240)&lt;/p&gt;&lt;p&gt;The SLL operation multiplies the number by 2 for each shift position if the number &lt;/p&gt;&lt;p&gt;is unsigned&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t2_2">
         <attribute name="title">
          <string>Learn 2</string>
         </attribute>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>5</y>
+           <width>481</width>
+           <height>391</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In MIPS assembly language, SLL (Shift Left Logical) and SRL (Shift Right Logical) are &lt;/p&gt;&lt;p&gt;bitwise operations that can effectively be used to multiply and &lt;/p&gt;&lt;p&gt;divide numbers by powers of two. &lt;/p&gt;&lt;p&gt;Understanding these operations can significantly enhance your ability to write efficient &lt;/p&gt;&lt;p&gt;code for arithmetic operations. Here’s a detailed guide on how these operations work and &lt;/p&gt;&lt;p&gt;how they correspond to multiplication and division.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use in Multiplication: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Shifting bits to the left by one position effectively multiplies the binary number by 2.&lt;/p&gt;&lt;p&gt;For example, if you have a binary number '0001' (which is 1 in decimal)&lt;/p&gt;&lt;p&gt;and you apply SLL by 1, it becomes '0010', which is 2 in decimal.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use in Division: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Shifting bits to the right by one position effectively divides the binary number by 2&lt;/p&gt;&lt;p&gt;(ignoring the remainder). For example, if you have a binary number '0010' (which is 2 in decimal) and you apply SRL by 1, it becomes '0001', &lt;/p&gt;&lt;p&gt;which is 1 in decimal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t3_2">
         <attribute name="title">
          <string>Challenge 1</string>
         </attribute>
+        <widget class="QLabel" name="label_17">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>521</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this challenge, you will process numbers from 1 to 15, determining whether each &lt;/p&gt;&lt;p&gt;number is even or odd. If a number is even, multiply it by 6, if it's odd, divide it by 8.&lt;/p&gt;&lt;p&gt;After performing these operations, you will calculate and return the sum of &lt;/p&gt;&lt;p&gt;all the modified numbers.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#aa0000;&quot;&gt;Hint&lt;/span&gt;: To determine if a number is odd or even, examine its least significant bit (LSB). &lt;/p&gt;&lt;p&gt;If the LSB is 0, the number is even. If the LSB is 1, the number is odd.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
