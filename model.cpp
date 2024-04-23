@@ -335,7 +335,7 @@ Section Model::buildSection(int sectionID){
     case 1:
         return Section( // srl/sll challenge
             Challenge(
-                "", //before Code
+                "addi $a0, $zero, 3000\n", //before Code
                 "", //after Code
                 ValidityFunctions::section2ValidityFunction));
     case 2:

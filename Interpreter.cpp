@@ -53,11 +53,13 @@ void Interpreter::sub(Reg dst, Reg src1, Reg src2) {
 }
 
 void Interpreter::sll(Reg dst, Reg src, int amount) {
-    registers[dst] = registers[src] << amount;
+    unsigned int unsignedValue = registers[src];
+    registers[dst] = unsignedValue << amount;
 }
 
 void Interpreter::srl(Reg dst, Reg src, int amount) {
-    registers[dst] = registers[src] >> amount;
+    unsigned int unsignedValue = registers[src];
+    registers[dst] = unsignedValue >> amount;
 }
 
 void Interpreter::sw(Reg src, Reg src2, int offset) {

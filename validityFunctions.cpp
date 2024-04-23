@@ -20,7 +20,18 @@ bool ValidityFunctions::section1ValidityFunction(std::string code) {
 }
 
 bool ValidityFunctions::section2ValidityFunction(std::string code){
-    return false;
+    try {
+        unsigned int num = 3000;
+        int n = 8; // Number of least significant bits to isolate
+
+        unsigned int isolated = (num << (32 - n)) >> (32 - n);
+        Interpreter interpreter2(code);
+        interpreter2.run();
+        return interpreter2.getV0() == isolated;
+    } catch (string err) {
+        cout << "ERROR: " + err << endl;
+    }
+
 }
 
 bool ValidityFunctions::section3ValidityFunction(std::string code){

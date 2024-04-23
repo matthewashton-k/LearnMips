@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -294,11 +294,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>281</height>
+           <height>191</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In this challenge, you will process numbers from 1 to 15, determining whether each &lt;/p&gt;&lt;p&gt;number is even or odd. If a number is even, multiply it by 6, if it's odd, divide it by 8.&lt;/p&gt;&lt;p&gt;After performing these operations, you will calculate and return the sum of &lt;/p&gt;&lt;p&gt;all the modified numbers.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#aa0000;&quot;&gt;Hint&lt;/span&gt;: To determine if a number is odd or even, examine its least significant bit (LSB). &lt;/p&gt;&lt;p&gt;If the LSB is 0, the number is even. If the LSB is 1, the number is odd.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For this challenge, please isolate the least significant 8 bits of the number stored in $a0 by using srl and sll, and store that result in $v0.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;If the number in a0 is 001011001110111, then $v0 should hold 01110111. (These binary sequences are assumed to be prepended with zeros to extend them to 32 bits)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
