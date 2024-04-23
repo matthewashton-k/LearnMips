@@ -41,7 +41,7 @@ void Interpreter::xori(Reg dst, Reg src, int inVal) {
 }
 
 void Interpreter::Xor(Reg dst, Reg src1, Reg src2) {
-   registers[dst] = registers[src1] xor registers[src2];
+    registers[dst] = registers[src1] xor registers[src2];
 }
 
 void Interpreter::add(Reg dst, Reg src1, Reg src2) {
@@ -66,7 +66,7 @@ void Interpreter::sw(Reg src, Reg src2, int offset) {
     uint32_t value = registers[src];
     int base = registers[src2] + offset;
     if (base>=stack.size()){
-        throw string("Memory access violation: address out of bounds at offset: "+offset);
+        throw string("Memory access violation: address out of bounds at offset: "+to_string(offset));
     }
     stack[base] = (value >> 24) & 0xFF;
     stack[base + 1] = (value >> 16) & 0xFF;
@@ -90,7 +90,7 @@ void Interpreter::sb(Reg src, Reg src2, int offset) {
     uint8_t value = registers[src] & 0xFF; // Get the lower 8 bits
     int base = registers[src2] + offset;
     if (base>=stack.size()){
-        throw string("Memory access violation: address out of bounds at offset: "+offset);
+        throw string("Memory access violation: address out of bounds at offset: "+to_string(offset));
     }
     stack[base] = value;
 }
@@ -99,7 +99,7 @@ void Interpreter::lb(Reg dst, Reg src, int offset) {
     int base = registers[src] + offset;
     uint8_t value = stack[base];
     if (base>=stack.size()){
-        throw string("Memory access violation: address out of bounds at offset: "+offset);
+        throw string("Memory access violation: address out of bounds at offset: "+to_string(offset));
     }
     registers[dst] = (registers[dst] & 0xFFFFFF00) | value;
 }
@@ -174,6 +174,7 @@ void Interpreter::extendStack(int ammount) {
     for (int i = 0; i < ammount; i++) {
         stack.push_back(0);
     }
+    registers[Reg::sp] = stack.size() - 1;
 }
 
 optional<vector<uint8_t>> Interpreter::getSymbol(string symbol, int size) {
@@ -280,21 +281,17 @@ void Interpreter::addStringLabel(std::string instruction){
     size_t stringStart = instruction.find('\"', colonPos);
     size_t stringEnd = instruction.rfind('\"');
     std::string string = instruction.substr(stringStart + 1, stringEnd - stringStart - 1);
-
-    // Get the start address of the string to save it in labels
-    int stringStartAddress = registers[Reg::sp];
-
+    int stringStartAddress = dataSectionEnd;
 
     // Add the string characters to the stack from a c++ null terminated string
     const char* cString = string.c_str();
-
     for (size_t i = 0; i < string.length() + 1; ++i) {
         //add the char to the stack, extending it if needed
-        if(registers[Reg::sp] >= stack.size()) extendStack(8);
-        stack[registers[Reg::sp]] = cString[i];
+        if(dataSectionEnd >= stack.size()) extendStack(8);
+        stack[dataSectionEnd] = cString[i];
 
-        // increment stack pointer
-        registers[Reg::sp]++;
+        // keep track of where the data section ends
+        dataSectionEnd++;
     }
 
     // Add label with its start adress to labels map
@@ -405,53 +402,53 @@ std::string Interpreter::run() {
 
         switch (currentCodeSection){
             case CodeSection::Data:
-            if(isStringLabel(instruction)){
-                addStringLabel(instruction);
-            }
-            break;
+                if(isStringLabel(instruction)){
+                    addStringLabel(instruction);
+                }
+                break;
             case CodeSection::Text:{
                 switch (opcode.value()) {
-                case Opcode::srl:
-                case Opcode::sll:
-                case Opcode::addi:
-                case Opcode::subi:
-                case Opcode::xori:
-                    executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                    break;
-                case Opcode::add:
-                case Opcode::sub:
-                case Opcode::Xor:
-                    executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                    break;
-                case Opcode::lw:
-                case Opcode::sw:
-                case Opcode::lb:
-                case Opcode::sb:
-                case Opcode::la:
-                    executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
-                    break;
-                case Opcode::beq:
-                case Opcode::bne:
-                case Opcode::bgt:
-                case Opcode::blt:
-                case Opcode::j:
-                    if (jumps == maxJumps){
-                        throw (string("Max number of jumps exceeded: aborting."));
+                    case Opcode::srl:
+                    case Opcode::sll:
+                    case Opcode::addi:
+                    case Opcode::subi:
+                    case Opcode::xori:
+                        executeImmediateInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                        break;
+                    case Opcode::add:
+                    case Opcode::sub:
+                    case Opcode::Xor:
+                        executeRegisterInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                        break;
+                    case Opcode::lw:
+                    case Opcode::sw:
+                    case Opcode::lb:
+                    case Opcode::sb:
+                    case Opcode::la:
+                        executeMemoryInstruction(opcode.value(), dstReg.value(), tokens, instruction);
+                        break;
+                    case Opcode::beq:
+                    case Opcode::bne:
+                    case Opcode::bgt:
+                    case Opcode::blt:
+                    case Opcode::j:
+                        if (jumps == maxJumps){
+                            throw (string("Max number of jumps exceeded: aborting."));
+                        }
+                        executeJumpInstruction(opcode.value(), tokens,instruction);
+                        jumps++;
+                        break;
+                    case Opcode::syscall: {
+                        int code = registers[Reg::v0];
+                        // if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
+                        //     // throw std::string("Invalid syscall code");
+                        // }
+                        syscall(static_cast<Syscall>(registers[Reg::v0]));
+                        break;
                     }
-                    executeJumpInstruction(opcode.value(), tokens,instruction);
-                    jumps++;
-                    break;
-                case Opcode::syscall: {
-                    int code = registers[Reg::v0];
-                    // if (code < 0 || code != Syscall::printInteger || code != Syscall::printString || code != Syscall::Exit) {
-                    //     // throw std::string("Invalid syscall code");
-                    // }
-                    syscall(static_cast<Syscall>(registers[Reg::v0]));
-                    break;
-                }
-                default:
-                    // Should never reach here
-                    break;
+                    default:
+                        // Should never reach here
+                        break;
                 }
             }
             break;
