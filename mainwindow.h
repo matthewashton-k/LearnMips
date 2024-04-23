@@ -126,5 +126,12 @@ private slots:
      * @brief displayReferenceWindow slot to display the reference list window
      */
     void displayReferenceWindow();
+
+    /**
+     * @brief setSectionTabVisible sets a tab's visibility
+     * @param ID the tab to set
+     * @param state the new state to set the tab to
+     */
+    void setSectionTabVisible(int ID, bool state);
 };
 #endif // MAINWINDOW_H

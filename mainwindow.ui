@@ -128,11 +128,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 1</string>
       </attribute>
       <widget class="QTabWidget" name="s1Widget">
        <property name="geometry">
@@ -234,7 +234,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s2Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 2</string>
       </attribute>
       <widget class="QTabWidget" name="s2Widget">
        <property name="geometry">
@@ -306,7 +306,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s3Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 3</string>
       </attribute>
       <widget class="QTabWidget" name="s3Widget">
        <property name="geometry">
@@ -339,7 +339,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s4Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 4</string>
       </attribute>
       <widget class="QTabWidget" name="s4Widget">
        <property name="geometry">
@@ -426,7 +426,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s5Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 5</string>
       </attribute>
       <widget class="QTabWidget" name="s5Widget">
        <property name="geometry">
@@ -523,7 +523,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s6Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 6</string>
       </attribute>
       <widget class="QTabWidget" name="s6Widget">
        <property name="geometry">
@@ -556,7 +556,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s7Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 7</string>
       </attribute>
       <widget class="QTabWidget" name="s7Widget">
        <property name="geometry">
@@ -637,7 +637,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s8Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Lesson 8</string>
       </attribute>
       <widget class="QTabWidget" name="s8Widget">
        <property name="geometry">
@@ -670,7 +670,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s9Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Bonus Challenge 1</string>
       </attribute>
       <widget class="QTabWidget" name="s9Widget">
        <property name="geometry">
@@ -703,7 +703,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s10Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Bonus Challenge 2</string>
       </attribute>
       <widget class="QTabWidget" name="s10Widget">
        <property name="geometry">
@@ -736,7 +736,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s11Tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Bonus Challenge 3</string>
       </attribute>
       <widget class="QTabWidget" name="s11Widget">
        <property name="geometry">
@@ -769,7 +769,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
      <widget class="QWidget" name="s12Tab">
       <attribute name="title">
-       <string>Open</string>
+       <string>Open Editor</string>
       </attribute>
       <widget class="QTabWidget" name="s12Widget">
        <property name="geometry">

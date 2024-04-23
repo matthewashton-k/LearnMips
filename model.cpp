@@ -88,6 +88,7 @@ void Model::clearConsole(){
 
 void Model::pushTabVisibilities(){
     emit makeTabVisible(0, true);
+    emit makeTabVisible(11, true);
 
     for(int i = 0; i < NUM_OF_SECTIONS - 1; i++){
         if(sections->at(i).isComplete()){
@@ -304,16 +305,17 @@ void Model::loadProgressChecks(std::string saveLocation){
         //loop through each line and update the temporary storage and view as needed
         for(int i = 0; i < NUM_OF_SECTIONS; i++){
             QString line = stream.readLine();
-            if(line.toInt() == 0){
-                progressCheckBools[i] = false;
-                sections->at(currSection).setCompleted(false);
+            if(line.toInt() == 1){
+                progressCheckBools[i] = true;
+                sections->at(i).setCompleted(true);
             }
             else{
-                progressCheckBools[i] = true;
-                sections->at(currSection).setCompleted(true);
+                progressCheckBools[i] = false;
+                sections->at(i).setCompleted(false);
             }
 
             emit progressCheckUpdated(i, progressCheckBools[i]);
+
             if(progressCheckBools[i]){
                 emit makeTabVisible(i, true);
                 if(i < NUM_OF_SECTIONS - 1) emit makeTabVisible(i+1, true);

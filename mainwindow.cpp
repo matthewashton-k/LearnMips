@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(modelPtr, &Model::requestSaveCurrentCode, this, &MainWindow::currentCodeRequested);
     connect(this, &MainWindow::answerCurrentCodeRequest, modelPtr, &Model::saveCodeToCurrentIndex);
     connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QPlainTextEdit::setPlainText);
-    connect(modelPtr, &Model::makeTabVisible, ui->sectionTabs, &QTabWidget::setTabVisible);
+    connect(modelPtr, &Model::makeTabVisible, this, &MainWindow::setSectionTabVisible);
     connect(this, &MainWindow::requestTabVisibilities, modelPtr, &Model::pushTabVisibilities);
 
     // Box2D
@@ -79,15 +79,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionLoad_All_Progress->setShortcut(Qt::Key_L | Qt::CTRL);
     ui->actionSave_All_Progress->setShortcut(Qt::Key_S | Qt::CTRL);
 
-    //load progress on startup
-    ui->actionLoad_All_Progress->trigger();
-
     //hide all tabs
     for(int i = 0; i < 12; i++){
         ui->sectionTabs->setTabVisible(i, false);
     }
 
-    //get initial tab visibilities
+    //load progress on startup
+    ui->actionLoad_All_Progress->trigger();
+
+    //get starting tab visibilities
     emit requestTabVisibilities();
 }
 
@@ -173,6 +173,10 @@ void MainWindow::closeEvent (QCloseEvent *event)
     else {
         event->ignore();
     }
+}
+
+void MainWindow::setSectionTabVisible(int ID, bool state){
+    ui->sectionTabs->setTabVisible(ID, state);
 }
 
 void MainWindow::moveLabel(int id, int x, int y) {
