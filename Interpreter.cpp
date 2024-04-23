@@ -285,8 +285,12 @@ void Interpreter::addStringLabel(std::string instruction){
 
     // Add the string characters to the stack from a c++ null terminated string
     const char* cString = string.c_str();
+
     for (size_t i = 0; i < string.length() + 1; ++i) {
-        stack.push_back(cString[i]);
+        //add the char to the stack, extending it if needed
+        if(registers[Reg::sp] >= stack.size()) extendStack(8);
+        stack[registers[Reg::sp]] = cString[i];
+
         // increment stack pointer
         registers[Reg::sp]++;
     }

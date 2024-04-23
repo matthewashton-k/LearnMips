@@ -344,7 +344,7 @@ Section Model::buildSection(int sectionID){
     case 2:
         return Section(
             Challenge( // syscalls/strings
-                "", //before Code
+                "\n.text\naddi $s0, $zero, 32767 \n", //before Code
                 "", //after Code
                 ValidityFunctions::section3ValidityFunction));
     case 3:
