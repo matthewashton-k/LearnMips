@@ -101,8 +101,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -144,7 +144,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="t1_1">
         <attribute name="title">
@@ -223,7 +223,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A secret value has been placed in register $a0.&lt;/p&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -246,7 +246,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="t1_2">
         <attribute name="title">
@@ -258,11 +258,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>10</y>
            <width>481</width>
-           <height>481</height>
+           <height>601</height>
           </rect>
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SRL (Shift Right Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS 'srl' (Shift Right Logical) instruction shifts the bits of a register to the right by a specified number of positions. Each bit is shifted to the next lower position, and 0s are introduced at the most significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b10101010 (decimal 170)&lt;/p&gt;&lt;p&gt;Performing srl $t1, $t0, 3 will shift the bits in $t0 right by 3 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b00010101 (decimal 21)&lt;/p&gt;&lt;p&gt;After shifting right by 3 positions, the original bits are moved three places to the right, and zeros are filled in on the left.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SLL (Shift Left Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS sll (Shift Left Logical) instruction shifts the bits of a register to the left by a specified number of positions. Each bit is shifted to the next higher position, and 0s are introduced at the least significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example&lt;/span&gt;:&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b00001111 (decimal 15)&lt;/p&gt;&lt;p&gt;Performing sll $t1, $t0, 4 will shift the bits in $t0 left by 4 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b11110000 (decimal 240)&lt;/p&gt;&lt;p&gt;The SLL operation multiplies the number by 2 for each shift position if the number &lt;/p&gt;&lt;p&gt;is unsigned&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -276,11 +279,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>5</y>
            <width>481</width>
-           <height>391</height>
+           <height>411</height>
           </rect>
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In MIPS assembly language, SLL (Shift Left Logical) and SRL (Shift Right Logical) are &lt;/p&gt;&lt;p&gt;bitwise operations that can effectively be used to multiply and &lt;/p&gt;&lt;p&gt;divide numbers by powers of two. &lt;/p&gt;&lt;p&gt;Understanding these operations can significantly enhance your ability to write efficient &lt;/p&gt;&lt;p&gt;code for arithmetic operations. Here’s a detailed guide on how these operations work and &lt;/p&gt;&lt;p&gt;how they correspond to multiplication and division.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use in Multiplication: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Shifting bits to the left by one position effectively multiplies the binary number by 2.&lt;/p&gt;&lt;p&gt;For example, if you have a binary number '0001' (which is 1 in decimal)&lt;/p&gt;&lt;p&gt;and you apply SLL by 1, it becomes '0010', which is 2 in decimal.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Use in Division: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;Shifting bits to the right by one position effectively divides the binary number by 2&lt;/p&gt;&lt;p&gt;(ignoring the remainder). For example, if you have a binary number '0010' (which is 2 in decimal) and you apply SRL by 1, it becomes '0001', &lt;/p&gt;&lt;p&gt;which is 1 in decimal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -321,7 +327,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="t1_3">
         <attribute name="title">
@@ -375,7 +381,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>261</height>
+           <height>301</height>
           </rect>
          </property>
          <property name="text">
@@ -511,28 +517,23 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The lw instruction loads a 32-bit word from memory into a register.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It calculates the memory address by adding the offset (a constant immediate value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The loaded word is then stored in the target register $t0.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;sw (Store Word):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;Syntax: sw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The sw instruction stores a 32-bit word from a register into memory.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It calculates the memory address by adding the offset (a constant value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The word from the target register $t0 is then stored at the calculated memory address.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;sp (Stack Pointer):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The sp register is a special-purpose register used to point to the top of the stack.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It is conventionally used to manage the stack, which is a region of memory used for temporary storage.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The stack grows downward in memory, so the sp register is decremented when pushing data onto the stack and incremented when popping data off the stack.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;IMPORTANT:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;Before storing something to the stack, you need to make room for it by decrementing the stack pointer:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'monospace'; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;# make room for 1 word&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;addi $sp, $sp, -4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The lw instruction loads a 32-bit word from memory into a register.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It calculates the memory address by adding the offset (a constant immediate value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The loaded word is then stored in the target register $t0.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;sw (Store Word):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: sw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The sw instruction stores a 32-bit word from a register into memory.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It calculates the memory address by adding the offset (a constant value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The word from the target register $t0 is then stored at the calculated memory address.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;sp (Stack Pointer):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The sp register is a special-purpose register used to point to the top of the stack.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It is conventionally used to manage the stack, which is a region of memory used for temporary storage.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The stack grows downward in memory, so the sp register is decremented when pushing data onto the stack and incremented when popping data off the stack. (Although this will not be strictly nescessary for the upcoming challenges)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </widget>
@@ -546,14 +547,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>491</width>
-           <height>361</height>
+           <height>341</height>
           </rect>
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Example Usage:&lt;/span&gt;&lt;/p&gt;&lt;h4 style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:medium; font-weight:600;&quot;&gt;Push a word onto the stack&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    # Decrement stack pointer by 8 bytes (enough for 2 words)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    addi $sp, $sp, -8&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    sw $t0, 0($sp)# Store word from $t0 on the stack&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    sw $t1, 4($sp)# Store word from $t1 on the stack&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;h4 style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:medium; font-weight:600;&quot;&gt;Pop a word from the stack&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    lw $s0, 0($sp)# Load word from stack to $s0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    lw $s1, 4($sp)# Load word from stack to $s0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    addi $sp, $sp, 8 # Increment stack pointer by 4 bytes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -571,7 +569,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;lw sw Challenge&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Please load in 3 32-bit words from the stack (access with stack pointer), and then add them all together and store it at offset 12 in the stack pointer register. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;lw sw Challenge&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Please load in 3 32-bit words from the stack (access with stack pointer), and then add them all together and store it at offset 60 in the stack pointer register. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -639,11 +637,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>331</height>
+           <height>321</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;MIPS xor/xori instruction&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS &amp;quot;xor&amp;quot; (exclusive OR) and &amp;quot;xori&amp;quot; (exclusive OR immediate) instructions perform a bitwise XOR operation on two operands. The &amp;quot;xor&amp;quot; instruction operates on two registers, while &amp;quot;xori&amp;quot; operates on a register and an immediate value.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example&lt;/span&gt;:&lt;br/&gt;Suppose we have the following values in registers:&lt;br/&gt;$t0 = 0b1010 (decimal 10)&lt;br/&gt;$t1 = 0b1100 (decimal 12)&lt;/p&gt;&lt;p&gt;Performing &amp;quot;xor $t2, $t0, $t1&amp;quot; will result in:&lt;br/&gt;$t2 = 0b0110 (decimal 6)&lt;/p&gt;&lt;p&gt;The XOR operation compares each bit of the operands and sets the corresponding bit in the result to 1 if the bits are different, and 0 if they are the same. In this example, the bits in positions 2 and 3 of $t0 and $t1 differ, so those bits are set to 1 in the result, while the other bits are set to 0.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The MIPS &amp;quot;xor&amp;quot; (exclusive OR) and &amp;quot;xori&amp;quot; (exclusive OR immediate) instructions perform a bitwise XOR operation on two operands. The &amp;quot;xor&amp;quot; instruction operates on two registers, while &amp;quot;xori&amp;quot; operates on a register and an immediate value.&lt;/p&gt;&lt;p&gt;Example:&lt;br/&gt;Suppose we have the following values in registers:&lt;br/&gt;$t0 = 0b1010 (decimal 10)&lt;br/&gt;$t1 = 0b1100 (decimal 12)&lt;/p&gt;&lt;p&gt;Performing &amp;quot;xor $t2, $t0, $t1&amp;quot; will result in:&lt;br/&gt;$t2 = 0b0110 (decimal 6)&lt;/p&gt;&lt;p&gt;The XOR operation compares each bit of the operands and sets the corresponding bit in the result to 1 if the bits are different, and 0 if they are the same. In this example, the bits in positions 2 and 3 of $t0 and $t1 differ, so those bits are set to 1 in the result, while the other bits are set to 0.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -660,11 +658,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>451</height>
+           <height>421</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;OTP Encryption&lt;/span&gt;&lt;/p&gt;&lt;p&gt;A one-time pad (OTP) is a simple yet theoretically unbreakable encryption technique that uses a secret random key (the &amp;quot;pad&amp;quot;) to encrypt a message. The key must be at least as long as the message and is used only once, hence the name &amp;quot;one-time&amp;quot; pad.&lt;/p&gt;&lt;p&gt;In OTP encryption, each bit or character of the plaintext message is XORed with the corresponding bit or character of the key. The resulting ciphertext can only be decrypted by XORing it with the same key.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;For example, let's say we have a plaintext message &amp;quot;HELLO&amp;quot; and an arbitrary key &amp;quot;XMCKL&amp;quot;. As binary:&lt;/p&gt;&lt;p&gt;Plaintext: 01001000 01000101 01001100 01001100 01001111&lt;/p&gt;&lt;p&gt;Key: 01011000 01001101 01000011 01001011 01001100&lt;/p&gt;&lt;p&gt;Ciphertext: 00010000 00001000 00001111 00000111 00000011&lt;/p&gt;&lt;p&gt;The ciphertext is obtained by XORing each bit of the plaintext with the corresponding bit of the key. Decryption follows the same process, XORing the ciphertext with the key to recover the original plaintext.&lt;/p&gt;&lt;p&gt;OTP encryption is unbreakable if the key is truly random, as long as the message, and never reused.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A one-time pad (OTP) is a simple yet theoretically unbreakable encryption technique that uses a secret random key (the &amp;quot;pad&amp;quot;) to encrypt a message. The key must be at least as long as the message and is used only once, hence the name &amp;quot;one-time&amp;quot; pad.&lt;/p&gt;&lt;p&gt;In OTP encryption, each bit or character of the plaintext message is XORed with the corresponding bit or character of the key. The resulting ciphertext can only be decrypted by XORing it with the same key.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;For example, let's say we have a plaintext message &amp;quot;HELLO&amp;quot; and an arbitrary key &amp;quot;XMCKL&amp;quot;. As binary:&lt;/p&gt;&lt;p&gt;Plaintext: 01001000 01000101 01001100 01001100 01001111&lt;/p&gt;&lt;p&gt;Key: 01011000 01001101 01000011 01001011 01001100&lt;/p&gt;&lt;p&gt;Ciphertext: 00010000 00001000 00001111 00000111 00000011&lt;/p&gt;&lt;p&gt;The ciphertext is obtained by XORing each bit of the plaintext with the corresponding bit of the key. Decryption follows the same process, XORing the ciphertext with the key to recover the original plaintext.&lt;/p&gt;&lt;p&gt;OTP encryption is unbreakable if the key is truly random, as long as the message, and never reused.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -899,7 +897,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1323</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

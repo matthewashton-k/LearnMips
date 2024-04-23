@@ -68,8 +68,6 @@ enum Opcode {
     beq,
     bne,
     j,
-    jr,
-    jal,
     blt,
     bgt,
     syscall
@@ -170,10 +168,6 @@ private:
      */
     int maxJumps = 1000;
 
-    /**
-     * @brief dataSectionEnd this is an index in the stack that points to where the data section ends. The data section should be stored at the index 0 of the stack, and the sp should point to the last index in the stack, and it grows the other way.
-     */
-    int dataSectionEnd = 0;
 
     /**
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
