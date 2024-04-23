@@ -314,8 +314,8 @@ Section Model::buildSection(int sectionID){
     case 4:
         return Section(
             Challenge( //Lw, sw, sp register, challenge: work on storing 32 bit integers
-                "addi $a0, $zero, 4\n sw $a0, 0($sp)\n sw $a0, 4($sp) \n sw $a0, 8($sp) \n", //before Code
-                "lw $v0, 60($sp)", //after Code
+                "addi $sp, $sp, -16\naddi $a0, $zero, 4\n sw $a0, 0($sp)\n sw $a0, 4($sp) \n sw $a0, 8($sp) \n", //before Code
+                "lw $v0, 12($sp)", //after Code
                 ValidityFunctions::section5ValidityFunction));
     case 5:
         return Section(
