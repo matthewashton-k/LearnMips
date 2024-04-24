@@ -101,8 +101,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -128,7 +128,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
+<<<<<<< HEAD
       <number>7</number>
+=======
+      <number>8</number>
+>>>>>>> d7dc248c8c39f780b8001354136fe8cbeaae6305
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -144,7 +148,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="t1_1">
         <attribute name="title">
@@ -156,11 +160,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>591</height>
+           <height>611</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is MIPS?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;MIPS is a type of Assembly Language. This means that it is the closest to machine code that a human can still read with relative ease. Each instruction refers to actual functions the circuits on the cpu can perform.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is a register?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The cpu has several small blocks of memory that it can use to store some values before saving them to a longer-term memory. It is useful to think of the registers as a “scratch pad” to do computations on or variable names. Registers roughly can be referred to with $t0-t6 for “temp” variables, $a0 for function arguments, $v0-v1 for return values, $s1-s6 for “saved temporary,” and $zero that always refers to 0. There is also the stack pointer $sp that keeps track of the memory address of the stack for reading and writing to/from.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;How does each line of code look?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Each line of code will look something like this: add $t0, $t1, $t3, or instruction $dest, $source, $source The “add” is the instruction, which defines what the line of code will do. The destination register is the register that will be changed, and the source register will contain what is read. There are several types of instructions, which determine how many source, destination, and immediates (32 bit numbers) are included as a parameter for the instruction.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is .data and .text?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;These are tags that determine how the instructions below are interpreted. .data refers to resources such as ascii strings while .text refers to regular code. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is MIPS?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;MIPS is a type of Assembly Language. This means that it is the closest to machine code that a human can still read with relative ease. Each instruction refers to actual functions the circuits on the cpu can perform.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is a register?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The cpu has several small blocks of memory that it can use to store some values before saving them to a longer-term memory. It is useful to think of the registers as a “scratch pad” to do computations on or variable names. Registers roughly can be referred to with $t0-t6 for “temp” variables, $a0 for function arguments, $v0-v1 for return values, $s1-s6 for “saved temporary,” $zero that always refers to 0, and the $ra register which is used to save the program counter when a jal (jump and link) occurs. There is also the stack pointer $sp that keeps track of the memory address of the stack for reading and writing to/from.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;How does each line of code look?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Each line of code will look something like this: add $t0, $t1, $t3, or instruction $dest, $source, $source The “add” is the instruction, which defines what the line of code will do. The destination register is the register that will be changed, and the source register will contain what is read. There are several types of instructions, which determine how many source, destination, and immediates (32 bit numbers) are included as a parameter for the instruction.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is .data and .text?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;These are tags that determine how the instructions below are interpreted. .data refers to resources such as ascii strings while .text refers to regular code. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -177,7 +181,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>631</height>
+           <height>621</height>
           </rect>
          </property>
          <property name="text">
@@ -219,7 +223,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>481</width>
-           <height>71</height>
+           <height>91</height>
           </rect>
          </property>
          <property name="text">
@@ -246,7 +250,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="t1_2">
         <attribute name="title">
@@ -258,7 +262,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>10</y>
            <width>481</width>
-           <height>601</height>
+           <height>631</height>
           </rect>
          </property>
          <property name="text">
@@ -279,7 +283,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>5</y>
            <width>481</width>
-           <height>411</height>
+           <height>421</height>
           </rect>
          </property>
          <property name="text">
@@ -517,23 +521,28 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The lw instruction loads a 32-bit word from memory into a register.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It calculates the memory address by adding the offset (a constant immediate value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The loaded word is then stored in the target register $t0.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;sw (Store Word):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: sw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The sw instruction stores a 32-bit word from a register into memory.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It calculates the memory address by adding the offset (a constant value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The word from the target register $t0 is then stored at the calculated memory address.&lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;sp (Stack Pointer):&lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The sp register is a special-purpose register used to point to the top of the stack.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;It is conventionally used to manage the stack, which is a region of memory used for temporary storage.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;The stack grows downward in memory, so the sp register is decremented when pushing data onto the stack and incremented when popping data off the stack. (Although this will not be strictly nescessary for the upcoming challenges)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The lw instruction loads a 32-bit word from memory into a register.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It calculates the memory address by adding the offset (a constant immediate value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The loaded word is then stored in the target register $t0.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;sw (Store Word):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;Syntax: sw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The sw instruction stores a 32-bit word from a register into memory.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It calculates the memory address by adding the offset (a constant value) to the contents of the source register $s0.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The word from the target register $t0 is then stored at the calculated memory address.&lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;sp (Stack Pointer):&lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The sp register is a special-purpose register used to point to the top of the stack.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;It is conventionally used to manage the stack, which is a region of memory used for temporary storage.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;The stack grows downward in memory, so the sp register is decremented when pushing data onto the stack and incremented when popping data off the stack.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-weight:700;&quot;&gt;NOTE: You must subtract from the $sp register before storing on the stack otherwise there will not be room to store anything.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Example:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;addi $sp, $sp, -4 # make room for one 32 bit value&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;# ... loads and stores here .. &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;addi $sp, $sp, 4 # don't need the value on the stack any more&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </widget>
@@ -772,16 +781,64 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <attribute name="title">
          <string>Learn 1</string>
         </attribute>
+        <widget class="QLabel" name="label_21">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>491</width>
+           <height>171</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Fibonacci sequence:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The Fibonacci sequence is a famous mathematical sequence named after the Italian mathematician Leonardo Fibonacci. It is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1. The sequence goes like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.&lt;/p&gt;&lt;p&gt;The formula for the Fibonacci sequence is:&lt;br/&gt;F(n) = F(n-1) + F(n-2), where F(0) = 0 and F(1) = 1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t2_9">
         <attribute name="title">
          <string>Learn 2</string>
         </attribute>
+        <widget class="QLabel" name="label_22">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>731</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Methods for Calculating the Nth Term of a Fibonacci Sequence&lt;/span&gt;&lt;/p&gt;&lt;p&gt;        1.  Recursive Method:&lt;br/&gt;The recursive method is based on the definition of the Fibonacci sequence, where each number is the sum of the two preceding ones. The recursive formula is:&lt;/p&gt;&lt;p&gt;F(n) = F(n-1) + F(n-2), where F(0) = 0 and F(1) = 1&lt;/p&gt;&lt;p&gt;To calculate the nth Fibonacci number using the recursive method, you call the function with n as the argument. The function then calls itself with n-1 and n-2 as arguments until it reaches the base cases of F(0) or F(1).&lt;/p&gt;&lt;p&gt;Example:&lt;br/&gt;To calculate F(5), the recursive method will follow these steps:&lt;br/&gt;F(5) = F(4) + F(3)&lt;br/&gt;F(4) = F(3) + F(2)&lt;br/&gt;F(3) = F(2) + F(1)&lt;br/&gt;F(2) = F(1) + F(0)&lt;/p&gt;&lt;p&gt;The recursive method is straightforward to understand and implement, but it can be inefficient for large values of n due to the repeated calculations of the same Fibonacci numbers.&lt;/p&gt;&lt;ol start=&quot;2&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Formula:&lt;br/&gt;The closed-form formula, also known as Binet's formula, calculates the nth Fibonacci number directly without recursion. The formula is:&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;F(n) = (φ^n - ψ^n) / √5&lt;/p&gt;&lt;p&gt;where:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;φ (phi) is the golden ratio: (1 + √5) / 2 ≈ 1.618&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ψ (psi) is the negative reciprocal of φ: (1 - √5) / 2 ≈ -0.618&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;To calculate the nth Fibonacci number using Binet's formula, you simply plug in the value of n into the formula and evaluate it.&lt;/p&gt;&lt;p&gt;Binet's formula is more efficient than the recursive method for calculating large Fibonacci numbers because it directly computes the value without recursive calls.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t3_9">
         <attribute name="title">
          <string>Challenge 1</string>
         </attribute>
+        <widget class="QLabel" name="label_23">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>491</width>
+           <height>141</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For this bonus challenge, please calculate the nth term of the fibonacci sequence, where $a0 contains the value of n.&lt;/p&gt;&lt;p&gt;Since dividing, powers, and square roots are hard to compute with only mips, the easiest route is to use teh recursive method.&lt;/p&gt;&lt;p&gt;Store the nth term of the fibonacci sequence in $v1.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Hint: you may need to use $v0 to store the exit code, which is why v1 has the return for this challenge.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -924,7 +981,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1323</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

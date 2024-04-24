@@ -107,7 +107,15 @@ bool ValidityFunctions::section8ValidityFunction(std::string code){
 }
 
 bool ValidityFunctions::section9ValidityFunction(std::string code){
-    return false;
+    int tenthFibonacciValue = 55;
+    try {
+        Interpreter bonus1(code);
+        bonus1.run();
+        return bonus1.getV1() == tenthFibonacciValue;
+    } catch (string err){
+        cout << "ERROR: " << err << endl;
+        return false;
+    }
 }
 
 bool ValidityFunctions::section10ValidityFunction(std::string code){
