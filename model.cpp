@@ -284,83 +284,91 @@ void Model::loadProgressChecks(std::string saveLocation){
     }
 }
 
+
 //logic for building each section with proper validity function
 Section Model::buildSection(int sectionID){
     switch(sectionID){
-    case 0:
-        return Section(Challenge(
-            "\n.text\naddi $a0, $zero, 11 \n",
-            "",
-            ValidityFunctions::section1ValidityFunction
-            ));
-    case 1:
-        return Section( // srl/sll challenge
-            Challenge(
-                "addi $a0, $zero, 3000\n", //before Code
-                "", //after Code
-                ValidityFunctions::section2ValidityFunction));
-    case 2:
-        return Section(
-            Challenge( // syscalls/strings
-                "\n.text\naddi $s0, $zero, 32767 \n", //before Code
-                "", //after Code
-                ValidityFunctions::section3ValidityFunction));
-    case 3:
-        return Section(
-            Challenge(//j, labels, challenge: make a for loop that does something and prints each loop Bne, beq, blt, bgt, some basic conditional logic stuff
-                "\n.text\naddi $a0, $zero, 12 \n", //before Code
-                "", //after Code
-                ValidityFunctions::section4ValidityFunction));
-    case 4:
-        return Section(
-            Challenge( //Lw, sw, sp register, challenge: work on storing 32 bit integers
-                "addi $a0, $zero, 4\n sw $a0, 0($sp)\n sw $a0, 4($sp) \n sw $a0, 8($sp) \n", //before Code
-                "lw $v0, 60($sp)", //after Code
-                ValidityFunctions::section5ValidityFunction));
-    case 5:
-        return Section(
-            Challenge( //Challenge - Lb, sb, la, edit a string, or character count, etc
-                "", //before Code
-                "", //after Code
-                ValidityFunctions::section6ValidityFunction));
-    case 6: // XOR challenge
-        return Section(
-            Challenge(
-                R"(.data
+        case 0:
+            return Section(Challenge(
+                "\n.text\naddi $a0, $zero, 11 \n",
+                "",
+                ValidityFunctions::section1ValidityFunction
+                ));
+        case 1:
+            return Section( // srl/sll challenge
+                Challenge(
+                    "addi $a0, $zero, 3000\n", //before Code
+                    "", //after Code
+                    ValidityFunctions::section2ValidityFunction));
+        case 2:
+            return Section(
+                Challenge( // syscalls/strings
+                    "\n.text\naddi $s0, $zero, 32767 \n", //before Code
+                    "", //after Code
+                    ValidityFunctions::section3ValidityFunction));
+        case 3:
+            return Section(
+                Challenge(//j, labels, challenge: make a for loop that does something and prints each loop Bne, beq, blt, bgt, some basic conditional logic stuff
+                    "\n.text\naddi $a0, $zero, 12 \n", //before Code
+                    "", //after Code
+                    ValidityFunctions::section4ValidityFunction));
+        case 4:
+            return Section(
+                Challenge( //Lw, sw, sp register, challenge: work on storing 32 bit integers
+                    "addi $sp, $sp, -16\naddi $a0, $zero, 4\n sw $a0, 0($sp)\n sw $a0, 4($sp) \n sw $a0, 8($sp) \n", //before Code
+                    "lw $v0, 12($sp)", //after Code
+                    ValidityFunctions::section5ValidityFunction));
+        case 5:
+            return Section(
+                Challenge( //Challenge - Lb, sb, la, edit a string, or character count, etc
+                    "", //before Code
+                    "", //after Code
+                    ValidityFunctions::section6ValidityFunction));
+        case 6: // XOR challenge
+            return Section(
+                Challenge(
+                    R"(.data
                     plaintext: .asciiz "unencrypted"
                     key: .asciiz "qwertyuiopa"
                     .text
 )", //before Code
-                "", //after Code
-                ValidityFunctions::section7ValidityFunction));
-    case 7:
-        return Section(
-            Challenge(
-                "", //before Code
-                "", //after Code
-                ValidityFunctions::section8ValidityFunction));
-    case 8:
-        return Section(
-            Challenge(
-                "", //before Code
-                "", //after Code
-                ValidityFunctions::section9ValidityFunction));
-    case 9:
-        return Section(
-            Challenge(
-                "", //before Code
-                "", //after Code
-                ValidityFunctions::section10ValidityFunction));
-    case 10:
-        return Section(
-            Challenge(
-            "", //before Code
-            "", //after Code
-            ValidityFunctions::section11ValidityFunction));
-    case 11:
-        return Section();
-    default:
-        return Section();
+                    "", //after Code
+                    ValidityFunctions::section7ValidityFunction));
+        case 7:
+            return Section(
+                Challenge(
+                    R"(addi $s1, $zero, 1532
+                    addi $a0, $zero, 5427
+                    j skipFunction
+                    addSecretNumber:
+                    add $v1, $a0, $s1
+                    jr $ra
+                    skipFunction:
+                    jal addFive)", //before Code
+                    "", //after Code
+                    ValidityFunctions::section8ValidityFunction));
+        case 8:
+            return Section(
+                Challenge(
+                    "addi $a0, $zero, 10", //before Code
+                    "", //after Code
+                    ValidityFunctions::section9ValidityFunction));
+        case 9:
+            return Section(
+                Challenge(
+                    "", //before Code
+                    "", //after Code
+                    ValidityFunctions::section10ValidityFunction));
+        case 10:
+            return Section(
+                Challenge(
+                    "", //before Code
+                    "", //after Code
+                    ValidityFunctions::section11ValidityFunction));
+        case 11:
+            return Section();
+        default:
+            return Section();
     }
 }
 

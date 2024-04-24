@@ -128,6 +128,8 @@ la $dest, label:
 beq $source, $source, label:
 bne $source, $source, label:
 j label:
+jal label:
+jr $source:
 blt $source, $source, label:
 bgt $source, $source, label:
 syscall: uses the value in $v0 and $a0-3 to tell the system what to do)");
