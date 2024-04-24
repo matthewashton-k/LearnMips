@@ -339,7 +339,7 @@ Section Model::buildSection(int sectionID){
                 Challenge(
                     R"(addi $s1, $zero, 1532
                     addi $a0, $zero, 5427
-                    j skipFunction:
+                    j skipFunction
                     addSecretNumber:
                     add $v1, $a0, $s1
                     jr
