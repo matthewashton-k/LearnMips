@@ -314,8 +314,10 @@ std::optional<Opcode> parseOpcode(const std::string& opcodeStr) {
     return std::nullopt;
 }
 
-optional<Reg> parseReg(const std::string& regStr) {
-    const auto it = regMap.find(regStr);
+optional<Reg> parseReg(std::string regStr) {
+    if (regStr == "")
+        return nullopt;
+    auto it = regMap.find(regStr);
     if (it != regMap.end()) {
         return it->second;
     }
@@ -650,6 +652,9 @@ void Interpreter::executeJumpInstruction(Opcode opcode, const std::vector<string
             break;
         }
         case Opcode::jr: {
+            if (tokens.size() < 2) {
+                throw ("Invalid number of operands: " + instruction);
+            }
             std::optional<Reg> srcReg1 = parseReg(tokens[1]);
             if(!srcReg1.has_value()){
                 throw ("Invalid opcode, no register to jump to: " + instruction);
