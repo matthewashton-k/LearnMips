@@ -35,6 +35,7 @@ enum Reg {
     t6  ,
     zero ,
     sp  ,
+    ra,
 };
 
 /**
@@ -105,7 +106,9 @@ static const std::unordered_map<std::string, Opcode> opcodeMap = {
     {"j", Opcode::j},
     {"blt", Opcode::blt},
     {"bgt", Opcode::bgt},
-    {"syscall", Opcode::syscall}
+    {"syscall", Opcode::syscall},
+    {"jr", Opcode::jr},
+    {"jal", Opcode::jal}
 };
 
 /**
@@ -130,7 +133,8 @@ static const std::unordered_map<std::string, Reg> regMap = {
     {"$t5", t5},
     {"$t6", t6},
     {"$zero", zero},
-    {"$sp", sp}
+    {"$sp", sp},
+    {"$ra", ra},
 };
 
 class Interpreter {
@@ -179,7 +183,7 @@ private:
      * @brief registers holds the contents of the registers, ex: registers[Opcode::v0]
      *
      */
-    int registers[19] = {0};
+    int registers[20] = {0};
 
     /**
      * @brief programCounter the index in the vector of instructions that is currently being executed
@@ -233,6 +237,8 @@ private:
     void bgt(Reg src1, Reg src2, int offset);
     void blt(Reg src1, Reg src2, int offset);
     void j(int offset);
+    void jal(int offset);
+    void jr(int offset);
     void syscall(Syscall code);
 
     /**
