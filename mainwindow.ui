@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -327,7 +327,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="t1_3">
         <attribute name="title">
@@ -364,7 +364,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in the $a0 register. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.text&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by helloText into $a0. This is the parameter. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. When printing an integer or char, $a0 should contain the actual integer or char and not an address.  What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in the $a0 register. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.text&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by the label helloText, defined in Learn 1 under the .data tag, into $a0. This is the parameter for the syscall. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. When printing an integer or char, $a0 should contain the actual integer or char and not an address. What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
