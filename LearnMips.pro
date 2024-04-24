@@ -64,6 +64,7 @@ SOURCES += \
     model.cpp \
     physobject.cpp \
     section.cpp \
+    tabbutton.cpp \
     validityFunctions.cpp
 
 HEADERS += \
@@ -122,6 +123,7 @@ HEADERS += \
     model.h \
     physobject.h \
     section.h \
+    tabbutton.h \
     validityFunctions.h
 
 FORMS += \

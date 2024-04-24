@@ -10,7 +10,9 @@
 #include "ui_mainwindow.h"
 #include "model.h"
 #include "highligher.h"
+#include "tabbutton.h"
 #include <QPropertyAnimation>
+#include <iostream>
 
 
 QT_BEGIN_NAMESPACE
@@ -50,6 +52,11 @@ private:
      * @brief highlighter text highlighter to add colors
      */
     Highlighter *highlighter;
+
+    /**
+     * @brief tabButton buttons to navigate tabs functionality
+     */
+    TabButton* tabButton;
 
     /**
      * @brief physObjBodies Stores physics QLabels with their id as the key
@@ -109,6 +116,8 @@ private slots:
 
     void challenge1ButtonClicked();
 
+
+
     /**
      * @brief currentCodeRequested slot to respond to  current code requests from the model
      */
@@ -164,5 +173,11 @@ private slots:
      * @param state the new state to set the tab to
      */
     void setSectionTabVisible(int ID, bool state);
+
+    /**
+     * @brief handleUpdateTab updates the current tab to view
+     * @param tabID
+     */
+    void handleTabUpdate(std::tuple<int,int> tabId);
 };
 #endif // MAINWINDOW_H
