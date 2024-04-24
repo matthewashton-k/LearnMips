@@ -342,7 +342,7 @@ Section Model::buildSection(int sectionID){
                     j skipFunction
                     addSecretNumber:
                     add $v1, $a0, $s1
-                    jr
+                    jr $ra
                     skipFunction:
                     jal addFive)", //before Code
                     "", //after Code
