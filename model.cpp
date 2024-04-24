@@ -337,7 +337,14 @@ Section Model::buildSection(int sectionID){
         case 7:
             return Section(
                 Challenge(
-                    "", //before Code
+                    R"(addi $s1, $zero, 1532
+                    addi $a0, $zero, 5427
+                    j skipFunction:
+                    addSecretNumber:
+                    add $v1, $a0, $s1
+                    jr
+                    skipFunction:
+                    jal addFive)", //before Code
                     "", //after Code
                     ValidityFunctions::section8ValidityFunction));
         case 8:
