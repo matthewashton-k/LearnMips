@@ -10,6 +10,7 @@
 #include "ui_mainwindow.h"
 #include "model.h"
 #include "highligher.h"
+#include <QPropertyAnimation>
 
 
 QT_BEGIN_NAMESPACE
@@ -66,6 +67,13 @@ private:
      */
     void refreshTabVisibilities();
 
+    /**
+     * @brief animation member variable to handle animations
+     */
+    QPropertyAnimation animation;
+    QPropertyAnimation animation2;
+    QPropertyAnimation animation3;
+
 signals:
     /**
      * @brief answerCurrentCodeRequest signal to send the current code in the editor
@@ -93,6 +101,13 @@ private slots:
      * @brief submitButtonClicked slot for when the check solution button is clicked
      */
     void submitButtonClicked();
+
+    /**
+     * @brief showHideMenuButtonClicked for when the show/hide menu button is clicked
+     */
+    void showHideMenuButtonClicked();
+
+    void challenge1ButtonClicked();
 
     /**
      * @brief currentCodeRequested slot to respond to  current code requests from the model

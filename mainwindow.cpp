@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::runButtonClicked);
     connect(ui->submitButton, &QPushButton::clicked, this, &MainWindow::submitButtonClicked);
     connect(ui->clearConsoleButton, &QPushButton::clicked, modelPtr, &Model::clearConsole);
+    connect(ui->showHideMenuButton, &QPushButton::clicked, this, &MainWindow::showHideMenuButtonClicked);
+    connect(ui->challenge1Button, &QPushButton::clicked, this, &MainWindow::challenge1ButtonClicked);
 
     //connect model/main window communication signals/slots
     connect(modelPtr, &Model::consoleTextUpdated, this, &MainWindow::updateConsole);
@@ -166,6 +168,56 @@ void MainWindow::runButtonClicked(){
 
 void MainWindow::submitButtonClicked(){
     emit runRequest(ui->codeEdit->toPlainText(), true);
+}
+
+void MainWindow::challenge1ButtonClicked(){
+    ui->sectionTabs->setCurrentIndex(0);
+    ui->s1Widget->setCurrentIndex(3);
+}
+
+void MainWindow::showHideMenuButtonClicked(){
+    animation.setTargetObject(ui->lessonMenu);
+    animation2.setTargetObject(ui->showHideMenuButton);
+    animation3.setTargetObject(ui->menuLine);
+    animation.setPropertyName("geometry");
+    animation2.setPropertyName("geometry");
+    animation3.setPropertyName("geometry");
+    animation.setDuration(200);
+    animation2.setDuration(200);
+    animation3.setDuration(200);
+    if(ui->lessonMenu->isEnabled())
+    {
+
+        //animation.setStartValue(QRect(0, 0, 80, 31));
+        animation.setEndValue(QRect(0, 0, 0, 761));
+        animation2.setEndValue(QRect(0, 370, 31, 51));
+        animation3.setEndValue(QRect(0, 30, 21, 731));
+        //animation.setEasingCurve(QEasingCurve::OutBounce);
+
+        ui->lessonMenu->setDisabled(true);
+        ui->menuLine->hide();
+        QPixmap pixmap(":/res/images/chevron-right-icon.png");
+        QIcon icon(pixmap);
+        ui->showHideMenuButton->setIcon(icon);
+    }
+    else
+    {
+        //animation.setStartValue(QRect(0, 0, 80, 31));
+        animation.setEndValue(QRect(0, 0, 211, 761));
+        animation2.setEndValue(QRect(210, 370, 31, 51));
+        animation3.setEndValue(QRect(200, 30, 21, 731));
+        //animation.setEasingCurve(QEasingCurve::OutBounce);
+
+        ui->lessonMenu->setDisabled(false);
+        ui->menuLine->show();
+        QPixmap pixmap(":/res/images/chevron-left-icon.png");
+        QIcon icon(pixmap);
+        ui->showHideMenuButton->setIcon(icon);
+    }
+    animation.start();
+    animation2.start();
+    animation3.start();
+
 }
 
 void MainWindow::currentCodeRequested(){
