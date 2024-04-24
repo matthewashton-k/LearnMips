@@ -103,7 +103,15 @@ bool ValidityFunctions::section7ValidityFunction(std::string code){
 }
 
 bool ValidityFunctions::section8ValidityFunction(std::string code){
-    return false;
+    try {
+        Interpreter interpreter8(code);
+        interpreter8.run();
+        //$s1 contains 1532
+        return (interpreter8.getV1() == 1542) && (interpreter8.getV0() == 5432);
+    } catch (string err) {
+        cout << "ERROR: " + err <<endl;
+        return false;
+    }
 }
 
 bool ValidityFunctions::section9ValidityFunction(std::string code){
