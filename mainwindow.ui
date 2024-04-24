@@ -128,11 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-<<<<<<< HEAD
       <number>7</number>
-=======
-      <number>8</number>
->>>>>>> d7dc248c8c39f780b8001354136fe8cbeaae6305
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
