@@ -128,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="s1Tab">
       <attribute name="title">
@@ -750,16 +750,64 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <attribute name="title">
          <string>Learn 1</string>
         </attribute>
+        <widget class="QLabel" name="label_21">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>491</width>
+           <height>171</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Fibonacci sequence:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The Fibonacci sequence is a famous mathematical sequence named after the Italian mathematician Leonardo Fibonacci. It is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1. The sequence goes like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.&lt;/p&gt;&lt;p&gt;The formula for the Fibonacci sequence is:&lt;br/&gt;F(n) = F(n-1) + F(n-2), where F(0) = 0 and F(1) = 1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t2_9">
         <attribute name="title">
          <string>Learn 2</string>
         </attribute>
+        <widget class="QLabel" name="label_22">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>481</width>
+           <height>731</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Methods for Calculating the Nth Term of a Fibonacci Sequence&lt;/span&gt;&lt;/p&gt;&lt;p&gt;        1.  Recursive Method:&lt;br/&gt;The recursive method is based on the definition of the Fibonacci sequence, where each number is the sum of the two preceding ones. The recursive formula is:&lt;/p&gt;&lt;p&gt;F(n) = F(n-1) + F(n-2), where F(0) = 0 and F(1) = 1&lt;/p&gt;&lt;p&gt;To calculate the nth Fibonacci number using the recursive method, you call the function with n as the argument. The function then calls itself with n-1 and n-2 as arguments until it reaches the base cases of F(0) or F(1).&lt;/p&gt;&lt;p&gt;Example:&lt;br/&gt;To calculate F(5), the recursive method will follow these steps:&lt;br/&gt;F(5) = F(4) + F(3)&lt;br/&gt;F(4) = F(3) + F(2)&lt;br/&gt;F(3) = F(2) + F(1)&lt;br/&gt;F(2) = F(1) + F(0)&lt;/p&gt;&lt;p&gt;The recursive method is straightforward to understand and implement, but it can be inefficient for large values of n due to the repeated calculations of the same Fibonacci numbers.&lt;/p&gt;&lt;ol start=&quot;2&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Formula:&lt;br/&gt;The closed-form formula, also known as Binet's formula, calculates the nth Fibonacci number directly without recursion. The formula is:&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;F(n) = (φ^n - ψ^n) / √5&lt;/p&gt;&lt;p&gt;where:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;φ (phi) is the golden ratio: (1 + √5) / 2 ≈ 1.618&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ψ (psi) is the negative reciprocal of φ: (1 - √5) / 2 ≈ -0.618&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;To calculate the nth Fibonacci number using Binet's formula, you simply plug in the value of n into the formula and evaluate it.&lt;/p&gt;&lt;p&gt;Binet's formula is more efficient than the recursive method for calculating large Fibonacci numbers because it directly computes the value without recursive calls.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="t3_9">
         <attribute name="title">
          <string>Challenge 1</string>
         </attribute>
+        <widget class="QLabel" name="label_23">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>491</width>
+           <height>141</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;For this bonus challenge, please calculate the nth term of the fibonacci sequence, where $a0 contains the value of n.&lt;/p&gt;&lt;p&gt;Since dividing, powers, and square roots are hard to compute with only mips, the easiest route is to use teh recursive method.&lt;/p&gt;&lt;p&gt;Store the nth term of the fibonacci sequence in $v1.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Hint: you may need to use $v0 to store the exit code, which is why v1 has the return for this challenge.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>

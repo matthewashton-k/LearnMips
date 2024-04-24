@@ -343,7 +343,7 @@ Section Model::buildSection(int sectionID){
         case 8:
             return Section(
                 Challenge(
-                    "", //before Code
+                    "addi $a0, $zero, 10", //before Code
                     "", //after Code
                     ValidityFunctions::section9ValidityFunction));
         case 9:
