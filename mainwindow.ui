@@ -20,22 +20,22 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>90</y>
-      <width>1021</width>
-      <height>671</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1321</width>
+      <height>761</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="page_0">
      <widget class="QTabWidget" name="sectionTabs">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>240</x>
         <y>0</y>
-        <width>531</width>
+        <width>591</width>
         <height>761</height>
        </rect>
       </property>
@@ -43,7 +43,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="s1Tab">
        <attribute name="title">
@@ -881,109 +881,75 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2"/>
-   </widget>
-   <widget class="QWidget" name="codingContainer" native="true">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>130</y>
-      <width>691</width>
-      <height>511</height>
-     </rect>
-    </property>
-    <widget class="CodeEditor" name="codeEdit">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>100</y>
-       <width>381</width>
-       <height>301</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QWidget" name="controlBar" native="true">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>60</y>
-       <width>201</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <widget class="QPushButton" name="runButton">
+    <widget class="QWidget" name="lesson1_1">
+     <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>330</x>
         <y>10</y>
-        <width>80</width>
-        <height>31</height>
+        <width>481</width>
+        <height>611</height>
        </rect>
       </property>
       <property name="text">
-       <string>Run Code</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is MIPS?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;MIPS is a type of Assembly Language. This means that it is the closest to machine code that a human can still read with relative ease. Each instruction refers to actual functions the circuits on the cpu can perform.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is a register?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The cpu has several small blocks of memory that it can use to store some values before saving them to a longer-term memory. It is useful to think of the registers as a “scratch pad” to do computations on or variable names. Registers roughly can be referred to with $t0-t6 for “temp” variables, $a0 for function arguments, $v0-v1 for return values, $s1-s6 for “saved temporary,” $zero that always refers to 0, and the $ra register which is used to save the program counter when a jal (jump and link) occurs. There is also the stack pointer $sp that keeps track of the memory address of the stack for reading and writing to/from.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;How does each line of code look?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Each line of code will look something like this: add $t0, $t1, $t3, or instruction $dest, $source, $source The “add” is the instruction, which defines what the line of code will do. The destination register is the register that will be changed, and the source register will contain what is read. There are several types of instructions, which determine how many source, destination, and immediates (32 bit numbers) are included as a parameter for the instruction.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:600;&quot;&gt;What is .data and .text?&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;These are tags that determine how the instructions below are interpreted. .data refers to resources such as ascii strings while .text refers to regular code. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
-     </widget>
-     <widget class="QPushButton" name="submitButton">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>10</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Check Solution</string>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="consoleWidget" native="true">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>400</y>
-       <width>381</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <widget class="QTextBrowser" name="console">
+    <widget class="QWidget" name="lesson1_2">
+     <widget class="QLabel" name="label_22">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>361</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="clearConsoleButton">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>0</y>
-        <width>21</width>
-        <height>41</height>
+        <x>340</x>
+        <y>70</y>
+        <width>481</width>
+        <height>621</height>
        </rect>
       </property>
       <property name="text">
-       <string>clr</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The addi (Add Immediate) instruction in MIPS assembly language is used to add a signed 32-bit immediate value to the contents of a register and store the result in another register. The syntax for the addi instruction is as follows:&lt;/p&gt;&lt;p&gt;addi $destination, $source, immediate&lt;br/&gt;&lt;/p&gt;&lt;p&gt;- `$destination`: The register where the result of the addition&lt;/p&gt;&lt;p&gt;will be stored.&lt;/p&gt;&lt;p&gt;- `$source`: The register containing the value to which the&lt;/p&gt;&lt;p&gt;immediate will be added.&lt;/p&gt;&lt;p&gt;- `immediate`: A signed 32-bit immediate value that will be&lt;/p&gt;&lt;p&gt;added to the contents of the `$source` register.&lt;/p&gt;&lt;p&gt;For example: &lt;/p&gt;&lt;p&gt;addi $t0, $t1, -100&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;This instruction adds the immediate value 100 to the contents of register `$t1` and stores the result in register `$t0`. The add instruction is similar to addi, but uses all registers as parameters:&lt;/p&gt;&lt;p&gt;add $t1, $t3, $t0 # store $t3+$t0 in $t1&lt;/p&gt;&lt;p&gt;The sub and subi instruction also exist as pseudo-instructions, meaning they are translated to add instructions at compile time:&lt;/p&gt;&lt;p&gt;subi $t1, $t3, 5&lt;/p&gt;&lt;p&gt;Translates to:&lt;/p&gt;&lt;p&gt;addi $t1, $t3, -5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="lesson1_3">
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>110</y>
+        <width>481</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In MIPS assembly language, the $zero register is a special register &lt;/p&gt;&lt;p&gt;that always contains the value zero. It is a hardwired register and &lt;/p&gt;&lt;p&gt;cannot be modified. The $zero register can be used in various ways, &lt;/p&gt;&lt;p&gt;including storing an immediate value in a register like so:&lt;/p&gt;&lt;p&gt;addi $t0, $zero, 11 # store 11 in $t0&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="lesson1_4c">
+     <widget class="QLabel" name="label_24">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>120</y>
+        <width>481</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A secret value has been placed in register $a0.&lt;/p&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -1024,7 +990,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <attribute name="label">
        <string>Lesson 1 - What is MIPS?</string>
       </attribute>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="TabButton" name="tb1_1">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -1036,8 +1002,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="text">
         <string>About MIPS</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="TabButton" name="tb1_2">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -1048,6 +1023,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </property>
        <property name="text">
         <string>The addi Instruction</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_3">
@@ -1062,6 +1043,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="text">
         <string>The $zero Register</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QPushButton" name="challenge1Button">
        <property name="geometry">
@@ -1075,6 +1062,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <property name="text">
         <string>Challenge 1</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="lesson2">
@@ -1085,6 +1078,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <width>211</width>
         <height>149</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>false</bold>
+       </font>
       </property>
       <attribute name="label">
        <string>Lesson 2</string>
@@ -1258,6 +1256,83 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>20</y>
+      <width>271</width>
+      <height>180</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="codingLayout">
+     <item row="2" column="4">
+      <widget class="QPushButton" name="clearConsoleButton">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="4">
+      <widget class="QTextBrowser" name="console">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="5">
+      <widget class="CodeEditor" name="codeEdit"/>
+     </item>
+     <item row="0" column="2" colspan="2">
+      <widget class="QPushButton" name="submitButton">
+       <property name="maximumSize">
+        <size>
+         <width>220</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Check Solution</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <widget class="QPushButton" name="runButton">
+       <property name="maximumSize">
+        <size>
+         <width>220</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Run Code</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1312,6 +1387,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>CodeEditor</class>
    <extends>QTextEdit</extends>
    <header>codeeditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TabButton</class>
+   <extends>QPushButton</extends>
+   <header>tabbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

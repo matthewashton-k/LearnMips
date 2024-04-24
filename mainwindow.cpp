@@ -6,8 +6,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 // #include "Box2D/Box2D.h"
-#include <iostream>
 #include <highligher.h>
+#include "tabbutton.h"
 #include <QStyleFactory>
 #include <QIcon>
 #include <QShortcut>
@@ -19,7 +19,7 @@ using std::endl;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow) , modelPtr(new Model())
+    , ui(new Ui::MainWindow) , modelPtr(new Model()), tabButton(new TabButton())
 {
     ui->setupUi(this);
 
@@ -50,6 +50,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(modelPtr, &Model::codeUpdated, ui->codeEdit, &QPlainTextEdit::setPlainText);
     connect(modelPtr, &Model::makeTabVisible, this, &MainWindow::setSectionTabVisible);
     connect(this, &MainWindow::requestTabVisibilities, modelPtr, &Model::pushTabVisibilities);
+
+    //connect(tabButton, SIGNAL(updateTab(std::tuple<int,int>)), this, SLOT(handleUpdateTab(std::tuple<int,int>)));
+    //connect(tabButton, &TabButton::updateTab, this, &MainWindow::handleUpdateTab);
+    connect(tabButton, &TabButton::updateTab, this, &MainWindow::handleTabUpdate);
 
     // Box2D
     connect(modelPtr,
@@ -97,8 +101,21 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete modelPtr;
+    delete tabButton;
     delete highlighter;
     physObjLabels.clear();
+}
+
+void MainWindow::handleTabUpdate(std::tuple<int,int> tabId) {
+    //std::string name = tabButton->objectName().toStdString();
+    //std::tuple<int,int> tabID = std::tuple<int, int>{std::stoi(name.substr(2, name.find("_")-2)), std::stoi(name.substr(name.find("_")+1))};
+
+    std::cout << "handleUpdateTab" << std::endl;
+    int row = std::get<0>(tabId);
+    int column = std::get<1>(tabId);
+    ui->sectionTabs->setCurrentIndex(row);
+    QTabWidget *nestedTab = ui->sectionTabs->findChild<QTabWidget *>(QString::fromStdString("s" + std::to_string(row) + "Widget"));
+    nestedTab->setCurrentIndex(column);
 }
 
 void MainWindow::displayReferenceWindow(){
