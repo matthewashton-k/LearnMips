@@ -981,7 +981,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>12</number>
     </property>
     <widget class="QWidget" name="page0">
      <widget class="QTabWidget" name="sectionTabs">
@@ -2082,7 +2082,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_39">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>230</x>
         <y>0</y>
         <width>931</width>
         <height>481</height>
@@ -2098,7 +2098,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_24">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>640</x>
         <y>160</y>
         <width>691</width>
         <height>351</height>
@@ -2111,8 +2111,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_59">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>490</y>
+        <x>230</x>
+        <y>480</y>
         <width>881</width>
         <height>51</height>
        </rect>
