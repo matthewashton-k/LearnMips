@@ -30,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->submitButton, &QPushButton::clicked, this, &MainWindow::submitButtonClicked);
     connect(ui->clearConsoleButton, &QPushButton::clicked, modelPtr, &Model::clearConsole);
     connect(ui->showHideMenuButton, &QPushButton::clicked, this, &MainWindow::showHideMenuButtonClicked);
-    connect(ui->challenge1Button, &QPushButton::clicked, this, &MainWindow::challenge1ButtonClicked);
 
     //connect model/main window communication signals/slots
     connect(modelPtr, &Model::consoleTextUpdated, this, &MainWindow::updateConsole);
@@ -51,9 +50,38 @@ MainWindow::MainWindow(QWidget *parent)
     connect(modelPtr, &Model::makeTabVisible, this, &MainWindow::setSectionTabVisible);
     connect(this, &MainWindow::requestTabVisibilities, modelPtr, &Model::pushTabVisibilities);
 
-    //connect(tabButton, SIGNAL(updateTab(std::tuple<int,int>)), this, SLOT(handleUpdateTab(std::tuple<int,int>)));
-    //connect(tabButton, &TabButton::updateTab, this, &MainWindow::handleUpdateTab);
-    connect(tabButton, &TabButton::updateTab, this, &MainWindow::handleTabUpdate);
+    //connecting all of the tab buttons
+    connect(ui->tb10_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate); //welcome page
+    connect(ui->tb1_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb1_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb1_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb1_4, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb2_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb2_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb2_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb3_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb3_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb3_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb4_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb4_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb4_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb5_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb5_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb5_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb6_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb6_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb6_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb7_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb7_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb7_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb8_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb8_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    //connect(ui->tb8_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb9_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb9_2, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb9_3, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+    connect(ui->tb12_1, &TabButton::tabButtonClicked, this, &MainWindow::handleTabUpdate);
+
 
     // Box2D
     connect(modelPtr,
@@ -106,16 +134,14 @@ MainWindow::~MainWindow()
     physObjLabels.clear();
 }
 
-void MainWindow::handleTabUpdate(std::tuple<int,int> tabId) {
-    //std::string name = tabButton->objectName().toStdString();
-    //std::tuple<int,int> tabID = std::tuple<int, int>{std::stoi(name.substr(2, name.find("_")-2)), std::stoi(name.substr(name.find("_")+1))};
-
-    std::cout << "handleUpdateTab" << std::endl;
-    int row = std::get<0>(tabId);
-    int column = std::get<1>(tabId);
-    ui->sectionTabs->setCurrentIndex(row);
+void MainWindow::handleTabUpdate(std::tuple<int,int> tabID) {
+    int row = std::get<0>(tabID);
+    int column = std::get<1>(tabID);
+    ui->sectionTabs->setCurrentIndex(row-1);
     QTabWidget *nestedTab = ui->sectionTabs->findChild<QTabWidget *>(QString::fromStdString("s" + std::to_string(row) + "Widget"));
-    nestedTab->setCurrentIndex(column);
+    nestedTab->setCurrentIndex(column-1);
+    QWidget *currentPage = ui->pageWidget->findChild<QWidget *>(QString::fromStdString("page" + std::to_string(row) + "_" + std::to_string(column)));
+    ui->pageWidget->setCurrentWidget(currentPage);
 }
 
 void MainWindow::displayReferenceWindow(){

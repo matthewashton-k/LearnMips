@@ -178,6 +178,6 @@ private slots:
      * @brief handleUpdateTab updates the current tab to view
      * @param tabID
      */
-    void handleTabUpdate(std::tuple<int,int> tabId);
+    void handleTabUpdate(std::tuple<int,int> tabID);
 };
 #endif // MAINWINDOW_H
