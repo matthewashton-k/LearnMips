@@ -14,7 +14,7 @@
    <string>Learn Mips</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="stackedWidget">
+   <widget class="QStackedWidget" name="pageWidget">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_0">
      <widget class="QTabWidget" name="sectionTabs">
@@ -43,7 +43,7 @@
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="s1Tab">
        <attribute name="title">
@@ -686,7 +686,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </rect>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="t1_9">
          <attribute name="title">
@@ -881,7 +881,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="lesson1_1">
+    <widget class="QWidget" name="page10_1"/>
+    <widget class="QWidget" name="page1_1">
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
@@ -899,7 +900,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="lesson1_2">
+    <widget class="QWidget" name="page1_2">
      <widget class="QLabel" name="label_22">
       <property name="geometry">
        <rect>
@@ -917,7 +918,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="lesson1_3">
+    <widget class="QWidget" name="page1_3">
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
@@ -935,7 +936,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="lesson1_4c">
+    <widget class="QWidget" name="page1_4">
      <widget class="QLabel" name="label_24">
       <property name="geometry">
        <rect>
@@ -976,15 +977,42 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <number>0</number>
      </property>
      <property name="tabSpacing">
-      <number>23</number>
+      <number>27</number>
      </property>
+     <widget class="QWidget" name="page">
+      <attribute name="label">
+       <string>Welcome!</string>
+      </attribute>
+      <widget class="TabButton" name="tb10_1">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Welcome!</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="lesson1">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
@@ -993,7 +1021,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <widget class="TabButton" name="tb1_1">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>0</y>
          <width>151</width>
          <height>31</height>
@@ -1015,7 +1043,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <widget class="TabButton" name="tb1_2">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>40</y>
          <width>151</width>
          <height>29</height>
@@ -1031,10 +1059,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="TabButton" name="tb1_3">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>80</y>
          <width>151</width>
          <height>29</height>
@@ -1050,10 +1078,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="challenge1Button">
+      <widget class="TabButton" name="tb1_4">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>120</y>
          <width>151</width>
          <height>29</height>
@@ -1076,7 +1104,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <property name="font">
@@ -1085,8 +1113,74 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </font>
       </property>
       <attribute name="label">
-       <string>Lesson 2</string>
+       <string>Lesson 2 - SRL and SLL</string>
       </attribute>
+      <widget class="TabButton" name="tb2_1">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SRL and SLL</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb2_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Multiply and Divide</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb2_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 2</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="lesson3">
       <property name="geometry">
@@ -1094,12 +1188,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Lesson 3</string>
+       <string>Lesson 3 - ASCII Strings</string>
       </attribute>
+      <widget class="TabButton" name="tb3_1">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Defining ASCII Strings</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb3_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>syscalls</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb3_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 3</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="lesson4">
       <property name="geometry">
@@ -1107,12 +1267,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Lesson 4</string>
+       <string>Lesson 4 - Labels</string>
       </attribute>
+      <widget class="TabButton" name="tb4_1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Labels/Branch Instructions</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb4_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>for loop example</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb4_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 4</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="lesson5">
       <property name="geometry">
@@ -1120,12 +1346,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Lesson 5</string>
+       <string>Lesson 5 - The Stack</string>
       </attribute>
+      <widget class="TabButton" name="tb5_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 5</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb5_1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Loads, Stores and the Stack</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb5_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Example Usage</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="lesson6">
       <property name="geometry">
@@ -1133,12 +1425,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Lesson 6</string>
+       <string>Lesson 6 - last minute</string>
       </attribute>
+      <widget class="TabButton" name="tb6_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 6</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb6_1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Learn 1</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb6_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Learn 2</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="lesson7">
       <property name="geometry">
@@ -1146,12 +1504,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Lesson 7</string>
+       <string>Lesson 7 - xor and xori</string>
       </attribute>
+      <widget class="TabButton" name="tb7_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 7</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb7_1">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>xor and xori</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb7_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>One-Time Pads</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="lesson8">
       <property name="geometry">
@@ -1159,12 +1583,56 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Lesson 8</string>
+       <string>Lesson 8 - Jal and Jr</string>
       </attribute>
+      <widget class="TabButton" name="tb8_1">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Jal and Jr</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb8_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Challenge 8</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="bonus1">
       <property name="geometry">
@@ -1172,38 +1640,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Bonus Challenge 1</string>
+       <string>Bonus Lesson! - Fibonacci</string>
       </attribute>
-     </widget>
-     <widget class="QWidget" name="bonus2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>211</width>
-        <height>149</height>
-       </rect>
-      </property>
-      <attribute name="label">
-       <string>Bonus Challenge 2</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="bonus3">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>211</width>
-        <height>149</height>
-       </rect>
-      </property>
-      <attribute name="label">
-       <string>Bonus Challenge 3</string>
-      </attribute>
+      <widget class="TabButton" name="tb9_1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Fibonacci Sequence</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb9_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Calculating the Nth Term</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="TabButton" name="tb9_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Bonus Challenge</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="openEdit">
       <property name="geometry">
@@ -1211,12 +1719,34 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>149</height>
+        <height>156</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Open Editor</string>
       </attribute>
+      <widget class="TabButton" name="tb12_1">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Open Editor</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="Line" name="menuLine">

@@ -9,16 +9,17 @@
 class TabButton : public QPushButton
 {
     Q_OBJECT
-private:
-
 public:
-    TabButton(QWidget *parent = nullptr);
+    explicit TabButton(QWidget *parent = nullptr);
 
 signals:
-    void updateTab(std::tuple<int,int> tabID);
+    void tabButtonClicked(std::tuple<int, int> id);
 
-public slots:
-    void tabButtonClicked();
+private slots:
+    void handleClick();
+
+private:
+    //std::tuple<int,int> getIdFromObjectName();
 };
 
 #endif // TABBUTTON_H
