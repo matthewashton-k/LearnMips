@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_0">
      <widget class="QTabWidget" name="sectionTabs">
@@ -35,8 +35,8 @@
        <rect>
         <x>240</x>
         <y>0</y>
-        <width>591</width>
-        <height>761</height>
+        <width>531</width>
+        <height>711</height>
        </rect>
       </property>
       <property name="tabPosition">
@@ -177,7 +177,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SRL (Shift Right Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS 'srl' (Shift Right Logical) instruction shifts the bits of a register to the right by a specified number of positions. Each bit is shifted to the next lower position, and 0s are introduced at the most significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b10101010 (decimal 170)&lt;/p&gt;&lt;p&gt;Performing srl $t1, $t0, 3 will shift the bits in $t0 right by 3 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b00010101 (decimal 21)&lt;/p&gt;&lt;p&gt;After shifting right by 3 positions, the original bits are moved three places to the right, and zeros are filled in on the left.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SLL (Shift Left Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS sll (Shift Left Logical) instruction shifts the bits of a register to the left by a specified number of positions. Each bit is shifted to the next higher position, and 0s are introduced at the least significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example&lt;/span&gt;:&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b00001111 (decimal 15)&lt;/p&gt;&lt;p&gt;Performing sll $t1, $t0, 4 will shift the bits in $t0 left by 4 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b11110000 (decimal 240)&lt;/p&gt;&lt;p&gt;The SLL operation multiplies the number by 2 for each shift position if the number &lt;/p&gt;&lt;p&gt;is unsigned&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;SRL (Shift Right Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS 'srl' (Shift Right Logical) instruction shifts the bits of a register to the right by a specified number of positions. Each bit is shifted to the next lower position, and 0s are introduced at the most significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b10101010 (decimal 170)&lt;/p&gt;&lt;p&gt;Performing srl $t1, $t0, 3 will shift the bits in $t0 right by 3 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b00010101 (decimal 21)&lt;/p&gt;&lt;p&gt;After shifting right by 3 positions, the original bits are moved three places to the right, and zeros are filled in on the left.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;SLL (Shift Left Logical)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;The MIPS sll (Shift Left Logical) instruction shifts the bits of a register to the left by a specified number of positions. Each bit is shifted to the next higher position, and 0s are introduced at the least significant bit.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Example&lt;/span&gt;:&lt;/p&gt;&lt;p&gt;Suppose we have the following value in a register:&lt;/p&gt;&lt;p&gt;$t0 = 0b00001111 (decimal 15)&lt;/p&gt;&lt;p&gt;Performing sll $t1, $t0, 4 will shift the bits in $t0 left by 4 positions and store the result in $t1:&lt;/p&gt;&lt;p&gt;$t1 = 0b11110000 (decimal 240)&lt;/p&gt;&lt;p&gt;The SLL operation multiplies the number by 2 for each shift position if the number &lt;/p&gt;&lt;p&gt;is unsigned&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -242,7 +242,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="t1_3">
          <attribute name="title">
@@ -279,7 +279,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in the $a0 register. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.text&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by the label helloText, defined in Learn 1 under the .data tag, into $a0. This is the parameter for the syscall. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. When printing an integer or char, $a0 should contain the actual integer or char and not an address. What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;What is a syscall?&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A syscall is a Mips instruction that tells the operating system to do something that the program can't do itself. A syscall is called by simply typing syscall. It uses the value in $v0 as an opcode, which dictates what the syscall will do. Any parameters the syscall needs are stored in the $a0 register. A syscall to write a string to the console might look like this:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;.text&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;la $a0, helloText&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addi $v0, $zero, 4&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;syscall&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In the above example, &amp;quot;la $a0, helloText&amp;quot; loads the address of the string refered to by the label helloText, defined in Learn 1 under the .data tag, into $a0. This is the parameter for the syscall. &amp;quot;addi $v0, $zero, 4&amp;quot; sets the value of $v0 to 4. 4 is the op code to print a string. When printing an integer or char, $a0 should contain the actual integer or char and not an address. What exact codes are supported depends on the assembler, the program that converts mips to real machine code. The codes supported in the LearnMips app are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;1: Print Integer&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;4: Print String&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;10: Exit&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;11: Print Char&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -433,7 +433,7 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:16pt; font-weight:600;&quot;&gt;Loads, Stores, and the Stack&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt;&quot;&gt;The lw (load word) and sw (store word) opcodes are used to transfer data between memory and registers in MIPS assembly. They are commonly used in conjunction with the sp (stack pointer) register to manipulate the stack.&lt;/span&gt;&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:600;&quot;&gt;lw (Load Word):&lt;/span&gt;&lt;/h3&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace'; font-size:11pt;&quot;&gt;Syntax: lw $t0, offset($s0)&lt;/span&gt;&lt;/p&gt;
@@ -512,22 +512,70 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="t1_6">
          <attribute name="title">
           <string>Learn 1</string>
          </attribute>
+         <widget class="QLabel" name="label_25">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>491</width>
+            <height>441</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Loading Bytes in MIPS&lt;/span&gt;&lt;/p&gt;&lt;p&gt;In MIPS assembly language, there are three main instructions used for loading and storing 8 bits of data between memory and registers.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt;1. &lt;/span&gt;&lt;span style=&quot; font-family:'monospace'; font-size:x-large; font-weight:700;&quot;&gt;lb&lt;/span&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt; (Load Byte)&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The &lt;span style=&quot; font-family:'monospace';&quot;&gt;lb&lt;/span&gt; instruction is used to load a single byte (8 bits) from memory into the lower 8 bits of a register. &lt;/p&gt;&lt;p&gt;Syntax: &lt;span style=&quot; font-family:'monospace';&quot;&gt;lb $t0, 0($s0)&lt;/span&gt;&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt;2. &lt;/span&gt;&lt;span style=&quot; font-family:'monospace'; font-size:x-large; font-weight:700;&quot;&gt;sb&lt;/span&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt; (Store Byte)&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The &lt;span style=&quot; font-family:'monospace';&quot;&gt;sb&lt;/span&gt; instruction is used to store a single byte (8 bits) from a register into memory. Only the least significant byte of the register is stored.&lt;/p&gt;&lt;p&gt;Syntax: &lt;span style=&quot; font-family:'monospace';&quot;&gt;sb $t0, 0($s0)&lt;/span&gt;&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt;3. &lt;/span&gt;&lt;span style=&quot; font-family:'monospace'; font-size:x-large; font-weight:700;&quot;&gt;la&lt;/span&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt; (Load Address)&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The &lt;span style=&quot; font-family:'monospace';&quot;&gt;la&lt;/span&gt; instruction is a pseudoinstruction that is used to load the address of a label or a memory location into a register.&lt;/p&gt;&lt;p&gt;Syntax: &lt;span style=&quot; font-family:'monospace';&quot;&gt;la $t0, label&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="t2_6">
          <attribute name="title">
           <string>Learn 2</string>
          </attribute>
+         <widget class="QLabel" name="label_26">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>491</width>
+            <height>701</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Interacting with .asciiz Strings using lb and sb&lt;/span&gt;&lt;/p&gt;&lt;p&gt;In MIPS assembly language, you can interact with &lt;span style=&quot; font-family:'monospace';&quot;&gt;.asciiz&lt;/span&gt; strings using the &lt;span style=&quot; font-family:'monospace';&quot;&gt;lb&lt;/span&gt;, &lt;span style=&quot; font-family:'monospace';&quot;&gt;sb&lt;/span&gt;, and &lt;span style=&quot; font-family:'monospace';&quot;&gt;la&lt;/span&gt; instructions. Here's how you can use these instructions to manipulate strings:&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt;1. Loading a String Address&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;To access a string, you first need to load its address into a register using the &lt;span style=&quot; font-family:'monospace';&quot;&gt;la&lt;/span&gt; instruction.&lt;/p&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;.data&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt; str: .asciiz &amp;quot;Hello, World!&amp;quot;&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'monospace';&quot;&gt;&lt;br/&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;.text&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt; # Load address of str into $t0&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt; la $t0, myString &lt;/span&gt;&lt;/pre&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt;2. Loading Characters from a String&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;To load individual characters from a string, you can use the &lt;span style=&quot; font-family:'monospace';&quot;&gt;lb&lt;/span&gt; instruction along with the address stored in a register.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;# Load the first character ('H') into $t1&lt;/span&gt;&lt;/p&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    lb $t1, 0($t0)&lt;br/&gt;    # Load the second character ('e') into $t2 &lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    lb $t2, 1($t0)      &lt;/span&gt;&lt;/pre&gt;&lt;p&gt;You can use offsets from the base address to access different characters in the string.&lt;/p&gt;&lt;h2 style=&quot; margin-top:16px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700;&quot;&gt;3. Storing Characters in a String&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;To store characters in a string, you can use the &lt;span style=&quot; font-family:'monospace';&quot;&gt;sb&lt;/span&gt; instruction along with the address stored in a register.&lt;/p&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    # Load the character 'a' into $t3    &lt;br/&gt;    addi $t3, $zero, 97&lt;br/&gt;    # Store 'A' as the first character of str   &lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'monospace';&quot;&gt;    sb $t3, 0($t0)     &lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="t3_6">
          <attribute name="title">
           <string>Challenge 1</string>
          </attribute>
+         <widget class="QLabel" name="label_27">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>491</width>
+            <height>131</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;There is a string stored in the data section under the label myString.  Please load the address of myString into a register of choise, and iterate through the string by incrementing the address by one byte and loading 8 bits until the null terminating character (0x00) is reached. For each character (assume each character is alphabetic), you should add the correct ammount to that character code to make it a capital letter, then re store it in the correct position in the string.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
        </widget>
       </widget>
@@ -626,13 +674,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="t1_8">
          <attribute name="title">
           <string>Learn 1</string>
          </attribute>
-         <widget class="QLabel" name="label_46">
+         <widget class="QLabel" name="label_28">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -653,17 +701,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <attribute name="title">
           <string>Challenge</string>
          </attribute>
-         <widget class="QLabel" name="label_47">
+         <widget class="QLabel" name="label_29">
           <property name="geometry">
            <rect>
             <x>8</x>
             <y>-5</y>
             <width>481</width>
-            <height>321</height>
+            <height>341</height>
            </rect>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Use jal/jr&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In this challenge, a secret value has been placed in $s1. The below code runs before what is in the editor:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;j skipFunction:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addSecretNumber:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;add $v1, $a0, $s1&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;jr $ra&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;skipFunction:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;jal addFive&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;First, set $a0 to 10 and then use jal to jump to the addSecretNumberLabel. Second, create a label &amp;quot;addFive&amp;quot; that adds five to the value in $a0 and puts the resulting value in $v0&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Use jal/jr&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In this challenge, a secret value has been placed in $s1. The below code runs before what is in the editor:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;j skipFunction:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;addSecretNumber:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;add $v1, $a0, $s1&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;jr $ra&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;skipFunction:&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;jal addFive&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;First, set $a0 to 10 and then use jal to jump to the addSecretNumberLabel. Second, create a label &amp;quot;addFive&amp;quot; that adds five to the value in $a0 and puts the resulting value in $v0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Hint: &lt;/span&gt; You should treat the addFive label as a function and ensure that it isnt called or inadvertently executed by your code. It will be called by the code executed before your code when it is jumped to. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -686,13 +734,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="t1_9">
          <attribute name="title">
           <string>Learn 1</string>
          </attribute>
-         <widget class="QLabel" name="label_48">
+         <widget class="QLabel" name="label_30">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -713,7 +761,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <attribute name="title">
           <string>Learn 2</string>
          </attribute>
-         <widget class="QLabel" name="label_49">
+         <widget class="QLabel" name="label_31">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -734,7 +782,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <attribute name="title">
           <string>Challenge 1</string>
          </attribute>
-         <widget class="QLabel" name="label_50">
+         <widget class="QLabel" name="label_32">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -980,6 +1028,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <number>27</number>
      </property>
      <widget class="QWidget" name="page">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>211</width>
+        <height>156</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Welcome!</string>
       </attribute>
@@ -1775,7 +1831,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource.qrc">
+      <iconset>
        <normaloff>:/res/images/chevron-left-icon.png</normaloff>:/res/images/chevron-left-icon.png</iconset>
      </property>
      <property name="iconSize">
@@ -1924,8 +1980,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <header>tabbutton.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
