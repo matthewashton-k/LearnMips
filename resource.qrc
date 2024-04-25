@@ -2,6 +2,9 @@
     <qresource prefix="/res">
         <file>images/star_50x50.png</file>
         <file>images/checkmark_50x50.png</file>
+        <file>images/chevron-left-icon.png</file>
+        <file>images/chevron-right-icon.png</file>
+        <file>images/checkmark_rotated_50x50.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

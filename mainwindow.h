@@ -10,6 +10,9 @@
 #include "ui_mainwindow.h"
 #include "model.h"
 #include "highligher.h"
+#include "tabbutton.h"
+#include <QPropertyAnimation>
+#include <iostream>
 
 
 QT_BEGIN_NAMESPACE
@@ -51,6 +54,11 @@ private:
     Highlighter *highlighter;
 
     /**
+     * @brief tabButton buttons to navigate tabs functionality
+     */
+    TabButton* tabButton;
+
+    /**
      * @brief physObjBodies Stores physics QLabels with their id as the key
      */
     std::map<int, QLabel*> physObjLabels;
@@ -65,6 +73,32 @@ private:
      * @brief refreshTabVisibilities helper function that requests tab visibilities from the model
      */
     void refreshTabVisibilities();
+
+    /**
+     * @brief animation member variable to handle animations
+     */
+    QPropertyAnimation animation;
+    QPropertyAnimation animation2;
+    QPropertyAnimation animation3;
+    QPropertyAnimation animation4;
+
+    /**
+     * @brief fixCurrentPage helper method to make sure current page is correct
+     */
+    void fixCurrentPage();
+    /**
+     * @brief doAnimation generic method to do a generic animation from start to end location
+     * @param target
+     * @param duration
+     * @param start
+     * @param end
+     */
+    void doAnimation(QObject *target, int duration, QRect start, QRect end);
+
+    /**
+     * @brief hideCodeBox hides the code box
+     */
+    void hideCodeBox();
 
 signals:
     /**
@@ -86,6 +120,10 @@ signals:
 
 private slots:
     /**
+     * @brief currentIndexChanged for when the page changes
+     */
+    void currentIndexChanged();
+    /**
      * @brief runButtonClicked slot for when the run button is pressed
      */
     void runButtonClicked();
@@ -93,6 +131,21 @@ private slots:
      * @brief submitButtonClicked slot for when the check solution button is clicked
      */
     void submitButtonClicked();
+
+    /**
+     * @brief showHideMenuButtonClicked for when the show/hide menu button is clicked
+     */
+    void showHideMenuButtonClicked();
+
+    /**
+     * @brief nextButtonClicked goes to the next page
+     */
+    void nextButtonClicked();
+
+    /**
+     * @brief previousButtonClicked goes to the previous page
+     */
+    void previousButtonClicked();
 
     /**
      * @brief currentCodeRequested slot to respond to  current code requests from the model
@@ -149,5 +202,11 @@ private slots:
      * @param state the new state to set the tab to
      */
     void setSectionTabVisible(int ID, bool state);
+
+    /**
+     * @brief handleUpdateTab updates the current tab to view
+     * @param tabID
+     */
+    void handleTabUpdate(std::tuple<int,int> tabID);
 };
 #endif // MAINWINDOW_H
