@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->submitButton, &QPushButton::clicked, this, &MainWindow::submitButtonClicked);
     connect(ui->clearConsoleButton, &QPushButton::clicked, modelPtr, &Model::clearConsole);
     connect(ui->showHideMenuButton, &QPushButton::clicked, this, &MainWindow::showHideMenuButtonClicked);
+    connect(ui->nextButton, &QPushButton::clicked, this, &MainWindow::nextButtonClicked);
+    connect(ui->previousButton, &QPushButton::clicked, this, &MainWindow::previousButtonClicked);
+    connect(ui->pageWidget, &QStackedWidget::currentChanged, this, &MainWindow::currentIndexChanged);
 
     //connect model/main window communication signals/slots
     connect(modelPtr, &Model::consoleTextUpdated, this, &MainWindow::updateConsole);
@@ -135,13 +138,62 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::handleTabUpdate(std::tuple<int,int> tabID) {
+    if(tabID == std::tuple<int,int>{10,1})
+        ui->pageWidget->setCurrentIndex(1);
+    if(std::get<0>(tabID) == 0)
+        tabID = std::tuple<int,int>{10,1};
     int row = std::get<0>(tabID);
     int column = std::get<1>(tabID);
     ui->sectionTabs->setCurrentIndex(row-1);
     QTabWidget *nestedTab = ui->sectionTabs->findChild<QTabWidget *>(QString::fromStdString("s" + std::to_string(row) + "Widget"));
     nestedTab->setCurrentIndex(column-1);
+    std::string output = "page" + std::to_string(row) + "_" + std::to_string(column);
+    //std::cout << output << std::endl;
     QWidget *currentPage = ui->pageWidget->findChild<QWidget *>(QString::fromStdString("page" + std::to_string(row) + "_" + std::to_string(column)));
-    ui->pageWidget->setCurrentWidget(currentPage);
+    if(std::get<0>(tabID) != 10)
+        ui->pageWidget->setCurrentWidget(currentPage);
+}
+
+void MainWindow::nextButtonClicked(){
+    ui->pageWidget->setCurrentIndex(ui->pageWidget->currentIndex() + 1);
+
+    std::string name = ui->pageWidget->currentWidget()->objectName().toStdString();
+    std::tuple<int,int> tabID = std::tuple<int, int>{std::stoi(name.substr(4, name.find("_")-4)), std::stoi(name.substr(name.find("_")+1))};
+    handleTabUpdate(tabID);
+}
+
+void MainWindow::previousButtonClicked(){
+    ui->pageWidget->setCurrentIndex(ui->pageWidget->currentIndex() - 1);
+
+    std::string name = ui->pageWidget->currentWidget()->objectName().toStdString();
+    std::tuple<int,int> tabID = std::tuple<int, int>{std::stoi(name.substr(4, name.find("_")-4)), std::stoi(name.substr(name.find("_")+1))};
+    handleTabUpdate(tabID);
+}
+
+void MainWindow::currentIndexChanged(){
+    if(ui->pageWidget->currentIndex() == 29)
+        ui->nextButton->setEnabled(false);
+    else
+        ui->nextButton->setEnabled(true);
+
+    if(ui->pageWidget->currentIndex() == 1)
+        ui->previousButton->setEnabled(false);
+    else
+        ui->previousButton->setEnabled(true);
+
+    fixCurrentPage();
+}
+
+/**
+ * @brief fixCurrentPage helper method to make sure the menu is on the right page
+ */
+void MainWindow::fixCurrentPage() {
+    std::string name = ui->pageWidget->currentWidget()->objectName().toStdString();
+    int currentPage = std::stoi(name.substr(4, name.find("_")-4));
+    if(currentPage == 12)
+        currentPage = 10;
+    if(ui->lessonMenu->currentIndex() != currentPage)
+        ui->lessonMenu->setCurrentIndex(currentPage);
 }
 
 void MainWindow::displayReferenceWindow(){
@@ -215,28 +267,26 @@ void MainWindow::submitButtonClicked(){
     emit runRequest(ui->codeEdit->toPlainText(), true);
 }
 
-void MainWindow::challenge1ButtonClicked(){
-    ui->sectionTabs->setCurrentIndex(0);
-    ui->s1Widget->setCurrentIndex(3);
-}
-
 void MainWindow::showHideMenuButtonClicked(){
     animation.setTargetObject(ui->lessonMenu);
     animation2.setTargetObject(ui->showHideMenuButton);
     animation3.setTargetObject(ui->menuLine);
+    //animation4.setTargetObject(ui->pageWidget);
     animation.setPropertyName("geometry");
     animation2.setPropertyName("geometry");
     animation3.setPropertyName("geometry");
+    //animation4.setPropertyName("geometry");
     animation.setDuration(200);
     animation2.setDuration(200);
     animation3.setDuration(200);
+    //animation4.setDuration(200);
     if(ui->lessonMenu->isEnabled())
     {
 
-        //animation.setStartValue(QRect(0, 0, 80, 31));
         animation.setEndValue(QRect(0, 0, 0, 761));
         animation2.setEndValue(QRect(0, 370, 31, 51));
         animation3.setEndValue(QRect(0, 30, 21, 731));
+        //animation4.setEndValue(QRect(31, 0, 1081, 671));
         //animation.setEasingCurve(QEasingCurve::OutBounce);
 
         ui->lessonMenu->setDisabled(true);
@@ -247,10 +297,10 @@ void MainWindow::showHideMenuButtonClicked(){
     }
     else
     {
-        //animation.setStartValue(QRect(0, 0, 80, 31));
         animation.setEndValue(QRect(0, 0, 211, 761));
         animation2.setEndValue(QRect(210, 370, 31, 51));
         animation3.setEndValue(QRect(200, 30, 21, 731));
+        //animation4.setEndValue(QRect(240, 0, 1081, 671));
         //animation.setEasingCurve(QEasingCurve::OutBounce);
 
         ui->lessonMenu->setDisabled(false);
@@ -262,6 +312,7 @@ void MainWindow::showHideMenuButtonClicked(){
     animation.start();
     animation2.start();
     animation3.start();
+    //animation4.start();
 
 }
 
@@ -279,8 +330,14 @@ void MainWindow::updateConsole(QString text){
 }
 
 void MainWindow::updateCheckBox(int ID, bool checked){
-    if(checked) ui->sectionTabs->setTabIcon(ID, QIcon(":/res/images/checkmark_50x50.png"));
-    else ui->sectionTabs->setTabIcon(ID, QIcon());
+    if(checked){
+        ui->sectionTabs->setTabIcon(ID, QIcon(":/res/images/checkmark_50x50.png"));
+        ui->lessonMenu->setItemIcon(ID + 1, QIcon(":/res/images/checkmark_rotated_50x50.png"));
+    }
+    else {
+        ui->sectionTabs->setTabIcon(ID, QIcon());
+        ui->lessonMenu->setItemIcon(ID + 1, QIcon());
+    }
 }
 
 void MainWindow::closeEvent (QCloseEvent *event)

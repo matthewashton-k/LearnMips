@@ -80,6 +80,9 @@ private:
     QPropertyAnimation animation;
     QPropertyAnimation animation2;
     QPropertyAnimation animation3;
+    QPropertyAnimation animation4;
+
+    void fixCurrentPage();
 
 signals:
     /**
@@ -101,6 +104,10 @@ signals:
 
 private slots:
     /**
+     * @brief currentIndexChanged for when the page changes
+     */
+    void currentIndexChanged();
+    /**
      * @brief runButtonClicked slot for when the run button is pressed
      */
     void runButtonClicked();
@@ -114,9 +121,15 @@ private slots:
      */
     void showHideMenuButtonClicked();
 
-    void challenge1ButtonClicked();
+    /**
+     * @brief nextButtonClicked goes to the next page
+     */
+    void nextButtonClicked();
 
-
+    /**
+     * @brief previousButtonClicked goes to the previous page
+     */
+    void previousButtonClicked();
 
     /**
      * @brief currentCodeRequested slot to respond to  current code requests from the model
