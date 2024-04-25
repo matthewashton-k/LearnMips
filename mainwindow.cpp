@@ -104,7 +104,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // set active tab to ensure ui is synced with model
     ui->sectionTabs->setCurrentIndex(0);
+    ui->pageWidget->setCurrentIndex(1);
     ui->sectionTabs->setIconSize(QSize(12, 10));
+
 
     // set Box2D physics label container attribute to ignore mouse clicks
     //ui->physicsObjects->setAttribute(Qt::WA_TransparentForMouseEvents);
