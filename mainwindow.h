@@ -82,7 +82,12 @@ private:
     QPropertyAnimation animation3;
     QPropertyAnimation animation4;
 
+    /**
+     * @brief fixCurrentPage helper method to make sure current page is correct
+     */
     void fixCurrentPage();
+
+    void doAnimation(QObject *target, int duration, QRect start, QRect end);
 
 signals:
     /**

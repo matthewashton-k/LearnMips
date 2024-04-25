@@ -171,6 +171,13 @@ void MainWindow::previousButtonClicked(){
 }
 
 void MainWindow::currentIndexChanged(){
+    switch (ui->pageWidget->currentIndex()) {
+    case 4:
+        doAnimation(ui->codingLayout, 300, QRect(0,0,100,100), QRect(100,100,500,500));
+        break;
+    default:
+        break;
+        }
     if(ui->pageWidget->currentIndex() == 29)
         ui->nextButton->setEnabled(false);
     else
@@ -184,6 +191,14 @@ void MainWindow::currentIndexChanged(){
     fixCurrentPage();
 }
 
+void MainWindow::doAnimation(QObject *target, int duration, QRect start, QRect end){
+    animation.setTargetObject(target);
+    animation.setPropertyName("geometry");
+    animation.setDuration(duration);
+    animation.setStartValue(start);
+    animation.setEndValue(end);
+    animation.start();
+}
 /**
  * @brief fixCurrentPage helper method to make sure the menu is on the right page
  */

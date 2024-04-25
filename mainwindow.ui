@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page0">
      <widget class="QTabWidget" name="sectionTabs">
@@ -1002,14 +1002,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="label_24">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>410</x>
         <y>120</y>
-        <width>481</width>
-        <height>91</height>
+        <width>511</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A secret value has been placed in register $a0.&lt;/p&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Try it yourself!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Challenge 1:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;A secret value has been placed in register $a0.&lt;/p&gt;&lt;p&gt;Use the addi instruction to add 3 to the value in $a0, then place that updated value in the $v0 register (commonly used for a return value). Click check solution to see if your answer is correct!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -2342,10 +2342,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1200</x>
+      <x>1040</x>
       <y>20</y>
-      <width>91</width>
-      <height>81</height>
+      <width>253</width>
+      <height>180</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="codingLayout">
