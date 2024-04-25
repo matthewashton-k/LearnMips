@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page0">
      <widget class="QTabWidget" name="sectionTabs">
@@ -2339,26 +2339,42 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QGroupBox" name="codingGroupBox">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>20</y>
-      <width>253</width>
-      <height>180</height>
+      <x>620</x>
+      <y>740</y>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="codingLayout">
-     <item row="2" column="4">
-      <widget class="QPushButton" name="clearConsoleButton">
+    <layout class="QGridLayout" name="codingLayout" rowstretch="1,1,1" columnstretch="1,1,1,1,1">
+     <item row="0" column="0" colspan="2">
+      <widget class="QPushButton" name="runButton">
        <property name="maximumSize">
         <size>
-         <width>50</width>
-         <height>50</height>
+         <width>220</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="text">
-        <string>Clear</string>
+        <string>Run Code</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" colspan="2">
+      <widget class="QPushButton" name="submitButton">
+       <property name="maximumSize">
+        <size>
+         <width>220</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Check Solution</string>
        </property>
       </widget>
      </item>
@@ -2385,34 +2401,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </property>
       </widget>
      </item>
+     <item row="2" column="4">
+      <widget class="QPushButton" name="clearConsoleButton">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0" colspan="5">
       <widget class="CodeEditor" name="codeEdit"/>
-     </item>
-     <item row="0" column="2" colspan="2">
-      <widget class="QPushButton" name="submitButton">
-       <property name="maximumSize">
-        <size>
-         <width>220</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Check Solution</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0" colspan="2">
-      <widget class="QPushButton" name="runButton">
-       <property name="maximumSize">
-        <size>
-         <width>220</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Run Code</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>
@@ -2449,7 +2452,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
    </widget>
    <zorder>pageWidget</zorder>
-   <zorder>gridLayoutWidget</zorder>
+   <zorder>codingGroupBox</zorder>
    <zorder>nextButton</zorder>
    <zorder>sideMenuWidget</zorder>
    <zorder>previousButton</zorder>

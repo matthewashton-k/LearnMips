@@ -172,12 +172,17 @@ void MainWindow::previousButtonClicked(){
 
 void MainWindow::currentIndexChanged(){
     switch (ui->pageWidget->currentIndex()) {
-    case 4:
-        doAnimation(ui->codingLayout, 300, QRect(0,0,100,100), QRect(100,100,500,500));
+    case 5:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(420,340,601,171));
         break;
     default:
+        doAnimation(ui->codingGroupBox, 300, ui->codingGroupBox->geometry(), QRect(620,740,81,21));
+        ui->codingGroupBox->setEnabled(false);
+        QTimer::singleShot(300, this, &MainWindow::hideCodeBox);
         break;
-        }
+    }
     if(ui->pageWidget->currentIndex() == 29)
         ui->nextButton->setEnabled(false);
     else
@@ -199,6 +204,11 @@ void MainWindow::doAnimation(QObject *target, int duration, QRect start, QRect e
     animation.setEndValue(end);
     animation.start();
 }
+
+void MainWindow::hideCodeBox(){
+    ui->codingGroupBox->hide();
+}
+
 /**
  * @brief fixCurrentPage helper method to make sure the menu is on the right page
  */

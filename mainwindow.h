@@ -86,8 +86,19 @@ private:
      * @brief fixCurrentPage helper method to make sure current page is correct
      */
     void fixCurrentPage();
-
+    /**
+     * @brief doAnimation generic method to do a generic animation from start to end location
+     * @param target
+     * @param duration
+     * @param start
+     * @param end
+     */
     void doAnimation(QObject *target, int duration, QRect start, QRect end);
+
+    /**
+     * @brief hideCodeBox hides the code box
+     */
+    void hideCodeBox();
 
 signals:
     /**
