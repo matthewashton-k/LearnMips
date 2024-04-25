@@ -177,6 +177,51 @@ void MainWindow::currentIndexChanged(){
         ui->codingGroupBox->show();
         doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(420,340,601,171));
         break;
+    case 8:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 11:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 14:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 17:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 20:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 23:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 25:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 28:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
+    case 29:
+        ui->codingGroupBox->setEnabled(true);
+        ui->codingGroupBox->show();
+        doAnimation(ui->codingGroupBox, 300, QRect(620,740,81,21), QRect(660,0,650,670));
+        break;
     default:
         doAnimation(ui->codingGroupBox, 300, ui->codingGroupBox->geometry(), QRect(620,740,81,21));
         ui->codingGroupBox->setEnabled(false);
@@ -206,7 +251,8 @@ void MainWindow::doAnimation(QObject *target, int duration, QRect start, QRect e
 }
 
 void MainWindow::hideCodeBox(){
-    ui->codingGroupBox->hide();
+    if(!ui->codingGroupBox->isEnabled())
+        ui->codingGroupBox->hide();
 }
 
 /**
