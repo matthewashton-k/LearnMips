@@ -321,7 +321,10 @@ Section Model::buildSection(int sectionID){
         case 5:
             return Section(
                 Challenge( //Challenge - Lb, sb, la, edit a string, or character count, etc
-                    "", //before Code
+                   R"(.data
+                    myString: .asciiz "helloworld"
+                    .text
+)", //before Code
                     "", //after Code
                     ValidityFunctions::section6ValidityFunction));
         case 6: // XOR challenge

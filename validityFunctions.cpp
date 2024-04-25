@@ -72,7 +72,24 @@ bool ValidityFunctions::section5ValidityFunction(std::string code){
 }
 
 bool ValidityFunctions::section6ValidityFunction(std::string code){
-    return false;
+    try {
+        Interpreter interpreter6(code);
+        interpreter6.run();
+        // mystring should be HELLOWORLD
+        optional<vector<uint8_t>> capitalized = interpreter6.getSymbol("myString", 10);
+        if (!capitalized.has_value())
+            throw ("No myString symbol found");
+        string actual = "HELLOWORLD";
+        for (int index = 0; index < 10; index++) {
+            if (actual.at(index) != capitalized.value().at(index)) {
+                return false;
+            }
+        }
+    } catch (string err) {
+        cout << "ERROR: " << err << endl;
+        return false;
+    }
+    return true;
 }
 
 /// XOR challenge
