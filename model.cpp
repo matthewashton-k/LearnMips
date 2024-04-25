@@ -39,7 +39,7 @@ void Model::executeCode(QString code, bool checkSolutionValidity) {
     std::string outputText = std::get<0>(output);
     bool isValidSolution = std::get<1>(output);
 
-    currentConsoleText.append(outputText + "\n");
+    if(outputText.size() > 0) currentConsoleText.append(outputText + "\n");
     emit consoleTextUpdated(currentConsoleText.c_str());
 
     if(checkSolutionValidity){
